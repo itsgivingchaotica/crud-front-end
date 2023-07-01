@@ -1,12 +1,13 @@
 import React from 'react'
+import StudentCard from './StudentCard'
 
 const StudentListItems = (props) => {
   return (
     <div>
     {props.allStudents.map((student)=>{
-        return (<div key={student.id}>
-                    <h1>{student.firstName }</h1>
-                </div>)
+        return (<StudentCard key={student.id} id={student.id} firstName={student.firstName} lastName={student.lastName}
+                email={student.email} imageUrl={student.imageUrl} gpa={student.gpa} campusId={student.campusId}>
+                </StudentCard>)
     })}
     </div>
   )
