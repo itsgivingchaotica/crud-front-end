@@ -16,6 +16,9 @@ const studentReducer = (state = INITIAL_STUDENTS_STATE, action) => {
                 student.id === action.payload.id ? action.payload : student
             );
             return { ...state, studentList: updatedStudentList }; 
+        case DELETE_STUDENT:
+        //filter out any student from the student list with the id associated with the student
+        return { ...state, studentList: state.studentList.filter(student => student.id !== action.payload) };
         default:
             return state;
     }

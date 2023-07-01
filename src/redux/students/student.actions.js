@@ -49,27 +49,46 @@ export const addStudentThunk = (student) => {
 
 }
 
-export const editStudent = (campusId, editedStudent) =>{
+export const editStudent = (studentId, editedStudent) =>{
     return{
         type: EDIT_STUDENT,
-        payload: {campusId, editedStudent}
+        payload: {studentId, editedStudent}
     }
 }
   
-  export const editStudentThunk = (campusId, editedCampus) => {
+  export const editStudentThunk = (studentId, editedStudent) => {
     return async (dispatch) => {
-      try {
+        try {
         const res = await axios.put(
-          `http://localhost:8080/api/campuses/${studentId}`,
-          editedStudent
+            `http://localhost:8080/api/students/${studentId}`,
+            editedStudent
         );
         const updatedStudent = res.data;
-        dispatch(editCampus(campusId, updatedStudent));
-      } catch (error) {
+        dispatch(editStudent(studentId, updatedStudent));
+        } catch (error) {
         console.log(error.message);
-      }
+        }
     };
   };
+
+  export const deleteStudent = (studentId) => {
+    return {
+        type: DELETE_STUDENT,
+        payload: studentId
+    }
+  };
+
+export const deleteStudentThunk = (studentId) => {
+    return async (dispatch) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/students/${studentId}`);
+            console.log("student deleted");
+            dispatch(deleteStudent(studentId));
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+};
 
 
 
