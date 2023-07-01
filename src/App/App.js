@@ -28,6 +28,7 @@ function App() {
         <Route path="/students/addStudent" element={<action.AddStudent />} />
         <Route path="/campuses/addCampus" element={<action.AddCampus />} />
         <Route path="/students/:id" element={<entity.SingleStudent />} />
+        <Route path="/campuses/:id" element={<entity.SingleCampus />} />
       </Routes>
     </div>
     </Router>
