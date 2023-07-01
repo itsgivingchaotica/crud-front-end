@@ -1,4 +1,4 @@
-import { FETCH_ALL_CAMPUSES, ADD_CAMPUS, DELETE_CAMPUS } from "./campus.types"
+import { FETCH_ALL_CAMPUSES, ADD_CAMPUS, EDIT_CAMPUS,DELETE_CAMPUS } from "./campus.types"
 import axios from 'axios';
 
 export const fetchAllCampuses = (payload) => {
@@ -47,3 +47,23 @@ export const addCampusThunk = (campus) => {
     }
 
 }
+
+export const editCampus = (campusId, editedCampus) => ({
+  type: EDIT_CAMPUS,
+  payload: { campusId, editedCampus },
+});
+
+export const editCampusThunk = (campusId, editedCampus) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(
+        `http://localhost:8080/api/campuses/${campusId}`,
+        editedCampus
+      );
+      const updatedCampus = res.data;
+      dispatch(editCampus(campusId, updatedCampus));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};

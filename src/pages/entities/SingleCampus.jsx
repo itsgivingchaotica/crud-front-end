@@ -1,15 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { EditCampusForm } from '../.././components'
+import { editCampusThunk } from '../../redux/campuses/campus.actions';
 import axios from 'axios';
 
 
   const SingleCampus = () => {
   const allCampuses = useSelector((state) => state.campuses.campusList)
   const {id} = useParams();
-
+  const dispatch = useDispatch();
   const [singleCampus, setSingleCampus] = useState('');
   const [isEditing, setIsEditing] = useState('')
 
@@ -26,12 +27,12 @@ import axios from 'axios';
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      await axios.put(`http://localhost:8080/api/campuses/${id}`, editedCampus);
-      setIsEditing(false);
-    } catch (error) {
-      console.log(error.message);
-    }
+      try {
+        await dispatch(editCampusThunk(id, editedCampus));
+        setIsEditing(false);
+      } catch (error) {
+        console.log(error.message);
+      }
   };
 
   const handleDeleteCampus = async () => {
