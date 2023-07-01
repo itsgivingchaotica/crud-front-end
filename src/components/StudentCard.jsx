@@ -1,5 +1,6 @@
 import React from 'react'
 import "../styles/studentCard.css";
+import { NavLink } from 'react-router-dom';
 
 const StudentCard = (props) => {
   return (
@@ -10,6 +11,7 @@ const StudentCard = (props) => {
         <img className="student-image" src={props.imageUrl}></img>
         <h3>{props.gpa}</h3>
         <h3>campusId: {props.campusId}</h3>
+        <NavLink to={`/students/${props.id}`}>Student Profile</NavLink>
     </div>
   )
 }
