@@ -1,4 +1,4 @@
-import { FETCH_ALL_STUDENTS, ADD_STUDENT, DELETE_STUDENT } from "./student.types"
+import { FETCH_ALL_STUDENTS, ADD_STUDENT, DELETE_STUDENT, EDIT_STUDENT } from "./student.types"
 import axios from 'axios';
 
 export const fetchAllStudents = (payload) => {
@@ -48,3 +48,28 @@ export const addStudentThunk = (student) => {
     }
 
 }
+
+export const editStudent = (campusId, editedStudent) =>{
+    return{
+        type: EDIT_STUDENT,
+        payload: {campusId, editedStudent}
+    }
+}
+  
+  export const editStudentThunk = (campusId, editedCampus) => {
+    return async (dispatch) => {
+      try {
+        const res = await axios.put(
+          `http://localhost:8080/api/campuses/${studentId}`,
+          editedStudent
+        );
+        const updatedStudent = res.data;
+        dispatch(editCampus(campusId, updatedStudent));
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  };
+
+
+
