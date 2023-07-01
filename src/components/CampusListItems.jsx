@@ -1,15 +1,26 @@
-import React from 'react'
+import React from 'react';
+import { CampusCard } from '../components';
 
 const CampusListItems = (props) => {
+  const { allCampuses } = props;
+
   return (
     <div>
-    {props.allCampuses.map((campus)=>{
-        return (<div key={campus.id}>
-                    <h1>{campus.name }</h1>
-                </div>)
-    })}
+      {allCampuses.map((campus) => {
+        return (
+          <div key={campus.id}>
+            <CampusCard
+              id={campus.id}
+              name={campus.name}
+              imageUrl={campus.imageUrl}
+              address={campus.address}
+              description={campus.description}
+            />
+          </div>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default CampusListItems
+export default CampusListItems;
