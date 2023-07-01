@@ -21,3 +21,10 @@ export const fetchAllStudentsThunk = () =>{
         }
     }
 }
+
+export const addStudent = (payload) =>{
+    return{
+        type: ADD_STUDENT,
+        payload: payload
+    }
+}
