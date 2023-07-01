@@ -18,8 +18,9 @@ const Campuses = () => {
   }, [])
 
   return (
-    <div>
+    <div style={{marginTop: '100px'}}>
         <h1>Campuses</h1>
+        <NavLink to="/students/addCampus">Add new campus</NavLink>
         <CampusListItems allCampuses={allCampuses}/>
     </div>
   )
