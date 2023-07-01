@@ -1,13 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { EditStudentForm } from '../../components';
+import { editStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
 
 
 const SingleStudent = () => {
     const allStudents = useSelector((state) => state.students.studentList)
+    const dispatch = useDispatch();
     const {id} = useParams();
 
     const [singleStudent, setSingleStudent] = useState("");
@@ -43,12 +45,7 @@ const SingleStudent = () => {
   
     const handleSubmit = async (event) => {
       event.preventDefault();
-      try {
-        await axios.put(`http://localhost:8080/api/campuses/${id}`, editedStudent);
-        setIsEditing(false);
-      } catch (error) {
-        console.log(error.message);
-      }
+      dispatch(editStudentThunk(id, editedStudent))
     };
   
     const handleChangeFirstName = (event) => {

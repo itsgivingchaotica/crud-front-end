@@ -49,30 +49,27 @@ export const addStudentThunk = (student) => {
 
 }
 
-export const editStudent = (payload) =>{
+export const editStudent = (campusId, editedStudent) =>{
     return{
         type: EDIT_STUDENT,
-        payload: payload
+        payload: {campusId, editedStudent}
     }
 }
+  
+  export const editStudentThunk = (campusId, editedCampus) => {
+    return async (dispatch) => {
+      try {
+        const res = await axios.put(
+          `http://localhost:8080/api/campuses/${studentId}`,
+          editedStudent
+        );
+        const updatedStudent = res.data;
+        dispatch(editCampus(campusId, updatedStudent));
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  };
 
-export const editStudentThunk = (student) => {
-    return async(dispatch) => {
-        try{
-            console.log("runningEdit");
-            const res = await axios.put("http://localhost:8080/api/students", {
-                firstName: student.firstName,
-                lastName: student.lastName,
-                email: student.email,
-                gpa: student.gpa,
-                campusId: student.campusId
-            });
-            dispatch(editStudent(res.data));
-        }
-        catch(error){
-            console.log(error.message);
-        }
-    }
 
-}
 
