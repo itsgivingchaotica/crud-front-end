@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addCampusThunk } from '../redux/campuses/campus.actions';
+import { addCampusThunk } from '../../redux/campuses/campus.actions';
 
 const AddCampus = () => {
     const [name, setName] = useState("")

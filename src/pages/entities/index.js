@@ -1,0 +1,1 @@
+export { default as SingleStudent } from "./SingleStudent.jsx";

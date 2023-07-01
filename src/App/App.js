@@ -2,10 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // import { Home, Students, Campuses } from "../pages"
 import Home from "../pages/Home"
-import Campuses from "../pages/Campuses"
-import Students from "../pages/Students"
 import { Navbar } from "../components"
-import { SingleStudent, AddStudent, AddCampus } from '../pages'
+import { all, entity, action } from '../pages'
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import './App.css';
 
@@ -25,11 +23,11 @@ function App() {
           </Helmet>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/campuses" element={<Campuses />} />
-        <Route path="/students" element={<Students />} /> 
-        <Route path="/students/addStudent" element={<AddStudent />} />
-        <Route path="/campuses/addCampus" element={<AddCampus />} />
-        <Route path="/students/:id" element={<SingleStudent />} />
+        <Route path="/campuses" element={<all.Campuses />} />
+        <Route path="/students" element={<all.Students />} /> 
+        <Route path="/students/addStudent" element={<action.AddStudent />} />
+        <Route path="/campuses/addCampus" element={<action.AddCampus />} />
+        <Route path="/students/:id" element={<entity.SingleStudent />} />
       </Routes>
     </div>
     </Router>

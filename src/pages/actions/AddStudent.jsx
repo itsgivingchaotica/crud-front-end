@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addStudent, addStudentThunk } from '../redux/students/student.actions';
+import { addStudent, addStudentThunk } from '../../redux/students/student.actions';
 
 const AddStudent = () => {
     const [firstName, setFirstName] = useState("");
