@@ -47,10 +47,10 @@
 }
 
 .home-navlink{
-    padding: 20px;
     width: 100%;
     margin: auto;
-    text-shadow: '1px 1px 2px black'
+    text-shadow: 1px 1px 2px black;
+    padding-left: 10px;
 }
 
 .home-navlink a{
@@ -63,7 +63,7 @@
     justify-content: right;
     align-items: center;
     font-family: 'Manrope', sans-serif;
-    font-size: 20px;
+    font-size: 26px;
     text-shadow: 2px 2px 2px black;
 }
 
