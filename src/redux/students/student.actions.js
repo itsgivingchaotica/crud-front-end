@@ -41,6 +41,7 @@ export const addStudentThunk = (student) => {
                 campusId: student.campusId
             });
             dispatch(addStudent(res.data));
+            console.log('REDUX THUNK API CALL TO ADD A STUDENT ==>',res.data)
         }
         catch(error){
             console.log(error.message);
