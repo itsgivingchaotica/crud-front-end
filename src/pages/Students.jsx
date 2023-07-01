@@ -6,7 +6,7 @@ import { StudentListItems } from '../components';
 
 const Students = () => {
   const allStudents = useSelector((state) => state.students.studentList) //state is an object, shoes in an object, allShoes is the array in shoes object
-  console.log('allStudents in shoes component', allStudents);
+  console.log('allStudents in students component', allStudents);
   const dispatch = useDispatch();
 
   const fetchAllStudents = () => {
