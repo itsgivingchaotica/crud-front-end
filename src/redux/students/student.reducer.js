@@ -1,4 +1,4 @@
-import { FETCH_ALL_STUDENTS, ADD_STUDENT, DELETE_STUDENT } from "./student.types";
+import { FETCH_ALL_STUDENTS, ADD_STUDENT, DELETE_STUDENT, EDIT_STUDENT } from "./student.types";
 
 export const INITIAL_STUDENTS_STATE = {
     studentList: [],
