@@ -1,15 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { EditCampusForm } from '../.././components'
+import { editCampusThunk } from '../../redux/campuses/campus.actions';
 import axios from 'axios';
 
 
   const SingleCampus = () => {
   const allCampuses = useSelector((state) => state.campuses.campusList)
   const {id} = useParams();
-
+  const dispatch = useDispatch();
   const [singleCampus, setSingleCampus] = useState('');
   const [isEditing, setIsEditing] = useState('')
 
@@ -26,13 +27,21 @@ import axios from 'axios';
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      await axios.put(`http://localhost:8080/api/campuses/${id}`, editedCampus);
-      setIsEditing(false);
-    } catch (error) {
-      console.log(error.message);
-    }
+      try {
+        await dispatch(editCampusThunk(id, editedCampus));
+        setIsEditing(false);
+      } catch (error) {
+        console.log(error.message);
+      }
   };
+
+  const handleDeleteCampus = async () => {
+    try{
+      await axios.delete(`http://localhost:8080/api/campuses/${id}`, singleCampus);
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 
   const handleChangeName = (event) => {
     setEditedCampus({ ...editedCampus, name: event.target.value });
@@ -66,14 +75,25 @@ import axios from 'axios';
   return (
     <div style={{marginTop: "120px"}}>
        {isEditing ? (
-        //display the form to edit campus information
-        <EditCampusForm handleChangeName={handleChangeName} handleChangeAddress={handleChangeAddress} handleSubmit={handleSubmit} handleChangeImageUrl={handleChangeImageUrl} handleChangeDescription={handleChangeDescription} editedCampus = {editedCampus}/>
+        <div>
+          {/* display the form to edit campus information */}
+          <h1>{singleCampus.name}</h1>
+              <button onClick={handleEditCampus}>Edit</button>
+              <button onClick={handleDeleteCampus}>Delete</button>
+          <EditCampusForm 
+            handleChangeName={handleChangeName} 
+            handleChangeAddress={handleChangeAddress} 
+            handleSubmit={handleSubmit} 
+            handleChangeImageUrl={handleChangeImageUrl} 
+            handleChangeDescription={handleChangeDescription} 
+            editedCampus = {editedCampus}/>
+        </div>
         ) : (
         // Display campus details when not editing
-        <>
+        <div>
             <h1>{singleCampus.name}</h1>
             <button onClick={handleEditCampus}>Edit</button>
-        </>
+        </div>
     )}
     </div>
   )
