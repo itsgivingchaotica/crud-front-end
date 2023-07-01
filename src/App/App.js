@@ -6,6 +6,7 @@ import Campuses from "../pages/Campuses"
 import Students from "../pages/Students"
 import { Navbar } from "../components"
 import AddStudent from "../pages/AddStudent"
+import { SingleStudent } from '../pages'
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/students" element={<Students />} /> 
         <Route path="/students/addStudent" element={<AddStudent />} />
         <Route path="/campuses/addCampus" element={<AddCampus />} />
+        <Route path="/students/:id" element={<SingleStudent />} />
       </Routes>
     </div>
     </Router>

@@ -5,7 +5,7 @@ import { fetchAllCampusesThunk } from '../redux/campuses/campus.actions'
 import { CampusListItems } from '../components'
 
 const Campuses = () => {
-   const allCampuses = useSelector((state) => state.campuses.campusList) //state is an object, campuses in an object, campusList is the array in shoes object
+   const allCampuses = useSelector((state) => state.campuses.campusList) //state is an object, campuses in an object, campusList is the array in campuses object
   console.log('allCampuses in campuses component', allCampuses);
   const dispatch = useDispatch();
 

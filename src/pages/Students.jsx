@@ -6,7 +6,7 @@ import { StudentListItems } from '../components';
 import { NavLink } from 'react-router-dom';
 
 const Students = () => {
-  const allStudents = useSelector((state) => state.students.studentList) //state is an object, shoes in an object, allShoes is the array in shoes object
+  const allStudents = useSelector((state) => state.students.studentList) //state is an object, students in an object, studentList is the array in student object
   console.log('allStudents in students component', allStudents);
   const dispatch = useDispatch();
 
