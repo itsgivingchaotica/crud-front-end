@@ -5,6 +5,7 @@ import Home from "../pages/Home"
 import Campuses from "../pages/Campuses"
 import Students from "../pages/Students"
 import { Navbar } from "../components"
+import AddStudent from "../pages/AddStudent"
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import './App.css';
 
@@ -12,10 +13,10 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className="Navbar">
-          <Navbar/>
-        </div>
         <div className="App">
+          {/* <div className="Navbar"> */}
+            <Navbar/>
+          {/* </div> */}
           <Helmet>
             <meta charSet="utf-8" />
             <title>Scholar·Central</title>
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/campuses" element={<Campuses />} />
         <Route path="/students" element={<Students />} /> 
+        <Route path="/students/addStudent" element={<AddStudent />} />
       </Routes>
     </div>
     </Router>

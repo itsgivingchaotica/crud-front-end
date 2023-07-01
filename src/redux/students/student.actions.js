@@ -28,3 +28,23 @@ export const addStudent = (payload) =>{
         payload: payload
     }
 }
+
+export const addStudentThunk = (student) => {
+    return async(dispatch) => {
+        try{
+            console.log("running");
+            const res = await axios.post("http://localhost:8080/api/students", {
+                firstName: student.firstName,
+                lastName: student.lastName,
+                email: student.email,
+                gpa: student.gpa,
+                campusId: student.campusId
+            });
+            dispatch(addStudent(res.data));
+        }
+        catch(error){
+            console.log(error.message);
+        }
+    }
+
+}
