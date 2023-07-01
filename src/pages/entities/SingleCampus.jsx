@@ -34,6 +34,14 @@ import axios from 'axios';
     }
   };
 
+  const handleDeleteCampus = async () => {
+    try{
+      await axios.delete(`http://localhost:8080/api/campuses/${id}`, singleCampus);
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   const handleChangeName = (event) => {
     setEditedCampus({ ...editedCampus, name: event.target.value });
   };
@@ -66,14 +74,25 @@ import axios from 'axios';
   return (
     <div style={{marginTop: "120px"}}>
        {isEditing ? (
-        //display the form to edit campus information
-        <EditCampusForm handleChangeName={handleChangeName} handleChangeAddress={handleChangeAddress} handleSubmit={handleSubmit} handleChangeImageUrl={handleChangeImageUrl} handleChangeDescription={handleChangeDescription} editedCampus = {editedCampus}/>
+        <div>
+          {/* display the form to edit campus information */}
+          <h1>{singleCampus.name}</h1>
+              <button onClick={handleEditCampus}>Edit</button>
+              <button onClick={handleDeleteCampus}>Delete</button>
+          <EditCampusForm 
+            handleChangeName={handleChangeName} 
+            handleChangeAddress={handleChangeAddress} 
+            handleSubmit={handleSubmit} 
+            handleChangeImageUrl={handleChangeImageUrl} 
+            handleChangeDescription={handleChangeDescription} 
+            editedCampus = {editedCampus}/>
+        </div>
         ) : (
         // Display campus details when not editing
-        <>
+        <div>
             <h1>{singleCampus.name}</h1>
             <button onClick={handleEditCampus}>Edit</button>
-        </>
+        </div>
     )}
     </div>
   )
