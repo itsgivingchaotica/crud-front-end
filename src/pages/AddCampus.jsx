@@ -28,13 +28,13 @@ const AddCampus = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newCamps = {
+        const newCampus = {
             "name": name,
             "imageUrl": imageUrl,
             "address": address,
             "description":description,
         }
-        // const newStudentObj = JSON.parse(newStudent);
+        // const newCampusObj = JSON.parse(newCampus);
         dispatch(addCampusThunk(newCampus))
     }
 

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllCampusesThunk } from '../redux/campuses/campus.actions'
 import { CampusListItems } from '../components'
@@ -20,7 +20,7 @@ const Campuses = () => {
   return (
     <div style={{marginTop: '100px'}}>
         <h1>Campuses</h1>
-        <NavLink to="/students/addCampus">Add new campus</NavLink>
+        <NavLink to="/campuses/addCampus">Add new campus</NavLink>
         <CampusListItems allCampuses={allCampuses}/>
     </div>
   )
