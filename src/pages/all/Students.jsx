@@ -1,8 +1,8 @@
 import React from 'react'
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { fetchAllStudentsThunk } from '../redux/students/student.actions';
-import { StudentListItems } from '../components';
+import { fetchAllStudentsThunk } from '../../redux/students/student.actions';
+import { StudentListItems } from '../../components';
 import { NavLink } from 'react-router-dom';
 
 const Students = () => {

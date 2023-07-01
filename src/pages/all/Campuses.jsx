@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchAllCampusesThunk } from '../redux/campuses/campus.actions'
-import { CampusListItems } from '../components'
+import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions'
+import { CampusListItems } from '../../components'
 
 const Campuses = () => {
    const allCampuses = useSelector((state) => state.campuses.campusList) //state is an object, campuses in an object, campusList is the array in campuses object
