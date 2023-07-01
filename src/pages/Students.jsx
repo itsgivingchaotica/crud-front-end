@@ -2,7 +2,7 @@ import React from 'react'
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { fetchAllStudentsThunk } from '../redux/students/student.actions';
-import StudentListItems from '../components/StudentListItems.jsx';
+import { StudentListItems } from '../components';
 
 const Students = () => {
   const allStudents = useSelector((state) => state.students.studentList) //state is an object, shoes in an object, allShoes is the array in shoes object
