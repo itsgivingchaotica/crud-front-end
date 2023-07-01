@@ -28,7 +28,7 @@ const AddCampus = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newCamps = {
+        const newCampus = {
             "name": name,
             "imageUrl": imageUrl,
             "address": address,

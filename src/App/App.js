@@ -5,8 +5,7 @@ import Home from "../pages/Home"
 import Campuses from "../pages/Campuses"
 import Students from "../pages/Students"
 import { Navbar } from "../components"
-import AddStudent from "../pages/AddStudent"
-import { SingleStudent } from '../pages'
+import { SingleStudent, AddStudent, AddCampus } from '../pages'
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import './App.css';
 
