@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { EditCampusForm } from '../../components'
+import { EditCampusForm } from '../.././components'
 import axios from 'axios';
 
 
