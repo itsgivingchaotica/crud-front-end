@@ -34,7 +34,7 @@ const AddCampus = () => {
             "address": address,
             "description":description,
         }
-        // const newStudentObj = JSON.parse(newStudent);
+        // const newCampusObj = JSON.parse(newCampus);
         dispatch(addCampusThunk(newCampus))
     }
 
