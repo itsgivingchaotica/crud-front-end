@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { EditCampusForm } from '../.././components'
-import { editCampusThunk } from '../../redux/campuses/campus.actions';
+import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
 import axios from 'axios';
 
 
@@ -28,19 +28,18 @@ import axios from 'axios';
   const handleSubmit = async (event) => {
     event.preventDefault();
       try {
-        await dispatch(editCampusThunk(id, editedCampus));
-        setIsEditing(false);
+        dispatch(editCampusThunk(editedCampus));
       } catch (error) {
         console.log(error.message);
       }
   };
 
   const handleDeleteCampus = async () => {
-    try{
-      await axios.delete(`http://localhost:8080/api/campuses/${id}`, singleCampus);
-    } catch (error) {
-      console.log(error.message)
-    }
+     try {
+         dispatch(deleteCampusThunk(singleCampus.id));
+      } catch (error) {
+        console.log(error.message);
+      }
   }
 
   const handleChangeName = (event) => {
@@ -93,6 +92,7 @@ import axios from 'axios';
         <div>
             <h1>{singleCampus.name}</h1>
             <button onClick={handleEditCampus}>Edit</button>
+            <button onClick={handleDeleteCampus}>Delete</button>
         </div>
     )}
     </div>
