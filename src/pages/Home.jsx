@@ -15,12 +15,19 @@ const Home = () => {
         </div>
       )}
     > 
-    <div className="home">
-    <div>
-
-    </div>
-        Home
-    </div>
+    {isMobileScreen ? ( 
+      <div className="home">
+        <div style={{color: 'white',transform:'translateY(200px)'}}>
+          Home
+        </div>
+      </div>
+    ) :( 
+      <div className="home">
+        <div style={{color: 'white',transform:'translateY(200px)'}}>
+          Home
+        </div>
+    </div>)}
+   
      </ErrorBoundary>
   )
 }

@@ -14,16 +14,20 @@
     --brunswick-green: #1b4332ff;
     --dark-green: #081c15ff;
     --princeton-orange: #ff9100ff;
+    --desert-sand: #D9C0ACff;
+    --liver: #76554Cff;
+    --bone: #DEDAC7ff;
+    --dun: #C4BDADff;
+    --champagne-pink: #EDDFD4ff;
 }
 
 #navbar{
     display: flex;
-    width: 80%;
     margin: 0 auto;
     background-color: var(--burnt-umber);
     z-index: 10;
     border-width: 0.5rem;
-    box-shadow: 0 2px 2px 2px rgb(231, 176, 143, 0.7);
+    box-shadow: 0 1px 2px 1px rgb(231, 176, 143, .8);
     position: fixed;
     top: 0;
     left: 0;
@@ -75,7 +79,8 @@
 }
 
 .navlink:hover {
-    color: var(--princeton-orange);
+    color: var(--bone);
+    border: 2px solid var(--bone);
     /* Change to your desired color on hover */
 }
 
@@ -87,6 +92,8 @@
 
   .navlink{
     margin-right: 10px;
+    padding: 10px;
+    border: 2px solid var(--garnet);
   }
 
 .navlink-text-large{
