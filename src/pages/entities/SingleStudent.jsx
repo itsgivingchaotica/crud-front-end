@@ -10,7 +10,9 @@ const SingleStudent = () => {
   const allStudents = useSelector((state) => state.students.studentList);
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const [singleStudent, setSingleStudent] = useState('');
+  const [enrolledCampus, setEnrolledCampus] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
   const [editedStudent, setEditedStudent] = useState({
@@ -82,6 +84,10 @@ const SingleStudent = () => {
         const res = await axios.get(`http://localhost:8080/api/students/${id}`);
         const studentResponse = res.data;
         setSingleStudent(studentResponse);
+
+        const resCampus = await axios.get(`http://localhost:8080/api/campuses/${studentResponse.campusId}`);
+        const campusResponse = resCampus.data;
+        setEnrolledCampus(campusResponse);
       } catch (error) {
         console.log(error.message);
       }
@@ -94,6 +100,7 @@ const SingleStudent = () => {
       {isEditing ? (
         <div>
           <h1>{singleStudent.firstName}</h1>
+          <h1>{enrolledCampus.name}</h1>
           <button onClick={handleEditStudent}>Edit</button>
           <button onClick={handleDeleteStudent}>Delete</button>
           {/* Display the form to edit student information */}
@@ -111,6 +118,7 @@ const SingleStudent = () => {
       ) : (
         <div>
           <h1>{singleStudent.firstName}</h1>
+          <h1>{enrolledCampus.name}</h1>
           <button onClick={handleEditStudent}>Edit</button>
           <button onClick={handleDeleteStudent}>Delete</button>
         </div>
