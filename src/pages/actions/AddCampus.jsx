@@ -73,7 +73,7 @@ const AddCampus = () => {
             <input type="text" name="description" value={description} placeholder="Description" onChange={handleChangeDescription}></input>
             <button type="submit">Done</button>
         </form>
-        {errorMessage?"Valid name, address and description are required": null}
+        {errorMessage?<h3>Valid name, address and description are required</h3>: null}
         <button onClick={navigateToAllCampuses}>Back to Campus List 🔙</button>
     </div>
     </ErrorBoundary>

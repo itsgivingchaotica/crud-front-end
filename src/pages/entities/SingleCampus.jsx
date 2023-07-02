@@ -16,7 +16,10 @@ import axios from 'axios';
   const dispatch = useDispatch();
   const [singleCampus, setSingleCampus] = useState('');
   const [isEditing, setIsEditing] = useState('')
+  const [formErrorMessage, setFormErrorMessage] = useState("");
+
   const filteredStudents = useSelector(state => state.students.filteredStudentList);
+
   const [editedCampus, setEditedCampus] = useState({
     name: '',
     imageUrl: '',
@@ -35,14 +38,22 @@ import axios from 'axios';
   const handleSubmit = async (event) => {
     event.preventDefault();
       try {
-        dispatch(editCampusThunk(editedCampus, singleCampus.id));
-        setEditedCampus({
-          name: '',
-          imageUrl: '',
-          address: '',
-          description: ''
-        });
-        setIsEditing(false);
+
+        if (editedCampus.name || editedCampus.address || editedCampus.description){
+          dispatch(editCampusThunk(editedCampus, singleCampus.id));
+          setEditedCampus({
+            name: '',
+            imageUrl: '',
+            address: '',
+            description: ''
+          });
+          setFormErrorMessage("");
+          setIsEditing(false);
+        }
+        else {
+          setFormErrorMessage("Please fill at least one field to edit");
+        }
+
       } catch (error) {
         console.log(error.message);
       }
@@ -112,6 +123,7 @@ import axios from 'axios';
             handleChangeImageUrl={handleChangeImageUrl} 
             handleChangeDescription={handleChangeDescription} 
             editedCampus = {editedCampus}/>
+            {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
         </div>
         ) : (
         // Display campus details when not editing
