@@ -28,7 +28,7 @@ const SingleStudent = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      dispatch(editStudentThunk(editedStudent));
+      dispatch(editStudentThunk(editedStudent, singleStudent.id));
     } catch (error) {
       console.log(error.message);
     }

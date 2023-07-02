@@ -13,7 +13,6 @@ export const fetchAllStudentsThunk = () =>{
     return async(dispatch) =>{
         try{
             const res = await axios.get("http://localhost:8080/api/students");
-            console.log('REDUX THUNK API CALL TO STUDENTS ==>', res.data);
             dispatch(fetchAllStudents(res.data));
         }
         catch(error){
@@ -32,7 +31,6 @@ export const addStudent = (payload) =>{
 export const addStudentThunk = (student) => {
     return async(dispatch) => {
         try{
-            console.log("running");
             const res = await axios.post("http://localhost:8080/api/students", {
                 firstName: student.firstName,
                 lastName: student.lastName,
@@ -41,7 +39,6 @@ export const addStudentThunk = (student) => {
                 campusId: student.campusId
             });
             dispatch(addStudent(res.data));
-            console.log('REDUX THUNK API CALL TO ADD A STUDENT ==>',res.data)
         }
         catch(error){
             console.log(error.message);
@@ -50,22 +47,29 @@ export const addStudentThunk = (student) => {
 
 }
 
-export const editStudent = (studentId, editedStudent) =>{
+export const editStudent = (payload) =>{
     return{
         type: EDIT_STUDENT,
-        payload: {studentId, editedStudent}
+        payload: payload
     }
 }
   
-  export const editStudentThunk = (studentId, editedStudent) => {
+  export const editStudentThunk = (editedStudent, id) => {
     return async (dispatch) => {
         try {
         const res = await axios.put(
-            `http://localhost:8080/api/students/${studentId}`,
-            editedStudent
+            `http://localhost:8080/api/students/${id}`, {
+                firstName: editedStudent.firstName,
+                lastName: editedStudent.lastName,
+                email: editedStudent.email,
+                imageUrl: editedStudent.imageUrl,
+                gpa: editedStudent.gpa,
+                campusId: editedStudent.campusId
+            }
         );
-        const updatedStudent = res.data;
-        dispatch(editStudent(studentId, updatedStudent));
+        // const editedStudent = res.data;
+        dispatch(editStudent(res.data));
+
         } catch (error) {
         console.log(error.message);
         }
