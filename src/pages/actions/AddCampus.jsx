@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch } from 'react-redux'
 import { addCampusThunk } from '../../redux/campuses/campus.actions';
 
@@ -43,6 +44,14 @@ const AddCampus = () => {
 
 
   return (
+     <ErrorBoundary
+      fallbackRender={({ error }) => (
+        <div>
+          <h2>Something went wrong:</h2>
+          <p>{error.message}</p>
+        </div>
+      )}
+    > 
      <div style={{marginTop:"120px"}}>
         <h1>Add new campus</h1>
         <form onSubmit={handleSubmit}>
@@ -52,6 +61,7 @@ const AddCampus = () => {
             <button type="submit">Done</button>
         </form>
     </div>
+    </ErrorBoundary>
   )
 }
 
