@@ -9,6 +9,7 @@ const AddCampus = () => {
     const [imageUrl, setImageUrl] = useState("")
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
+    const [errorMessage, setErrorMessage] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -37,12 +38,17 @@ const AddCampus = () => {
             "address": address,
             "description":description,
         }
-        // const newCampusObj = JSON.parse(newCampus);
-        dispatch(addCampusThunk(newCampus))
-        setName("");
-        setAddress("");
-        setDescription("");
-        navigateToAllCampuses();
+        if (name && address && description){
+          dispatch(addCampusThunk(newCampus))
+          setName("");
+          setAddress("");
+          setDescription("");
+          navigateToAllCampuses();
+        }
+        else {
+          setErrorMessage(true);
+        }
+
     }
 
     const navigateToAllCampuses = () => {
@@ -67,6 +73,7 @@ const AddCampus = () => {
             <input type="text" name="description" value={description} placeholder="Description" onChange={handleChangeDescription}></input>
             <button type="submit">Done</button>
         </form>
+        {errorMessage?<h3>Valid name, address and description are required</h3>: null}
         <button onClick={navigateToAllCampuses}>Back to Campus List 🔙</button>
     </div>
     </ErrorBoundary>
