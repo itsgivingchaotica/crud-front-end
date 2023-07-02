@@ -3,7 +3,7 @@
     --liver: #62443Aff;
     --buff: rgb(231, 176, 143);
     --burnt-umber: #7F2F2Aff;
-    --beaver: #977C69ff;
+    --beaver: rgb(150, 124, 105);
     --nyanza: #d8f3dcff;
     --celadon: #b7e4c7ff;
     --celadon-2: #95d5b2;
@@ -14,16 +14,20 @@
     --brunswick-green: #1b4332ff;
     --dark-green: #081c15ff;
     --princeton-orange: #ff9100ff;
+    --desert-sand: #D9C0ACff;
+    --liver: #76554Cff;
+    --bone: #DEDAC7ff;
+    --dun: #C4BDADff;
+    --champagne-pink: #EDDFD4ff;
 }
 
 #navbar{
     display: flex;
-    width: 80%;
     margin: 0 auto;
     background-color: var(--burnt-umber);
     z-index: 10;
     border-width: 0.5rem;
-    box-shadow: 0 2px 2px 2px rgb(231, 176, 143, 0.7);
+    box-shadow: 0 1px 2px 1px rgb(231, 176, 143, .8);
     position: fixed;
     top: 0;
     left: 0;
@@ -74,8 +78,18 @@
     margin-right: 40px;
 }
 
+#mobile-navlinks a{
+    text-decoration: none;
+    color: black !important;
+}
+
+#dropdown-button{
+    color: var(--buff) !important;
+}
+
 .navlink:hover {
-    color: var(--princeton-orange);
+    color: var(--bone);
+    border: 2px solid var(--bone);
     /* Change to your desired color on hover */
 }
 
@@ -87,11 +101,17 @@
 
   .navlink{
     margin-right: 10px;
+    padding: 10px;
+    border: 2px solid var(--garnet);
   }
 
 .navlink-text-large{
     font-family: 'Tangerine', cursive;
   }
+
+.mobile-typography{
+    transform: translateX(-10px);
+}
 
 @keyframes fall {
     0% {
