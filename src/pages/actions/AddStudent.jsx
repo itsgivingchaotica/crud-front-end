@@ -43,6 +43,11 @@ const AddStudent = () => {
         }
         // const newStudentObj = JSON.parse(newStudent);
         dispatch(addStudentThunk(newStudent))
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setGpa("");
+        setCampusId("");
     }
 
   return (

@@ -7,6 +7,7 @@ import { editStudentThunk, deleteStudentThunk } from '../../redux/students/stude
 import axios from 'axios';
 
 const SingleStudent = () => {
+  const allStudents = useSelector((state) => state.students.studentList);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [singleStudent, setSingleStudent] = useState('');
@@ -29,6 +30,15 @@ const SingleStudent = () => {
     event.preventDefault();
     try {
       dispatch(editStudentThunk(editedStudent, singleStudent.id));
+      setEditedStudent({
+        firstName: '',
+        lastName: '',
+        email: '',
+        gpa: '',
+        imageUrl: '',
+        campusId: ''
+      });
+      setIsEditing(false);
     } catch (error) {
       console.log(error.message);
     }
@@ -77,7 +87,7 @@ const SingleStudent = () => {
       }
     };
     fetchStudent();
-  }, [id, isEditing]);
+  }, [id, isEditing, allStudents]);
 
   return (
     <div style={{ marginTop: '120px' }}>
