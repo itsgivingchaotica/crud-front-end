@@ -13,7 +13,7 @@ const AddStudent = () => {
     const [gpa, setGpa] = useState();
     const [imageUrl, setImageUrl] = useState("");
     const [campusId, setCampusId] = useState();
-    const [errorMessage, setErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const fetchAllCampuses = () => {
         return dispatch(fetchAllCampusesThunk());
@@ -56,16 +56,21 @@ const AddStudent = () => {
         }
         // const newStudentObj = JSON.parse(newStudent);
         if(firstName && lastName && email && gpa){
-            dispatch(addStudentThunk(newStudent))
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setGpa("");
-            setCampusId("");
-            navigateToAllStudents();
+            if(gpa<0 || gpa>4){
+                setErrorMessage("Gpa must be between 0 and 4")
+            }
+            else{
+                dispatch(addStudentThunk(newStudent))
+                setFirstName("");
+                setLastName("");
+                setEmail("");
+                setGpa("");
+                setCampusId("");
+                navigateToAllStudents();
+            }
         }
         else{
-            setErrorMessage(true);
+            setErrorMessage("Valid first name, last name, email and gpa (between 0 and 4) are required");
         }
 
     }
@@ -98,7 +103,7 @@ const AddStudent = () => {
             </select>
             <button type="submit">Done</button>
         </form>
-        {errorMessage?"Valid first name, last name, email and gpa (between 0 and 4) are required": null}
+        {errorMessage?<h3>{errorMessage}</h3>: null}
         <button onClick={navigateToAllStudents}>Back to Student List 🔙</button>
     </div>
     </ErrorBoundary>

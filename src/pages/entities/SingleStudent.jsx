@@ -17,6 +17,7 @@ const SingleStudent = () => {
   const [singleStudent, setSingleStudent] = useState('');
   const [enrolledCampus, setEnrolledCampus] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [formErrorMessage, setFormErrorMessage] = useState("");
 
   const [editedStudent, setEditedStudent] = useState({
     firstName: '',
@@ -42,16 +43,28 @@ const SingleStudent = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      dispatch(editStudentThunk(editedStudent, singleStudent.id));
-      setEditedStudent({
-        firstName: '',
-        lastName: '',
-        email: '',
-        gpa: '',
-        imageUrl: '',
-        campusId: ''
-      });
-      setIsEditing(false);
+
+      if (editedStudent.firstName || editedStudent.lastName || editedStudent.email || editedStudent.gpa || editedStudent.campusId){
+        if (editedStudent.gpa < 0 || editedStudent.gpa >4){
+          setFormErrorMessage("Gpa must be between 0 and 4")
+        }
+        else{
+          dispatch(editStudentThunk(editedStudent, singleStudent.id));
+          setEditedStudent({
+            firstName: '',
+            lastName: '',
+            email: '',
+            gpa: '',
+            imageUrl: '',
+            campusId: ''
+          });
+          setFormErrorMessage("");
+          setIsEditing(false);
+        }
+      } else {
+        setFormErrorMessage("Please fill at least one field to edit")
+      }
+
     } catch (error) {
       console.log(error.message);
     }
@@ -134,6 +147,7 @@ const SingleStudent = () => {
             editedStudent={editedStudent}
             allCampuses = {allCampuses}
           />
+          {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
         </div>
       ) : (
         <div>
