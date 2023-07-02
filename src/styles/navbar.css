@@ -3,7 +3,7 @@
     --liver: #62443Aff;
     --buff: rgb(231, 176, 143);
     --burnt-umber: #7F2F2Aff;
-    --beaver: #977C69ff;
+    --beaver: rgb(150, 124, 105);
     --nyanza: #d8f3dcff;
     --celadon: #b7e4c7ff;
     --celadon-2: #95d5b2;
@@ -76,6 +76,15 @@
     color: var(--buff);
     justify-content: space-evenly;
     margin-right: 40px;
+}
+
+#mobile-navlinks a{
+    text-decoration: none;
+    color: black !important;
+}
+
+#dropdown-button{
+    color: var(--buff) !important;
 }
 
 .navlink:hover {

@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import { useMediaQuery } from '@mui/material';
 import ScholarLogo from './ScholarLogo';
+import SideMenuToggle from './SideMenuToggle'
 import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
 import SideNavlinks from './SideNavlinks';
@@ -19,7 +20,7 @@ const Navbar = () => {
               </NavLink>
             </div>
               <div >
-              {isMobileScreen ? (<div>Good job Siobhan!</div>) : (<SideNavlinks/>)}
+              {isMobileScreen ? (<SideMenuToggle/>) : (<SideNavlinks/>)}
               </div>
           </>
       </div>
