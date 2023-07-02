@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux'
 import { addStudent, addStudentThunk } from '../../redux/students/student.actions';
+import { useNavigate } from 'react-router-dom';
 
 const AddStudent = () => {
     const [firstName, setFirstName] = useState("");
@@ -12,6 +13,7 @@ const AddStudent = () => {
     const [campusId, setCampusId] = useState();
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChangeFirstName = (event) => {
         setFirstName(event.target.value);
@@ -49,6 +51,11 @@ const AddStudent = () => {
         setEmail("");
         setGpa("");
         setCampusId("");
+        navigateToAllStudents();
+    }
+
+    const navigateToAllStudents = () => {
+        navigate("/students");
     }
 
   return (
@@ -70,6 +77,7 @@ const AddStudent = () => {
             <input type="campusId" name="campusId" value={campusId} placeholder="campusId" onChange={handleChangeCampusId}></input>
             <button type="submit">Done</button>
         </form>
+        <button onClick={navigateToAllStudents}>Back to Student List 🔙</button>
     </div>
     </ErrorBoundary>
   )

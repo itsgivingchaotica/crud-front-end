@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch } from 'react-redux'
 import { addCampusThunk } from '../../redux/campuses/campus.actions';
+import { useNavigate } from 'react-router-dom';
 
 const AddCampus = () => {
     const [name, setName] = useState("")
@@ -10,6 +11,7 @@ const AddCampus = () => {
     const [description, setDescription] = useState("")
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChangeSchoolName = (event) => {
         setName(event.target.value);
@@ -40,6 +42,11 @@ const AddCampus = () => {
         setName("");
         setAddress("");
         setDescription("");
+        navigateToAllCampuses();
+    }
+
+    const navigateToAllCampuses = () => {
+      navigate("/campuses");
     }
 
 
@@ -60,6 +67,7 @@ const AddCampus = () => {
             <input type="text" name="description" value={description} placeholder="Description" onChange={handleChangeDescription}></input>
             <button type="submit">Done</button>
         </form>
+        <button onClick={navigateToAllCampuses}>Back to Campus List 🔙</button>
     </div>
     </ErrorBoundary>
   )
