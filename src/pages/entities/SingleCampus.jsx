@@ -31,6 +31,13 @@ import axios from 'axios';
     event.preventDefault();
       try {
         dispatch(editCampusThunk(editedCampus, singleCampus.id));
+        setEditedCampus({
+          name: '',
+          imageUrl: '',
+          address: '',
+          description: ''
+        });
+        setIsEditing(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -71,7 +78,7 @@ import axios from 'axios';
       }
     };
     fetchCampus();
-  }, [id, isEditing]);
+  }, [id, isEditing, allCampuses]);
 
   return (
     <div style={{marginTop: "120px"}}>
