@@ -1,5 +1,11 @@
-import { FETCH_ALL_STUDENTS, ADD_STUDENT, DELETE_STUDENT, EDIT_STUDENT } from "./student.types"
 import axios from 'axios';
+
+import { 
+  FETCH_ALL_STUDENTS, 
+  ADD_STUDENT, 
+  DELETE_STUDENT, 
+  EDIT_STUDENT,
+  SEARCH_STUDENTS_BY_CAMPUS } from "./student.types"
 
 export const fetchAllStudents = (payload) => {
     return {
@@ -95,5 +101,21 @@ export const deleteStudentThunk = (studentId) => {
     };
 };
 
+export const searchStudentsByCampus = (filteredStudents) => ({
+  type: SEARCH_STUDENTS_BY_CAMPUS,
+  payload: filteredStudents,
+});
+
+export const searchStudentsByCampusThunk = (campusId) => {
+  return async (dispatch) => {
+    try {
+       const res = await axios.get(`http://localhost:8080/api/students/byCampus/${campusId}`);
+       console.log(campusId);
+      dispatch(searchStudentsByCampus(res.data)); // Pass campusId as the payload
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
 
 

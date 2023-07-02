@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { EditCampusForm } from '../.././components'
 import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
+import { searchStudentsByCampusThunk } from '../../redux/students/student.actions'
 import axios from 'axios';
 
 
@@ -13,7 +14,8 @@ import axios from 'axios';
   const dispatch = useDispatch();
   const [singleCampus, setSingleCampus] = useState('');
   const [isEditing, setIsEditing] = useState('')
-
+  const [campusFilteredStudents, setCampusFilteredStudents] = useState([])
+  const filteredStudents = useSelector(state => state.students.filteredStudentList);
   const [editedCampus, setEditedCampus] = useState({
     name: '',
     imageUrl: '',
@@ -95,6 +97,17 @@ import axios from 'axios';
             <button onClick={handleDeleteCampus}>Delete</button>
         </div>
     )}
+    <div style={{marginTop: '20px'}}>
+          SHOWING ALL STUDENTS FROM {singleCampus.name}
+          {filteredStudents.map((student) => (
+            <div key={student.id}>
+              {student.firstName} {student.lastName}
+              {student.imgUrl}
+              {student.email}
+              {student.gpa}
+            </div>
+          ))}
+    </div>
     </div>
   )
 }
