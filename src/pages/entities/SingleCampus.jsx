@@ -30,7 +30,7 @@ import axios from 'axios';
   const handleSubmit = async (event) => {
     event.preventDefault();
       try {
-        dispatch(editCampusThunk(editedCampus));
+        dispatch(editCampusThunk(editedCampus, singleCampus.id));
       } catch (error) {
         console.log(error.message);
       }
