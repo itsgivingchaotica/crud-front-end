@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux'
 import { addStudent, addStudentThunk } from '../../redux/students/student.actions';
+import { useNavigate } from 'react-router-dom';
+import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
 
 const AddStudent = () => {
+    const allCampuses = useSelector((state)=> state.campuses.campusList);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -11,7 +14,15 @@ const AddStudent = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [campusId, setCampusId] = useState();
 
+    const fetchAllCampuses = () => {
+        return dispatch(fetchAllCampusesThunk());
+    }
+    useEffect(()=>{
+        fetchAllCampuses();
+    }, [])
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChangeFirstName = (event) => {
         setFirstName(event.target.value);
@@ -29,7 +40,7 @@ const AddStudent = () => {
         setGpa(event.target.value)
     }
 
-    const handleChangeCampusId = (event) => {
+    const handleChangeCampus = (event) => {
         setCampusId(event.target.value);
     }
 
@@ -49,6 +60,11 @@ const AddStudent = () => {
         setEmail("");
         setGpa("");
         setCampusId("");
+        navigateToAllStudents();
+    }
+
+    const navigateToAllStudents = () => {
+        navigate("/students");
     }
 
   return (
@@ -67,9 +83,15 @@ const AddStudent = () => {
             <input type="text" name="lastName" value={lastName} placeholder="Last Name" onChange={handleChangeLastName}></input>
             <input type="email" name="email" value={email} placeholder="Email" onChange={handleChangeEmail}></input>
             <input type="number" name="gpa" value={gpa} placeholder="gpa" onChange={handleChangeGpa}></input>
-            <input type="campusId" name="campusId" value={campusId} placeholder="campusId" onChange={handleChangeCampusId}></input>
+            <select className="dropdown" onChange={handleChangeCampus}>
+                <option value="choose" selected disabled>Choose Campus</option>
+                {allCampuses.map((campus) => {
+                    return <option value={campus.id} id={campus.name}>{campus.name + " - " + campus.id}</option>
+                })}  
+            </select>
             <button type="submit">Done</button>
         </form>
+        <button onClick={navigateToAllStudents}>Back to Student List 🔙</button>
     </div>
     </ErrorBoundary>
   )

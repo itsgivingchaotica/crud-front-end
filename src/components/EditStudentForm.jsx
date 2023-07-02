@@ -1,7 +1,7 @@
 import React from 'react'
 
 const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleChangeImageUrl, handleChangeEmail, 
-    handleChangeGpa, handleChangeCampusId, handleSubmit, editedStudent}) => {
+    handleChangeGpa, handleChangeCampus, handleSubmit, editedStudent, allCampuses}) => {
   return (
     <>
     <form onSubmit={handleSubmit}>
@@ -33,13 +33,12 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
             placeholder="gpa"
             onChange={handleChangeGpa}
             />
-            <input
-            type="number"
-            name="campusId"
-            value={editedStudent.campusId}
-            placeholder="campusId"
-            onChange={handleChangeCampusId}
-            />
+            <select className="dropdown" onChange={handleChangeCampus}>
+                <option value="choose" selected disabled>Choose Campus</option>
+                {allCampuses.map((campus) => {
+                    return <option value={campus.id} id={campus.name}>{campus.name + " - " + campus.id}</option>
+                })}  
+            </select>
             <button type="submit">Done</button>
         </form>
         </>
