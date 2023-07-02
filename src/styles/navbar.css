@@ -1,7 +1,7 @@
 *{
     --garnet: #7E3035ff;
     --liver: #62443Aff;
-    --buff: #E7B08Fff;
+    --buff: rgb(231, 176, 143);
     --burnt-umber: #7F2F2Aff;
     --beaver: #977C69ff;
     --nyanza: #d8f3dcff;
@@ -23,7 +23,7 @@
     background-color: var(--burnt-umber);
     z-index: 10;
     border-width: 0.5rem;
-    box-shadow: 0 4px 2px 2px rgba(126, 48, 53, 0.7);
+    box-shadow: 0 2px 2px 2px rgb(231, 176, 143, 0.7);
     position: fixed;
     top: 0;
     left: 0;
