@@ -80,6 +80,10 @@ import axios from 'axios';
     fetchCampus();
   }, [id, isEditing, allCampuses]);
 
+  useEffect(() => {
+    dispatch(searchStudentsByCampusThunk(id));
+  },[])
+
   return (
     <div style={{marginTop: "120px"}}>
        {isEditing ? (

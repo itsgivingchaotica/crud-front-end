@@ -9,11 +9,11 @@ const CampusCard = (props) => {
 
     // const { id, name, imageUrl, address, description } = props
     const dispatch = useDispatch(); 
-    const handleClick = async (campusId) => {
-    dispatch(searchStudentsByCampusThunk(campusId));
-    console.log("clicked the card")
-    // Redirect to Campus page using React Router or any other routing library
-  };
+
+  //   const handleClick = async (campusId) => {
+  //   dispatch(searchStudentsByCampusThunk(campusId));
+  //   console.log("clicked the card")
+  // };
 
   const handleClickDelete = () => {
     let result = window.confirm("Are you sure you want to delete the campus?");
@@ -31,7 +31,7 @@ const CampusCard = (props) => {
         <img className="campus-image" src={props.imageUrl}></img>
         <h3>{props.description}</h3>
         <button onClick={handleClickDelete}>Delete Campus</button>
-        <button key={props.id} onClick={() => handleClick(props.id)}>
+        <button key={props.id}>
             <NavLink to={`/campuses/${props.id}`}>Campus Profile</NavLink>
         </button>
     </div>
