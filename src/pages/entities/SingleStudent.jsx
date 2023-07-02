@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useSelector, useDispatch } from 'react-redux';
 import { EditStudentForm } from '../../components';
@@ -13,6 +13,7 @@ const SingleStudent = () => {
   const allCampuses = useSelector((state)=> state.campuses.campusList);
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [singleStudent, setSingleStudent] = useState('');
   const [enrolledCampus, setEnrolledCampus] = useState("");
@@ -102,6 +103,10 @@ const SingleStudent = () => {
     setEditedStudent({...editedStudent, campusId: event.target.value});
   }
 
+  const visitSingleCampusPage = () => {
+    navigate(`/campuses/${enrolledCampus.id}`)
+  }
+
   useEffect(() => {
     const fetchStudent = async () => {
       try {
@@ -132,7 +137,7 @@ const SingleStudent = () => {
       {isEditing ? (
         <div>
           <h1>{singleStudent.firstName}</h1>
-          <h1>{enrolledCampus.name}</h1>
+          <h1 onClick={visitSingleCampusPage}>{enrolledCampus.name}</h1>
           <button onClick={handleEditStudent}>Edit</button>
           <button onClick={handleDeleteStudent}>Delete</button>
           {/* Display the form to edit student information */}
@@ -152,7 +157,7 @@ const SingleStudent = () => {
       ) : (
         <div>
           <h1>{singleStudent.firstName}</h1>
-          <h1>{enrolledCampus.name}</h1>
+          <h1 onClick={visitSingleCampusPage}>{enrolledCampus.name}</h1>
           <button onClick={handleEditStudent}>Edit</button>
           <button onClick={handleDeleteStudent}>Delete</button>
         </div>
