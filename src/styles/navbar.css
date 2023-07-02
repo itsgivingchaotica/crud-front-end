@@ -100,6 +100,10 @@
     font-family: 'Tangerine', cursive;
   }
 
+.mobile-typography{
+    transform: translateX(-10px);
+}
+
 @keyframes fall {
     0% {
         top: -100px;
