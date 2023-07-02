@@ -6,9 +6,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
+import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
 
 const SingleStudent = () => {
   const allStudents = useSelector((state) => state.students.studentList);
+  const allCampuses = useSelector((state)=> state.campuses.campusList);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -24,6 +26,14 @@ const SingleStudent = () => {
     imageUrl: '',
     campusId: ''
   });
+
+  const fetchAllCampuses = () => {
+    return dispatch(fetchAllCampusesThunk());
+  }
+  useEffect(()=>{
+    fetchAllCampuses();
+  }, [])
+
 
   const handleEditStudent = () => {
     setIsEditing(true);
@@ -75,9 +85,9 @@ const SingleStudent = () => {
     setEditedStudent({ ...editedStudent, gpa: event.target.value });
   };
 
-  const handleChangeCampusId = (event) => {
-    setEditedStudent({ ...editedStudent, campusId: event.target.value });
-  };
+  const handleChangeCampus = (event) => {
+    setEditedStudent({...editedStudent, campusId: event.target.value});
+  }
 
   useEffect(() => {
     const fetchStudent = async () => {
@@ -120,8 +130,9 @@ const SingleStudent = () => {
             handleChangeImageUrl={handleChangeImageUrl}
             handleChangeEmail={handleChangeEmail}
             handleChangeGpa={handleChangeGpa}
-            handleChangeCampusId={handleChangeCampusId}
+            handleChangeCampus={handleChangeCampus}
             editedStudent={editedStudent}
+            allCampuses = {allCampuses}
           />
         </div>
       ) : (
