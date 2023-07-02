@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { EditCampusForm } from '../.././components'
 import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
@@ -11,10 +11,10 @@ import axios from 'axios';
   const SingleCampus = () => {
   const allCampuses = useSelector((state) => state.campuses.campusList)
   const {id} = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [singleCampus, setSingleCampus] = useState('');
   const [isEditing, setIsEditing] = useState('')
-  const [campusFilteredStudents, setCampusFilteredStudents] = useState([])
   const filteredStudents = useSelector(state => state.students.filteredStudentList);
   const [editedCampus, setEditedCampus] = useState({
     name: '',
@@ -26,6 +26,10 @@ import axios from 'axios';
   const handleEditCampus = () => {
       setIsEditing(true);
   }
+
+  const handleSelectStudent = (studentId) => {
+  navigate(`/students/${studentId}`);
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -111,7 +115,7 @@ import axios from 'axios';
     <div style={{marginTop: '20px'}}>
           SHOWING ALL STUDENTS FROM {singleCampus.name}
           {filteredStudents.map((student) => (
-            <div key={student.id}>
+            <div key={student.id} onClick={() => handleSelectStudent(student.id)}>
               {student.firstName} {student.lastName}
               {student.imgUrl}
               {student.email}
