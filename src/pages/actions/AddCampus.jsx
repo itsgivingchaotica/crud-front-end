@@ -36,6 +36,9 @@ const AddCampus = () => {
         }
         // const newCampusObj = JSON.parse(newCampus);
         dispatch(addCampusThunk(newCampus))
+        setName("");
+        setAddress("");
+        setDescription("");
     }
 
 
