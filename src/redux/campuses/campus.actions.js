@@ -48,21 +48,24 @@ export const addCampusThunk = (campus) => {
 
 }
 
-export const editCampus = (campusId, editedCampus) => ({
+export const editCampus = (payload) => ({
   type: EDIT_CAMPUS,
-  payload: { campusId, editedCampus },
+  payload: payload,
 });
 
-export const editCampusThunk = (campusId, editedCampus) => {
+export const editCampusThunk = (editedCampus, id) => {
   return async (dispatch) => {
     try {
       const res = await axios.put(
-        console.log("edit thunk executed")
-        `http://localhost:8080/api/campuses/${campusId}`,
-        editedCampus
+        `http://localhost:8080/api/campuses/${id}`, {
+            name: editedCampus.name,
+            imageUrl: editedCampus.imageUrl,
+            address: editedCampus.address,
+            description: editedCampus.description,
+        }
       );
-      const updatedCampus = res.data;
-      dispatch(editCampus(campusId, updatedCampus));
+    //   const updatedCampus = res.data;
+      dispatch(editCampus(res.data));
     } catch (error) {
       console.log(error.message);
     }
