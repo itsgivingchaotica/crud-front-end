@@ -1,6 +1,7 @@
 import React from 'react'
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import { ErrorBoundary } from 'react-error-boundary';
 import { fetchAllStudentsThunk } from '../../redux/students/student.actions';
 import { StudentListItems } from '../../components';
 import { NavLink } from 'react-router-dom';
@@ -19,11 +20,20 @@ const Students = () => {
   }, [])
 
 return (
+   <ErrorBoundary
+      fallbackRender={({ error }) => (
+        <div>
+          <h2>Something went wrong:</h2>
+          <p>{error.message}</p>
+        </div>
+      )}
+    > 
   <div style={{marginTop:"120px"}}>
       <h1>Students</h1>
       <StudentListItems allStudents={allStudents}/>
       <NavLink to="/students/addStudent">Add new student</NavLink>
   </div>
+  </ErrorBoundary>
 
 )
 }

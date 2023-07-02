@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useSelector, useDispatch } from 'react-redux';
 import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
@@ -96,6 +97,14 @@ const SingleStudent = () => {
   }, [id, isEditing, allStudents]);
 
   return (
+      <ErrorBoundary
+      fallbackRender={({ error }) => (
+        <div>
+          <h2>Something went wrong:</h2>
+          <p>{error.message}</p>
+        </div>
+      )}
+    > 
     <div style={{ marginTop: '120px' }}>
       {isEditing ? (
         <div>
@@ -124,6 +133,7 @@ const SingleStudent = () => {
         </div>
       )}
     </div>
+    </ErrorBoundary>
   );
 };
 

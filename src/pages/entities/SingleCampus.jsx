@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { EditCampusForm } from '../.././components'
@@ -89,6 +90,14 @@ import axios from 'axios';
   },[])
 
   return (
+     <ErrorBoundary
+      fallbackRender={({ error }) => (
+        <div>
+          <h2>Something went wrong:</h2>
+          <p>{error.message}</p>
+        </div>
+      )}
+    > 
     <div style={{marginTop: "120px"}}>
        {isEditing ? (
         <div>
@@ -124,6 +133,7 @@ import axios from 'axios';
           ))}
     </div>
     </div>
+    </ErrorBoundary>
   )
 }
 
