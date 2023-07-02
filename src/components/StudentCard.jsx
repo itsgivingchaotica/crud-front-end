@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import "../styles/studentCard.css";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { deleteStudentThunk } from '../redux/students/student.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -9,6 +9,7 @@ const StudentCard = (props) => {
   const [enrolledCampus, setEnrolledCampus] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClickDelete = () => {
     let result = window.confirm("Are you sure you want to delete the student?");
@@ -16,6 +17,10 @@ const StudentCard = (props) => {
       dispatch(deleteStudentThunk(props.id));
     }
 
+  }
+
+  const visitSingleCampusPage = () => {
+    navigate(`/campuses/${enrolledCampus.id}`);
   }
 
   useEffect(()=> {
@@ -40,7 +45,7 @@ const StudentCard = (props) => {
         <img className="student-image" src={props.imageUrl}></img>
         <h3>{props.gpa}</h3>
         <h3>campusId: {props.campusId}</h3>
-        <h3>Enrolled Campus: {enrolledCampus.name}</h3>
+        <h3 onClick={visitSingleCampusPage}>Enrolled Campus: {enrolledCampus.name}</h3>
         <button onClick={handleClickDelete}>Delete Student</button>
         <NavLink to={`/students/${props.id}`}>Student Profile</NavLink>
     </div>
