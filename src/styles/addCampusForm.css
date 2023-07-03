@@ -74,7 +74,7 @@
     animation-fill-mode: forwards;
     transition: 500ms ease-in-out;
     position: relative;
-    margin-top: 2%;
+    margin: 40px 0;
 }
 
 #btn-return-add-campus:hover{
