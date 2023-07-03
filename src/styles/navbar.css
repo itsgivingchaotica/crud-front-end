@@ -2,7 +2,7 @@
     --garnet: #7E3035ff;
     --liver: #62443Aff;
     --buff: rgb(231, 176, 143);
-    --burnt-umber: #7F2F2Aff;
+    --burnt-umber: rgb(127, 47, 42);
     --beaver: rgb(150, 124, 105);
     --nyanza: #d8f3dcff;
     --celadon: #b7e4c7ff;
@@ -10,14 +10,14 @@
     --mint: #74c69dff;
     --mint-2: #52b788ff;
     --sea-green: #40916cff;
-    --dartmouth-green: #2d6a4fff;
+    --dartmouth-green: rgb(45, 106, 79);
     --brunswick-green: #1b4332ff;
     --dark-green: #081c15ff;
     --princeton-orange: #ff9100ff;
-    --desert-sand: #D9C0ACff;
+    --desert-sand: rgb(217, 192, 172);
     --liver: #76554Cff;
     --bone: #DEDAC7ff;
-    --dun: #C4BDADff;
+    --dun: rgb(196, 189, 173);
     --champagne-pink: #EDDFD4ff;
 }
 

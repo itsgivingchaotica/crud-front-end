@@ -9,6 +9,7 @@ import SideNavlinks from './SideNavlinks';
 
 const Navbar = () => {
   const isMobileScreen = useMediaQuery("(max-width: 414px)");
+  const isSmallScreen = useMediaQuery("(max-width: 700px")
   
   return (
     <div id="navbar-container">
@@ -20,7 +21,7 @@ const Navbar = () => {
               </NavLink>
             </div>
               <div >
-              {isMobileScreen ? (<SideMenuToggle/>) : (<SideNavlinks/>)}
+              {isSmallScreen ? (<SideMenuToggle/>) : (<SideNavlinks/>)}
               </div>
           </>
       </div>

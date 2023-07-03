@@ -9,7 +9,7 @@ const ScholarLogo = ({ }) => {
   return (
    <div className="logo">
                   <div>
-                    <img width={isMobileScreen ? '58' : '82'} height={isMobileScreen ? '58' : '82'}  src="https://img.icons8.com/external-justicon-flat-justicon/64/external-graduation-elearning-and-education-justicon-flat-justicon.png" alt="external-graduation-elearning-and-education-justicon-flat-justicon"/>
+                    <img width={isMobileScreen ? '58' : '82'} height={isMobileScreen ? '58' : '82'}  src="https://img.icons8.com/external-justicon-flat-justicon/64/external-graduation-elearning-and-education-justicon-flat-justicon.png" alt="external-graduation-elearning-and-education-justicon-flat-justicon" style={{marginLeft:'30px'}}/>
                   </div>
                   <div className={isMobileScreen ? ("mobile-typography") : ("typography")}>
                     <Typography
