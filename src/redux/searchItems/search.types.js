@@ -1,0 +1,1 @@
+export const SEARCH_ALL = 'SEARCH_ALL'
