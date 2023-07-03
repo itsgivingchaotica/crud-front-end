@@ -19,6 +19,7 @@ const SingleStudent = () => {
   const [enrolledCampus, setEnrolledCampus] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
+  const [failedSubmit, setFailedSubmit] = useState(false);
 
   const [editedStudent, setEditedStudent] = useState({
     firstName: '',
@@ -60,10 +61,12 @@ const SingleStudent = () => {
             campusId: ''
           });
           setFormErrorMessage("");
+          setFailedSubmit(false);
           setIsEditing(false);
         }
       } else {
         setFormErrorMessage("Please fill at least one field to edit")
+        setFailedSubmit(true);
       }
 
     } catch (error) {
@@ -153,6 +156,7 @@ const SingleStudent = () => {
             handleChangeCampus={handleChangeCampus}
             editedStudent={editedStudent}
             allCampuses = {allCampuses}
+            failedSubmit = {failedSubmit}
           />
           {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
         </div>
