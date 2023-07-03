@@ -95,8 +95,8 @@ const AddStudent = () => {
             <input type="text" name="lastName" value={lastName} placeholder="Last Name" onChange={handleChangeLastName}></input>
             <input type="email" name="email" value={email} placeholder="Email" onChange={handleChangeEmail}></input>
             <input type="number" name="gpa" value={gpa} placeholder="gpa" onChange={handleChangeGpa}></input>
-            <select className="dropdown" onChange={handleChangeCampus}>
-                <option value="choose" selected disabled>Choose Campus</option>
+            <select defaultValue="choose" className="dropdown" onChange={handleChangeCampus}>
+                <option value="choose" disabled>Choose Campus</option>
                 {allCampuses.map((campus) => {
                     return <option key={campus.id} value={campus.id} id={campus.name}>{campus.name + " - " + campus.id}</option>
                 })}  
