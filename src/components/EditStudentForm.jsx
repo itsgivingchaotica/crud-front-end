@@ -53,6 +53,7 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
   const isEmpty = !editedStudent.firstName && !editedStudent.lastName && !editedStudent.address && !editedStudent.gpa && !editedStudent.campusId;  
     
   return (
+    <ThemeProvider theme={theme}>
     <>
     <form onSubmit={handleSubmit}>
       <div className="input-container">
@@ -131,6 +132,7 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
             <button type="submit">Done</button> */}
         </form>
         </>
+        </ThemeProvider>
   )
 }
 
