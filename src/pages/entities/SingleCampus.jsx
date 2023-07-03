@@ -7,6 +7,8 @@ import { EditCampusForm } from '../.././components'
 import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
 import { searchStudentsByCampusThunk } from '../../redux/students/student.actions'
 import axios from 'axios';
+import { Button } from '@mui/material';
+import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 
 
   const SingleCampus = () => {
@@ -17,6 +19,7 @@ import axios from 'axios';
   const [singleCampus, setSingleCampus] = useState('');
   const [isEditing, setIsEditing] = useState('')
   const [formErrorMessage, setFormErrorMessage] = useState("");
+  const [failedSubmit, setFailedSubmit] = useState(false);
 
   const filteredStudents = useSelector(state => state.students.filteredStudentList);
 
@@ -48,10 +51,12 @@ import axios from 'axios';
             description: ''
           });
           setFormErrorMessage("");
+          setFailedSubmit(false);
           setIsEditing(false);
         }
         else {
           setFormErrorMessage("Please fill at least one field to edit");
+          setFailedSubmit(true);
         }
 
       } catch (error) {
@@ -82,6 +87,10 @@ import axios from 'axios';
   const handleChangeDescription = (event) => {
     setEditedCampus({ ...editedCampus, description: event.target.value });
   };
+
+  const navigateToAllCampuses = () => {
+    navigate("/campuses");
+  }
 
   useEffect(() => {
     const fetchCampus = async () => {
@@ -124,8 +133,10 @@ import axios from 'axios';
             handleSubmit={handleSubmit} 
             handleChangeImageUrl={handleChangeImageUrl} 
             handleChangeDescription={handleChangeDescription} 
-            editedCampus = {editedCampus}/>
-            {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
+            editedCampus = {editedCampus}
+            failedSubmit = {failedSubmit}  
+            />
+            {/* {formErrorMessage? <h3>{formErrorMessage}</h3> : null} */}
         </div>
         ) : null}
       <div style={{marginTop: '20px'}}>
@@ -142,6 +153,7 @@ import axios from 'axios';
           <h3>No Students Enrolled to this Campus</h3>
           }
       </div>
+      <Button id="btn-return-add-campus" onClick={navigateToAllCampuses} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Campus List</Button>
     </div>
     </ErrorBoundary>
   )

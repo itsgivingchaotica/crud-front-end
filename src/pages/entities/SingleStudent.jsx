@@ -7,6 +7,8 @@ import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
+import { Button } from '@mui/material';
+import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 
 const SingleStudent = () => {
   const allStudents = useSelector((state) => state.students.studentList);
@@ -19,6 +21,7 @@ const SingleStudent = () => {
   const [enrolledCampus, setEnrolledCampus] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [formErrorMessage, setFormErrorMessage] = useState("");
+  const [failedSubmit, setFailedSubmit] = useState(false);
 
   const [editedStudent, setEditedStudent] = useState({
     firstName: '',
@@ -60,10 +63,12 @@ const SingleStudent = () => {
             campusId: ''
           });
           setFormErrorMessage("");
+          setFailedSubmit(false);
           setIsEditing(false);
         }
       } else {
         setFormErrorMessage("Please fill at least one field to edit")
+        setFailedSubmit(true);
       }
 
     } catch (error) {
@@ -105,6 +110,10 @@ const SingleStudent = () => {
 
   const visitSingleCampusPage = () => {
     navigate(`/campuses/${enrolledCampus.id}`)
+  }
+
+  const navigateToAllStudents = () => {
+    navigate("/students");
   }
 
   useEffect(() => {
@@ -153,10 +162,12 @@ const SingleStudent = () => {
             handleChangeCampus={handleChangeCampus}
             editedStudent={editedStudent}
             allCampuses = {allCampuses}
+            failedSubmit = {failedSubmit}
           />
           {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
         </div>
       ) : null}
+      <Button id="btn-return-add-campus" onClick={navigateToAllStudents} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Campus List</Button>
     </div>
     </ErrorBoundary>
   );
