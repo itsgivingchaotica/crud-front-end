@@ -117,7 +117,7 @@ const AddCampus = () => {
     > 
      <div className="add-campus-page" style={{marginTop:"120px"}}>
         <h1 id="header-add-campus">Add new campus</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{maxHeight: '100vh'}}>
           <div className="input-container-add-campus">
             <TextField id="form-input-add-campus" required type="text" label="Name" placeholder="Campus Name" 
             variant="outlined" name="name" value={name} onChange={handleChangeSchoolName}/>
@@ -134,11 +134,6 @@ const AddCampus = () => {
           <div className="input-multiline-container-add-campus">
             <Button id="btn-form-add-campus" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
           </div>
-
-            {/* <input type="text" name="name" value={name} placeholder="School Name" onChange={handleChangeSchoolName}></input>
-            <input type="text" name="address" value={address} placeholder="Address" onChange={handleChangeAddress}></input>
-            <input type="text" name="description" value={description} placeholder="Description" onChange={handleChangeDescription}></input>
-            <button type="submit">Done</button> */}
         </form>
         {errorMessage?<h3>Valid name, address and description are required</h3>: null}
         <Button id="btn-return-add-campus" onClick={navigateToAllCampuses} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Campus List</Button>
