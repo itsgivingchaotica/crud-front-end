@@ -26,7 +26,7 @@ const Navbar = () => {
               </div>
           </>
       </div>
-      {isMobileScreen ? (<div style={{transform:'translateY(-22px)'}}><SearchBar /></div>) : (<SearchBar/>)}
+      {isMobileScreen ? (<div style={{transform:'translateY(-22px)', opacity: '!important'}}><SearchBar /></div>) : (<SearchBar/>)}
     </div>
   );
 };
