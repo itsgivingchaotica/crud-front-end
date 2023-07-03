@@ -11,11 +11,11 @@
     --mint-2: #52b788ff;
     --sea-green: #40916cff;
     --dartmouth-green: rgb(45, 106, 79);
-    --brunswick-green: #1b4332ff;
-    --dark-green: #081c15ff;
+    --brunswick-green: rgb(27, 67, 50);
+    --dark-green: rgb(34, 43, 40);
     --princeton-orange: #ff9100ff;
     --desert-sand: rgb(217, 192, 172);
-    --liver: #76554Cff;
+    --dark-brown: rgb(66, 55, 52);
     --bone: #DEDAC7ff;
     --dun: rgb(196, 189, 173);
     --champagne-pink: #EDDFD4ff;
@@ -60,13 +60,14 @@
 .home-navlink a{
     text-decoration: none;
     align-items: center;
-    color:var(--buff)
+    color:var(--buff);
 }
 
 .side-navlinks{
     justify-content: right;
     align-items: center;
     font-family: 'Manrope', sans-serif;
+    font-weight: 700;
     font-size: 26px;
     text-shadow: 2px 2px 2px black;
 }
