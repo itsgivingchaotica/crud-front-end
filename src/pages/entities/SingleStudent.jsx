@@ -134,12 +134,14 @@ const SingleStudent = () => {
       )}
     > 
     <div style={{ marginTop: '120px' }}>
-      {isEditing ? (
         <div>
           <h1>{singleStudent.firstName}</h1>
-          <h1 onClick={visitSingleCampusPage}>{enrolledCampus.name}</h1>
+          {enrolledCampus.name?<h1 onClick={visitSingleCampusPage}>{enrolledCampus.name}</h1>:<h1>Not enrolled to campus</h1>}
           <button onClick={handleEditStudent}>Edit</button>
           <button onClick={handleDeleteStudent}>Delete</button>
+        </div>
+      {isEditing ? (
+        <div>
           {/* Display the form to edit student information */}
           <EditStudentForm
             handleChangeFirstName={handleChangeFirstName}
@@ -154,14 +156,7 @@ const SingleStudent = () => {
           />
           {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
         </div>
-      ) : (
-        <div>
-          <h1>{singleStudent.firstName}</h1>
-          <h1 onClick={visitSingleCampusPage}>{enrolledCampus.name}</h1>
-          <button onClick={handleEditStudent}>Edit</button>
-          <button onClick={handleDeleteStudent}>Delete</button>
-        </div>
-      )}
+      ) : null}
     </div>
     </ErrorBoundary>
   );

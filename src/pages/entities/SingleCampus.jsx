@@ -110,12 +110,14 @@ import axios from 'axios';
       )}
     > 
     <div style={{marginTop: "120px"}}>
+      <div>
+        <h1>{singleCampus.name}</h1>
+        <button onClick={handleEditCampus}>Edit</button>
+        <button onClick={handleDeleteCampus}>Delete</button>
+      </div>
        {isEditing ? (
         <div>
           {/* display the form to edit campus information */}
-          <h1>{singleCampus.name}</h1>
-              <button onClick={handleEditCampus}>Edit</button>
-              <button onClick={handleDeleteCampus}>Delete</button>
           <EditCampusForm 
             handleChangeName={handleChangeName} 
             handleChangeAddress={handleChangeAddress} 
@@ -125,25 +127,21 @@ import axios from 'axios';
             editedCampus = {editedCampus}/>
             {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
         </div>
-        ) : (
-        // Display campus details when not editing
-        <div>
-            <h1>{singleCampus.name}</h1>
-            <button onClick={handleEditCampus}>Edit</button>
-            <button onClick={handleDeleteCampus}>Delete</button>
-        </div>
-    )}
-    <div style={{marginTop: '20px'}}>
-          SHOWING ALL STUDENTS FROM {singleCampus.name}
-          {filteredStudents.map((student) => (
+        ) : null}
+      <div style={{marginTop: '20px'}}>
+          <h3>SHOWING ALL STUDENTS FROM {singleCampus.name}:</h3>
+          {filteredStudents.length>0?
+          filteredStudents.map((student) => (
             <div key={student.id} onClick={() => handleSelectStudent(student.id)}>
               {student.firstName} {student.lastName}
               {student.imgUrl}
               {student.email}
               {student.gpa}
             </div>
-          ))}
-    </div>
+          )):
+          <h3>No Students Enrolled to this Campus</h3>
+          }
+      </div>
     </div>
     </ErrorBoundary>
   )
