@@ -30,8 +30,8 @@ return (
     > 
   <div style={{marginTop:"120px"}}>
       <h1>Students</h1>
-      <StudentListItems allStudents={allStudents}/>
       <NavLink to="/students/addStudent">Add new student</NavLink>
+      {allStudents.length>0? <StudentListItems allStudents={allStudents}/> : <h1>No students in our list! Add some!</h1>}
   </div>
   </ErrorBoundary>
 
