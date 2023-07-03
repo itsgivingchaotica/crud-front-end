@@ -4,12 +4,13 @@
   --buff: #E7B08Fff;
   --burnt-umber: #7F2F2Aff;
   --beaver: #977C69ff;
-  
+  max-width: 100%;
+  max-height: 100vh;
 }
 
 .App {
   text-align: center;
-  /* background-color: var(--buff) !important; */
+  overflow: auto;
 }
 
 .App-link {
