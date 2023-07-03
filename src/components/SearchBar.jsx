@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField'
+import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllCampusesThunk } from '../redux/campuses/campus.actions';
@@ -55,6 +55,8 @@ const SearchBar = () => {
       // Handle campus click
       console.log('Campus clicked:', result);
     }
+
+    setAutocompleteOpen(false); // Close the Autocomplete dropdown
   };
 
   const searchStyle = {
@@ -80,7 +82,7 @@ const SearchBar = () => {
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    marginLeft: '400px'
+    marginLeft: '400px',
   };
 
   const handleSearchTerm = (e) => {
@@ -95,7 +97,7 @@ const SearchBar = () => {
   }, [dispatch]);
 
   return (
-    <Box sx={{ flexGrow: 1, transform: 'translateY(110px)'}}>
+    <Box sx={{ flexGrow: 1, transform: 'translateY(110px)' }}>
       <AppBar position="static">
         <Toolbar sx={{ backgroundColor: 'var(--bone)', paddingTop: '10px', paddingBottom: '10px' }}>
           <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
@@ -103,7 +105,6 @@ const SearchBar = () => {
           <div style={searchStyle}>
             <Autocomplete
               disablePortal
-              freeSolo
               id="combo-box-demo"
               options={options}
               getOptionLabel={(option) => option.label}
@@ -131,8 +132,20 @@ const SearchBar = () => {
                   autoComplete="off"
                 />
               )}
-              onChange={(event, value) => handleSearch(value)}
+              onChange={(event, value) => {
+                if (!value) {
+                  // Handle case when value is cleared
+                  setAutocompleteOpen(false);
+                  setSearchTerm('');
+                } else {
+                  handleSearch(value);
+                }
+              }}
+              onInputChange={(event, newInputValue) => {
+                setAutocompleteOpen(newInputValue.length > 0);
+              }}
               open={isAutocompleteOpen}
+              isOptionEqualToValue={(option, value) => option.id === value?.id} // Update the equality test
             />
             <div style={searchIconWrapperStyle}>
               <SearchIcon />
