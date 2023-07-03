@@ -33,10 +33,10 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
             placeholder="gpa"
             onChange={handleChangeGpa}
             />
-            <select className="dropdown" onChange={handleChangeCampus}>
-                <option value="choose" selected disabled>Choose Campus</option>
+            <select defaultValue="choose" className="dropdown" onChange={handleChangeCampus}>
+                <option value="choose" disabled>Choose Campus</option>
                 {allCampuses.map((campus) => {
-                    return <option value={campus.id} id={campus.name}>{campus.name + " - " + campus.id}</option>
+                    return <option key={campus.id} value={campus.id} id={campus.name}>{campus.name + " - " + campus.id}</option>
                 })}  
             </select>
             <button type="submit">Done</button>

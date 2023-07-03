@@ -29,7 +29,8 @@ const Campuses = () => {
     <div style={{marginTop: '100px'}}>
         <h1>Campuses</h1>
         <NavLink to="/campuses/addCampus">Add new campus</NavLink>
-        <CampusListItems allCampuses={allCampuses}/>
+        {allCampuses.length>0? <CampusListItems allCampuses={allCampuses}/> : <h1>No campuses in our list! Add some!</h1> }
+
     </div>
     </ErrorBoundary>
   )

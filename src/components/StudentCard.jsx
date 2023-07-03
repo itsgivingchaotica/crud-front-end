@@ -45,7 +45,8 @@ const StudentCard = (props) => {
         <img className="student-image" src={props.imageUrl}></img>
         <h3>{props.gpa}</h3>
         <h3>campusId: {props.campusId}</h3>
-        <h3 onClick={visitSingleCampusPage}>Enrolled Campus: {enrolledCampus.name}</h3>
+        {enrolledCampus.name?<h3 onClick={visitSingleCampusPage}>Enrolled Campus: {enrolledCampus.name}</h3>
+          :<h3>Enrolled Campus: Not Enrolled</h3>}
         <button onClick={handleClickDelete}>Delete Student</button>
         <NavLink to={`/students/${props.id}`}>Student Profile</NavLink>
     </div>
