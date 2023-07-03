@@ -6,6 +6,19 @@
     background-position: center;
 }
 
+.button-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-content .button-text {
+    margin-bottom: 10px;
+}
+
+.button-content .button-image {
+    margin-top: 10px;
+}
 /* .home-mobile{
     background-image: url(../hallway-with-bag-floor.jpg);
     height: 50vh;

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider'
+import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useMediaQuery } from '@mui/material';
 import DiplomaBorder from '.././diploma-border.png';
 
 const theme = createTheme({
@@ -14,7 +14,7 @@ const theme = createTheme({
     MuiMenu: {
       styleOverrides: {
         root: {
-          marginTop: '-10px',
+          marginTop: '-5px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -25,18 +25,20 @@ const theme = createTheme({
           backgroundRepeat: 'no-repeat',
           width: '100px',
           height: '130px',
+          alignItems: 'center'
         },
       },
     },
     MuiMenuItem: {
       styleOverrides: {
         root: {
+          marginTop: '5px',
           justifyContent: 'center',
+          alignItems: 'center',
           fontSize: '14px',
           fontFamily: `'Manrope', sans-serif`,
           fontWeight: '700',
           textShadow: '1px 1px 1px white',
-          margin: '4px 0', // Adjust the margin to make items closer together
         },
       },
     },
@@ -46,6 +48,8 @@ const theme = createTheme({
 const SideMenuToggle = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const isMobileScreen = useMediaQuery('(max-width: 414px)');
+  const isSmallScreen = useMediaQuery('(max-width: 600px)');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,9 +68,17 @@ const SideMenuToggle = () => {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
+          sx={{ marginRight: '15px' }}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Typography sx={{ fontFamily: `'Manrope', sans-serif`, fontWeight: '700', textShadow: '1px 1px 2px black', '&:hover': { color: 'var(--bone)' } }}>
+            <Typography
+              sx={{
+                fontFamily: `'Manrope', sans-serif`,
+                fontWeight: '700',
+                textShadow: '1px 1px 2px black',
+                '&:hover': { color: 'var(--bone)' },
+              }}
+            >
               Menu
             </Typography>
             <MenuIcon />
@@ -80,14 +92,27 @@ const SideMenuToggle = () => {
           MenuListProps={{
             'aria-labelledby': 'basic-button',
           }}
-          sx={{transform:'translate(6px,10px)'}}
+          sx={{ alignItems: isMobileScreen ? 'center' : 'stretch' }} // Use "center" for small screens and "stretch" for larger screens
         >
-          <MenuItem onClick={handleClose} sx={{transform:'translateY(3px)'}}>
-            <NavLink to="/campuses">Campuses</NavLink>
+          <MenuItem onClick={handleClose} sx={{marginTop: "10px"}}>
+            <NavLink to="/campuses">
+            <Typography>
+            Campuses
+            </Typography>
+            </NavLink>
           </MenuItem>
-          <Divider sx={{border: '1px solid rgb(150, 124, 105, 0.4)'}}/>
-          <MenuItem onClick={handleClose} sx={{transform:'translateY(-7px)'}}>
-            <NavLink to="/students">Students</NavLink>
+         <Divider
+            sx={{
+              color: '1px solid rgb(150, 124, 105, 0.4)',
+              paddingBottom: '5px',
+              transform: isSmallScreen ? 'translateY(-10px)' : 'none',
+            }}
+          />
+            <MenuItem onClick={handleClose}>
+            <NavLink to="/students"> 
+            <Typography sx={{marginBottom: isSmallScreen ? '30px' : undefined,  transform: isSmallScreen ? 'translateY(-10px)' : 'none',}}>
+            Students
+            </Typography></NavLink>
           </MenuItem>
         </Menu>
       </div>
