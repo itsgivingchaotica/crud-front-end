@@ -63,6 +63,7 @@ const AddStudent = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [campusId, setCampusId] = useState();
     const [errorMessage, setErrorMessage] = useState("");
+    const [failedSubmit, setFailedSubmit] = useState(false);
 
     const fetchAllCampuses = () => {
         return dispatch(fetchAllCampusesThunk());
@@ -107,6 +108,7 @@ const AddStudent = () => {
         if(firstName && lastName && email && gpa){
             if(gpa<0 || gpa>4){
                 setErrorMessage("Gpa must be between 0 and 4")
+                setFailedSubmit(true);
             }
             else{
                 dispatch(addStudentThunk(newStudent))
@@ -120,6 +122,7 @@ const AddStudent = () => {
         }
         else{
             setErrorMessage("Valid first name, last name, email and gpa (between 0 and 4) are required");
+            setFailedSubmit(true)
         }
 
     }
@@ -143,22 +146,26 @@ const AddStudent = () => {
         <form onSubmit={handleSubmit}>
         {/* <FormControl> */}
             <div className="input-container">
-                <TextField id="form-input" required type="text" label="First Name" placeholder="First Name" 
+                <TextField id="form-input" type="text" label="First Name *" placeholder="First Name" 
+                error={!firstName && failedSubmit} helperText={!firstName && failedSubmit? "Required": null}
                 variant="outlined" name="firstName" value={firstName} onChange={handleChangeFirstName}/>
             </div>
             <div className="input-container">
-                <TextField id="form-input" required type="text" label="Last Name" placeholder="Last Name" 
+                <TextField id="form-input" type="text" label="Last Name *" placeholder="Last Name"
+                error={!lastName && failedSubmit} helperText={!lastName && failedSubmit? "Required": null}
                 variant="outlined" name="lastName" value={lastName} onChange={handleChangeLastName}/>
             </div>
             <br></br>
             <div className="input-container">
-                <TextField id="form-input" required type="email" label="Email" placeholder="Email" 
-                variant="outlined" name="email" value={email} onChange={handleChangeEmail}/>
+                <TextField id="form-input" type="email" label="Email *" placeholder="Email" 
+                helperText={!email && failedSubmit? "Required": null}
+                variant="outlined" name="email" value={email} error={!email && failedSubmit} 
+                onChange={handleChangeEmail}/>
             </div>
             <br></br>
             <div className="input-container">
-                <TextField id="form-input" inputProps={{ step: ".01" }} error={gpa<0 || gpa>4 ? true : false} required 
-                type="number" label="GPA" placeholder="GPA" variant="outlined" name="gpa" value={gpa} step="5" 
+                <TextField id="form-input" inputProps={{ step: ".01" }} error={(failedSubmit && !gpa) || gpa<0 || gpa>4 ? true : false}
+                type="number" label="GPA *" placeholder="GPA" variant="outlined" name="gpa" value={gpa} step="5" 
                 onChange={handleChangeGpa} helperText="Must be between 0 and 4"/>               
             </div>
             <div className="input-container">
@@ -192,7 +199,7 @@ const AddStudent = () => {
         </form>
         <br></br>
         <br></br>
-        {errorMessage?<h3>{errorMessage}</h3>: null}
+        {/* {errorMessage?<h3>{errorMessage}</h3>: null} */}
         <Button id="btn-return" onClick={navigateToAllStudents} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Student List</Button>
     </div>
     </ErrorBoundary>

@@ -59,6 +59,7 @@ const AddCampus = () => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
     const [errorMessage, setErrorMessage] = useState(false);
+    const [failedSubmit, setFailedSubmit] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -96,6 +97,7 @@ const AddCampus = () => {
         }
         else {
           setErrorMessage(true);
+          setFailedSubmit(true);
         }
 
     }
@@ -119,23 +121,29 @@ const AddCampus = () => {
         <h1 id="header-add-campus">Add new campus</h1>
         <form onSubmit={handleSubmit} style={{maxHeight: '100vh'}}>
           <div className="input-container-add-campus">
-            <TextField id="form-input-add-campus" required type="text" label="Name" placeholder="Campus Name" 
-            variant="outlined" name="name" value={name} onChange={handleChangeSchoolName}/>
+            <TextField id="form-input-add-campus" type="text" label="Name *" placeholder="Campus Name" 
+            variant="outlined" name="name" value={name} onChange={handleChangeSchoolName}
+              error={failedSubmit && !name} helperText={failedSubmit && !name? "Required" : null}
+            />
           </div>
           <div className="input-container-add-campus">
-            <TextField id="form-input-add-campus" required type="text" label="Address" placeholder="Address" 
-            variant="outlined" name="address" value={address} onChange={handleChangeAddress}/>
+            <TextField id="form-input-add-campus" type="text" label="Address *" placeholder="Address" 
+            variant="outlined" name="address" value={address} onChange={handleChangeAddress}
+              error={failedSubmit && !address} helperText= {failedSubmit && !address? "Required" : null}
+            />
           </div> 
           <br></br>
           <div className="input-multiline-container-add-campus">
-            <TextField id="form-input-multiline-add-campus" required type="text" multiline rows={4} label="Description" placeholder="Description" 
-            variant="outlined" name="description" value={description} onChange={handleChangeDescription}/>
+            <TextField id="form-input-multiline-add-campus" type="text" multiline rows={4} label="Description *" placeholder="Description" 
+            variant="outlined" name="description" value={description} onChange={handleChangeDescription}
+              error={failedSubmit && !description} helperText={failedSubmit && !description? "Required" : null}
+            />
           </div>
           <div className="input-multiline-container-add-campus">
             <Button id="btn-form-add-campus" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
           </div>
         </form>
-        {errorMessage?<h3>Valid name, address and description are required</h3>: null}
+        {/* {errorMessage?<h3>Valid name, address and description are required</h3>: null} */}
         <Button id="btn-return-add-campus" onClick={navigateToAllCampuses} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Campus List</Button>
     </div>
     </ErrorBoundary>
