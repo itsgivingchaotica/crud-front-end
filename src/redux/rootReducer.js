@@ -7,7 +7,7 @@ import studentReducer from "./students/student.reducer"
 //taking a key value pair 
 const rootReducer = combineReducers({
     campuses: campusReducer,
-    students: studentReducer
+    students: studentReducer,
 })
 
 export default rootReducer
