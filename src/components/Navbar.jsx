@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import { useMediaQuery } from '@mui/material';
 import ScholarLogo from './ScholarLogo';
 import SideMenuToggle from './SideMenuToggle'
+import SearchBar from "./SearchBar"
 import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
 import SideNavlinks from './SideNavlinks';
@@ -25,6 +26,7 @@ const Navbar = () => {
               </div>
           </>
       </div>
+      {isMobileScreen ? (<div style={{transform:'translateY(-22px)', opacity: '!important'}}><SearchBar /></div>) : (<SearchBar/>)}
     </div>
   );
 };
