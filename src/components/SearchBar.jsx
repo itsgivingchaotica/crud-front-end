@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllCampusesThunk } from '../redux/campuses/campus.actions';
 import { fetchAllStudentsThunk } from '../redux/students/student.actions';
 
+//inspired by https://codesandbox.io/s/hgyj4j?file=/demo.tsx
 const SearchBar = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery('(max-width: 700px');
