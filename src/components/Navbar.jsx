@@ -9,8 +9,8 @@ import "../styles/navbar.css";
 import SideNavlinks from './SideNavlinks';
 
 const Navbar = () => {
-  const isMobileScreen = useMediaQuery("(maxWidth: 414px)");
-  const isSmallScreen = useMediaQuery("(maxWidth: 700px")
+  const isMobileScreen = useMediaQuery("(max-width: 414px)");
+  const isSmallScreen = useMediaQuery("(max-width: 700px")
   
   return (
     <div id="navbar-container">
@@ -26,7 +26,9 @@ const Navbar = () => {
               </div>
           </>
       </div>
+      <div id='searchbar'>
       {isMobileScreen ? (<div style={{transform:'translateY(-22px)', opacity: '!important'}}><SearchBar /></div>) : (<SearchBar/>)}
+      </div>
     </div>
   );
 };

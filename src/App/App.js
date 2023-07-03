@@ -12,9 +12,9 @@ function App() {
     <HelmetProvider>
       <Router>
         <div className="App">
-          {/* <div className="Navbar"> */}
+          <div className="Navbar">
             <Navbar/>
-          {/* </div> */}
+          </div>
           <Helmet>
             <meta charSet="utf-8" />
             <title>Scholar·Central</title>

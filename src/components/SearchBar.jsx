@@ -25,16 +25,16 @@ const SearchBar = () => {
     return list.map((item) => {
       if (type === 'student') {
         return {
-          id: item.email,
+          id: item.id,
           label: `${item.firstName} ${item.lastName}`,
-          imageUrl: item.imageUrl,
+          email: item.email,
           type: 'student',
         };
       } else if (type === 'campus') {
         return {
-          id: item.name,
+          id: item.id,
           label: item.name,
-          imageUrl: item.imageUrl,
+          address: item.address,
           type: 'campus',
         };
       }
@@ -46,15 +46,19 @@ const SearchBar = () => {
   const options = [...unifiedCampusList, ...unifiedStudentList];
 
   const handleSearch = (result) => {
-    const isStudent = studentList.find((student) => student.id === result.id);
-    const isCampus = campusList.find((campus) => campus.id === result.id);
+    const isStudent = studentList.find((student) => (student.id === result.id) && ((student.firstName + ' ' + student.lastName ) === result.label));
+    console.log("🚀 ~ file: SearchBar.jsx:51 ~ handleSearch ~ isStudent:", isStudent)
+    const isCampus = campusList.find((campus) => (campus.id === result.id) && (campus.name = result.label));
+    console.log("🚀 ~ file: SearchBar.jsx:53 ~ handleSearch ~ isCampus:", isCampus)
 
     if (isStudent) {
       // Handle student click
       console.log('Student clicked:', result);
+      console.log("🚀 ~ file: SearchBar.jsx:55 ~ handleSearch ~ result:", result)
     } else if (isCampus) {
       // Handle campus click
       console.log('Campus clicked:', result);
+      console.log("🚀 ~ file: SearchBar.jsx:59 ~ handleSearch ~ result:", result)
     }
 
     setAutocompleteOpen(false); // Close the Autocomplete dropdown
@@ -89,7 +93,22 @@ const SearchBar = () => {
   const handleSearchTerm = (e) => {
     const query = e.target.value;
     setSearchTerm(query);
-    setAutocompleteOpen(query.length > 0); // Open the autocomplete when there is input
+    console.log("🚀 ~ file: SearchBar.jsx:97 ~ handleSearchTerm ~ query:", query)
+    setAutocompleteOpen(query.length > 0);
+  };
+
+  const handleSearchIconClick = () => {
+    if (searchTerm) {
+      console.log("🚀 ~ file: SearchBar.jsx:102 ~ handleSearchIconClick ~ searchTerm:", searchTerm)
+      const result = options.find((option) => {
+          console.log("🚀 ~ file: SearchBar.jsx:104 ~ handleSearchIconClick ~ option:", option)
+          return option.label.toLowerCase() === searchTerm.toLowerCase()
+      })
+      console.log("🚀 ~ file: SearchBar.jsx:104 ~ handleSearchIconClick ~ result:", result)
+      if (result) {
+        handleSearch(result);
+      }
+    }
   };
 
   useEffect(() => {
@@ -98,11 +117,9 @@ const SearchBar = () => {
   }, [dispatch]);
 
   return (
-    <Box sx={{ flexGrow: 1, transform: 'translateY(110px)' }}>
-      <AppBar position="static">
-        <Toolbar sx={{ backgroundColor: 'var(--bone)', paddingTop: '10px', paddingBottom: '10px' }}>
-          <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
-          </IconButton>
+    <Box sx={{ flexGrow: 1, transform: 'translateY(110px)', zIndex: 9999 }}>
+      <AppBar position="relative">
+        <Toolbar sx={{ backgroundColor: 'var(--bone)', paddingTop: '10px', paddingBottom: '10px', zIndex: 9999, position: 'relative' }}>
           <div style={searchStyle}>
             <Autocomplete
               disablePortal
@@ -112,6 +129,7 @@ const SearchBar = () => {
               sx={{
                 width: '100%',
                 outline: 'none',
+                zIndex: 9999,
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
                     borderColor: 'transparent',
@@ -149,7 +167,11 @@ const SearchBar = () => {
               isOptionEqualToValue={(option, value) => option.id === value?.id} // Update the equality test
             />
             <div style={searchIconWrapperStyle}>
-              <SearchIcon />
+              <div style={searchIconWrapperStyle}>
+      <IconButton onClick={handleSearchIconClick} size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
+        <SearchIcon />
+      </IconButton>
+    </div>
             </div>
           </div>
         </Toolbar>
