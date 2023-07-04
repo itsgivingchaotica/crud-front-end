@@ -24,10 +24,10 @@
     transition: 500ms ease-in-out;
     border: 3px solid var(--burnt-umber);
     border-radius: 1rem;
-    box-shadow: 5px 5px 5px rgb(61, 59, 59);
+    box-shadow: 1px 1px 5px 5px rgb(61, 59, 59);
     padding: 1rem;
     margin: 20px 25px;
-    background-color: rgba(222, 218, 199, 0.458);
+    background-image: linear-gradient(rgba(222, 218, 199, 0.347), var(--bone),rgba(222, 218, 199, 0.342));
     width: 330px;
 }
 
@@ -41,6 +41,9 @@
     transition: 500ms ease-in-out;
     margin-bottom: 20px;
     margin: 10px 25px;
+    background-image: linear-gradient(rgba(222, 218, 199, 0.347), var(--bone),rgba(222, 218, 199, 0.342));
+    border-radius: 1rem;
+    padding: 0.8rem;
 }
 
 .header{
@@ -52,9 +55,9 @@
 
 #btn-form-edit-student{
     background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
-    color: var(--buff);
+    color: var(--bone);
     border: rgba(196, 97, 97, 0.296) 3px solid;
-    box-shadow:4px 4px 4px black;
+    box-shadow: 4px 4px 4px black;
     text-shadow: 1px 2px 2px black;
     font-size: 15px;
     font-family: 'Helvetica Neue';
@@ -62,11 +65,14 @@
     width: 150px;
     position: relative;
     top: 10px;
+    transition: 400ms ease;
 }
 
 #btn-form-edit-student:hover{
-    box-shadow: 6px 6px 6px rgb(59, 58, 58);
-    transition: 400ms ease-in-out;
+    box-shadow: 3px 3px 3px black;
+    background-image: linear-gradient(rgb(88, 176, 137), var(--dartmouth-green), rgb(88, 170, 133));
+    border: rgba(13, 81, 38, 0.296) 3px solid;
+    transition: 400ms ease;
 }
 
 #profile-btn{
@@ -75,9 +81,8 @@
 }
 
 #profile-btn:hover{
-    box-shadow: 6px 6px 6px rgb(59, 58, 58);
-    border: 2px solid;
-    transition: 400ms ease-in-out;
+    color: var(--dartmouth-green);
+    transition: 300ms ease-in-out;
 }
 
 @keyframes slideleft {
