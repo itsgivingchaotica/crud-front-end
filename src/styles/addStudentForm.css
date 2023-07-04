@@ -46,7 +46,6 @@
 }
 
 #btn-form:hover{
-    box-shadow: 6px 6px 6px rgb(59, 58, 58);
     transition: 400ms ease-in-out;
 }
 
@@ -71,18 +70,13 @@
         margin: 20px 0;
 }
 
-#btn-return:hover{
-    box-shadow: 6px 6px 6px rgb(59, 58, 58);
-    transition: 400ms ease-in-out;
-}
-
 #form-input{
     width: 12em;
 }
 
 @keyframes slide {
     0% {
-        right: -100px;
+        right: -800px;
     }
 
     100% {

@@ -7,6 +7,7 @@ import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
 import { TextField, MenuItem, FormControl, Button, Grid, createTheme, ThemeProvider} from '@mui/material';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
+import StudentInputForm from '../../components/StudentInputForm';
 import "../../styles/addStudentForm.css"
 
 const AddStudent = () => {
@@ -55,7 +56,7 @@ const AddStudent = () => {
         },
       });
 
-    const allCampuses = useSelector((state)=> state.campuses.campusList);
+    const allStudents = useSelector((state)=> state.students.studentList);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -64,6 +65,8 @@ const AddStudent = () => {
     const [campusId, setCampusId] = useState();
     const [errorMessage, setErrorMessage] = useState("");
     const [failedSubmit, setFailedSubmit] = useState(false);
+    const newEntries = useSelector((state) => state.students.studentList);
+
 
     const fetchAllCampuses = () => {
         return dispatch(fetchAllCampusesThunk());
@@ -141,53 +144,21 @@ const AddStudent = () => {
         </div>
       )}
     > 
-    <div className="add-student-page" style={{marginTop:"100px"}}>
-        <h1 id="header">Add new student</h1>
-        <form onSubmit={handleSubmit}>
-        {/* <FormControl> */}
-            <div className="input-container">
-                <TextField id="form-input" type="text" label="First Name *" placeholder="First Name" 
-                error={!firstName && failedSubmit} helperText={!firstName && failedSubmit? "Required": null}
-                variant="outlined" name="firstName" value={firstName} onChange={handleChangeFirstName}/>
-            </div>
-            <div className="input-container">
-                <TextField id="form-input" type="text" label="Last Name *" placeholder="Last Name"
-                error={!lastName && failedSubmit} helperText={!lastName && failedSubmit? "Required": null}
-                variant="outlined" name="lastName" value={lastName} onChange={handleChangeLastName}/>
-            </div>
-            <br></br>
-            <div className="input-container">
-                <TextField id="form-input" type="email" label="Email *" placeholder="Email" 
-                helperText={!email && failedSubmit? "Required": null}
-                variant="outlined" name="email" value={email} error={!email && failedSubmit} 
-                onChange={handleChangeEmail}/>
-            </div>
-            <br></br>
-            <div className="input-container">
-                <TextField id="form-input" inputProps={{ step: ".01" }} error={(failedSubmit && !gpa) || gpa<0 || gpa>4 ? true : false}
-                type="number" label="GPA *" placeholder="GPA" variant="outlined" name="gpa" value={gpa} step="5" 
-                onChange={handleChangeGpa} helperText="Must be between 0 and 4"/>               
-            </div>
-            <div className="input-container">
-                <TextField id="form-input" select label="Campus" defaultValue="choose" onChange={handleChangeCampus}>
-                    <MenuItem value="choose" disabled>Select Campus</MenuItem>
-                    {allCampuses.map((campus) => {
-                        return <MenuItem key={campus.id} value={campus.id} id={campus.id}>
-                                {campus.name + " - " + campus.id}
-                            </MenuItem>
-                    })}
-                </TextField>                
-            </div>
-            <br></br>
-            <div className="input-container">
-                <Button id="btn-form" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
-            </div>
-        {/* </FormControl> */}
-        </form>
-        <br></br>
-        <br></br>
-        {/* {errorMessage?<h3>{errorMessage}</h3>: null} */}
-        <Button id="btn-return" onClick={navigateToAllStudents} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Student List</Button>
+ <div className = "grid" styles={{backgroundColor:'red'}}>
+     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }} sx={{justifyContent: "flex-start", paddingTop: '80px' }}>
+      <Grid item xs={12} md={6}>
+        <StudentInputForm/>
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Grid container spacing={2} >
+          {newEntries.map((entry, index) => (
+          <Grid item xs={6} key={index}>
+              {/* <lay.ContactCard contact={contact} /> */}
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
     </div>
     </ErrorBoundary>
     </ThemeProvider>

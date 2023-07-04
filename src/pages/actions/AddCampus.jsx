@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch } from 'react-redux'
-import { addCampusThunk } from '../../redux/campuses/campus.actions';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, createTheme, ThemeProvider} from '@mui/material';
+import { TextField, Button, createTheme, ThemeProvider, Grid} from '@mui/material';
+import { useSelector } from 'react-redux'
+import CampusInputForm from '../../components/CampusInputForm';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import "../../styles/addCampusForm.css"
 
 const AddCampus = () => {
@@ -54,58 +54,10 @@ const AddCampus = () => {
     },
   });
 
-    const [name, setName] = useState("")
-    const [imageUrl, setImageUrl] = useState("")
-    const [address, setAddress] = useState("")
-    const [description, setDescription] = useState("")
-    const [errorMessage, setErrorMessage] = useState(false);
-    const [failedSubmit, setFailedSubmit] = useState(false);
+    const newEntries = useSelector((state) => state.campuses.campusList);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const handleChangeSchoolName = (event) => {
-        setName(event.target.value);
-    }
-
-    const handleChangeAddress = (event) => {
-        setAddress(event.target.value);
-    }
-
-    const handleChangeDescription = (event) => {
-        setDescription(event.target.value);
-    }
-
-    const handleChangeImageUrl = (event) => {
-        setImageUrl(event.target.value)
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const newCampus = {
-            "name": name,
-            "imageUrl": imageUrl,
-            "address": address,
-            "description":description,
-        }
-        if (name && address && description){
-          dispatch(addCampusThunk(newCampus))
-          setName("");
-          setAddress("");
-          setDescription("");
-          navigateToAllCampuses();
-        }
-        else {
-          setErrorMessage(true);
-          setFailedSubmit(true);
-        }
-
-    }
-
-    const navigateToAllCampuses = () => {
-      navigate("/campuses");
-    }
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -117,35 +69,33 @@ const AddCampus = () => {
         </div>
       )}
     > 
-     <div className="add-campus-page" style={{marginTop:"120px"}}>
-        <h1 id="header-add-campus">Add new campus</h1>
-        <form onSubmit={handleSubmit} style={{maxHeight: '100vh'}}>
-          <div className="input-container-add-campus">
-            <TextField id="form-input-add-campus" type="text" label="Name *" placeholder="Campus Name" 
-            variant="outlined" name="name" value={name} onChange={handleChangeSchoolName}
-              error={failedSubmit && !name} helperText={failedSubmit && !name? "Required" : null}
-            />
-          </div>
-          <div className="input-container-add-campus">
-            <TextField id="form-input-add-campus" type="text" label="Address *" placeholder="Address" 
-            variant="outlined" name="address" value={address} onChange={handleChangeAddress}
-              error={failedSubmit && !address} helperText= {failedSubmit && !address? "Required" : null}
-            />
-          </div> 
-          <br></br>
-          <div className="input-multiline-container-add-campus">
-            <TextField id="form-input-multiline-add-campus" type="text" multiline rows={4} label="Description *" placeholder="Description" 
-            variant="outlined" name="description" value={description} onChange={handleChangeDescription}
-              error={failedSubmit && !description} helperText={failedSubmit && !description? "Required" : null}
-            />
-          </div>
-          <div className="input-multiline-container-add-campus">
-            <Button id="btn-form-add-campus" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
-          </div>
-        </form>
-        {/* {errorMessage?<h3>Valid name, address and description are required</h3>: null} */}
-        <Button id="btn-return-add-campus" onClick={navigateToAllCampuses} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Campus List</Button>
+      <div className = "grid" styles={{backgroundColor:'red'}}>
+     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }} sx={{justifyContent: "flex-start", paddingTop: '80px' }}>
+      <Grid item xs={12} md={6}>
+        <CampusInputForm/>
+      </Grid>
+      <Grid item xs={12} md={4}>
+        <Grid container spacing={2} >
+          {newEntries.map((entry, index) => (
+          <Grid item xs={6} key={index}>
+              {/* <lay.ContactCard contact={contact} /> */}
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
     </div>
+
+
+
+
+    
+
+
+
+
+
+
     </ErrorBoundary>
     </ThemeProvider>
   )

@@ -90,6 +90,7 @@ const AddEntityButtonGroup = () => {
         </Button>
         {/* ADD NEW STUDENT */}
         <Button variant='contained'>
+        <NavLink to='/students/addStudent' style={{textDecoration: 'none'}}>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <Typography variant={isSmallScreen ? 'subtitle1' : 'h5'} sx={{ color: 'var(--bone)', fontWeight: '450', textShadow: '3px 1px 2px black', fontFamily: `'Jost', sans-serif`, marginRight: '20px' }}>
               Student
@@ -101,6 +102,7 @@ const AddEntityButtonGroup = () => {
               alt="graduation-cap"
             />
           </div>
+          </NavLink>
         </Button>
       </div>
     </div>
