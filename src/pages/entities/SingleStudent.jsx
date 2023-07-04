@@ -1,5 +1,6 @@
-import React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import DeleteButtonSnackbar from '../../components/DeleteButtonSnackbar';
+import "../../styles/singleStudentPage.css";
 import { useParams, useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,11 +8,9 @@ import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton} from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import "../../styles/singleStudentPage.css";
 
 const SingleStudent = () => {
   const allStudents = useSelector((state) => state.students.studentList);
@@ -159,15 +158,12 @@ const SingleStudent = () => {
           <h3>Email: {singleStudent.email}</h3>
           <h3>GPA: {singleStudent.gpa}</h3>
           {enrolledCampus.name?<h3 onClick={visitSingleCampusPage}>Campus: {enrolledCampus.name}</h3>:<h3>Campus: Not enrolled to campus</h3>}
-          <IconButton id="profile-btn" aria-label="return" color="primary" 
+          <IconButton id="profile-btn" aria-label="edit"
           onClick={handleEditStudent}>
             <EditRoundedIcon />
           </IconButton>
-          <IconButton id="profile-btn" aria-label="return" color="primary" 
-          onClick={handleDeleteStudent}>
-            <DeleteRoundedIcon />
-          </IconButton>
-          <IconButton id="profile-btn" aria-label="return" color="primary" 
+          <DeleteButtonSnackbar handleDeleteStudent={handleDeleteStudent} navigateToAllStudents={navigateToAllStudents}/>
+          <IconButton id="profile-btn" aria-label="return" 
           onClick={navigateToAllStudents}>
             <KeyboardReturnRoundedIcon />
           </IconButton>
