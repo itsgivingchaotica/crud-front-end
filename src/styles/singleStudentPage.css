@@ -34,16 +34,24 @@
 .edit-student-form-container{
     display:inline-block;
     position: relative;
-    animation-name: slideleft;
+    /* animation-name: slideleft;
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-    transition: 500ms ease-in-out;
+    animation-fill-mode: forwards; */
     margin-bottom: 20px;
     margin: 10px 25px;
     background-image: linear-gradient(rgba(222, 218, 199, 0.347), var(--bone),rgba(222, 218, 199, 0.342));
     border-radius: 1rem;
     padding: 0.8rem;
+    visibility: hidden;
+}
+
+.animate{
+    animation-name: slideleft;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+
 }
 
 .header{
@@ -65,7 +73,7 @@
     width: 150px;
     position: relative;
     top: 10px;
-    transition: 400ms ease;
+    /* transition: 400ms ease; */
 }
 
 #btn-form-edit-student:hover{
@@ -87,15 +95,18 @@
 
 @keyframes slideleft {
     0% {
-        right: -500px;
+        visibility: visible;
+        /* right: -600px; */
+        right: -50%;
     }
 
     100% {
+        visibility: visible;
         right: 0px;
     }
 }
 
-/* @keyframes slideright {
+@keyframes slideright {
     0% {
         left: -400px;
     }
@@ -103,5 +114,19 @@
     100% {
         left: 0px;
     }
-} */
+}
+
+@media only screen and (max-width: 971px) {
+    .edit-student-form-container{
+        visibility: visible;
+    }
+
+    @keyframes slideleft {
+    }
+    
+    @keyframes slideright {
+    }
+
+
+  }
 
