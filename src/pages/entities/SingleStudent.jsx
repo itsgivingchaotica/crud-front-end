@@ -162,7 +162,7 @@ const SingleStudent = () => {
           onClick={handleEditStudent}>
             <EditRoundedIcon />
           </IconButton>
-          <DeleteButtonSnackbar handleDeleteStudent={handleDeleteStudent} navigateToAllStudents={navigateToAllStudents}/>
+          <DeleteButtonSnackbar handleClickDelete={handleDeleteStudent} navigate={navigateToAllStudents}/>
           <IconButton id="profile-btn" aria-label="return" 
           onClick={navigateToAllStudents}>
             <KeyboardReturnRoundedIcon />
