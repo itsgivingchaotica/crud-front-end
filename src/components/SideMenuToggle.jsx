@@ -23,8 +23,8 @@ const theme = createTheme({
           backgroundImage: `url(${DiplomaBorder})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          width: '100px',
-          height: '130px',
+          width: '110px',
+          height: '150px',
           alignItems: 'center'
         },
       },
@@ -105,12 +105,12 @@ const SideMenuToggle = () => {
             sx={{
               color: '1px solid rgb(150, 124, 105, 0.4)',
               paddingBottom: '5px',
-              transform: isSmallScreen ? 'translateY(-10px)' : 'none',
+              transform: isSmallScreen ? 'translateY(-5px)' : 'none',
             }}
           />
             <MenuItem onClick={handleClose}>
             <NavLink to="/students"> 
-            <Typography sx={{marginBottom: isSmallScreen ? '30px' : undefined,  transform: isSmallScreen ? 'translateY(-10px)' : 'none',}}>
+            <Typography sx={{marginBottom: isSmallScreen ? '30px' : undefined }}>
             Students
             </Typography></NavLink>
           </MenuItem>

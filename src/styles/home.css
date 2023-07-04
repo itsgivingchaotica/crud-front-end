@@ -12,3 +12,7 @@
     background-position: center;
     background-repeat: no-repeat;
 } */
+
+body{
+    z-index: -9;
+}

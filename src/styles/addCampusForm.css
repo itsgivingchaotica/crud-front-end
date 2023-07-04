@@ -52,7 +52,6 @@
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     transition: 500ms ease-in-out;
-    z-index: -3;
 }
 
 #btn-form-add-campus:hover{
@@ -79,7 +78,6 @@
     transition: 500ms ease-in-out;
     position: relative;
     margin: 40px 0;
-    z-index: -3;
 }
 
 #btn-return-add-campus:hover{

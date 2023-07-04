@@ -14,7 +14,7 @@ const Navbar = () => {
   
   return (
     <div id="navbar-container">
-      <div id="navbar">
+      <div id="navbar" style={{zIndex:99}}>
           <>
             <div className="home-navlink">
               <NavLink to="/">
@@ -26,9 +26,7 @@ const Navbar = () => {
               </div>
           </>
       </div>
-      <div id='searchbar'>
       {isMobileScreen ? (<div style={{transform:'translateY(-22px)', opacity: '!important'}}><SearchBar /></div>) : (<SearchBar/>)}
-      </div>
     </div>
   );
 };

@@ -89,9 +89,6 @@
 }
 
 
-#searchbar{
-    z-index: 100;
-}
 .navlink:hover {
     color: var(--bone);
     border: 2px solid var(--bone);

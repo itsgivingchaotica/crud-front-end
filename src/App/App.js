@@ -12,7 +12,7 @@ function App() {
     <HelmetProvider>
       <Router>
         <div className="App">
-          <div className="Navbar">
+          <div className="Navbar" >
             <Navbar/>
           </div>
           <Helmet>
