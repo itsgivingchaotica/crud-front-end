@@ -85,6 +85,7 @@ const SingleStudent = () => {
   const handleDeleteStudent = async () => {
     try {
       dispatch(deleteStudentThunk(singleStudent.id));
+      navigate('/students');
     } catch (error) {
       console.log(error.message);
     }
@@ -159,7 +160,7 @@ const SingleStudent = () => {
           onClick={handleEditStudent}>
             <EditRoundedIcon />
           </IconButton>
-          <DeleteButtonSnackbar handleClickDelete={handleDeleteStudent} navigate={navigateToAllStudents}/>
+          <DeleteButtonSnackbar onClick={handleDeleteStudent} />
           <IconButton id="profile-btn" aria-label="return" 
           onClick={navigateToAllStudents}>
             <KeyboardReturnRoundedIcon />

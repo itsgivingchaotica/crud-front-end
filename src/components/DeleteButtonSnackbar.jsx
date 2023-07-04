@@ -15,10 +15,6 @@ const DeleteButtonSnackbar = (props) => {
         return;
       }
       setOpen(false);
-      props.handleClickDelete();
-      if(props.navigate){
-        props.navigate();
-      }
     };
   
     const handleUndo = (event) => {
@@ -44,9 +40,9 @@ const DeleteButtonSnackbar = (props) => {
 
   return (
     <>
-        <IconButton id="profile-btn" aria-label="delete" onClick={handleClickOpen}>
-            <DeleteRoundedIcon />
-        </IconButton>
+        <Button onClick={handleClose} variant='outlined' color='error'sx={{height:'70px', width:'100px', '&:hover': {color: 'white', backgroundColor: 'red'}}}>
+            <DeleteRoundedIcon style={{height:'60px',width:'60px'}}/>
+        </Button>
         <Snackbar
         open={open}
         autoHideDuration={6000}
