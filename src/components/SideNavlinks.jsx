@@ -5,8 +5,8 @@ import '../styles/navbar.css'
 const SideNavlinks = () => {
   return (
     <div className='side-navlinks'>
-        <NavLink to="/campuses" className="navlink">Campuses</NavLink>
-        <NavLink to="/students" className="navlink">Students</NavLink>
+        <NavLink to="/campuses" className="navlink">CAMPUSES</NavLink>
+        <NavLink to="/students" className="navlink">STUDENTS</NavLink>
     </div>
   )
 }
