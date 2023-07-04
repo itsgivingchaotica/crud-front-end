@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import DeleteButtonSnackbar from '../../components/DeleteButtonSnackbar';
 import "../../styles/singleStudentPage.css";
 import { useParams, useNavigate } from 'react-router-dom';
@@ -18,7 +18,8 @@ const SingleStudent = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const inputRef = useRef(null);
+  const inputRef = useRef();
+  const animateFormRef = useRef();
 
   const [singleStudent, setSingleStudent] = useState('');
   const [enrolledCampus, setEnrolledCampus] = useState("");
@@ -45,13 +46,9 @@ const SingleStudent = () => {
 
   const handleEditStudent = (event) => {
     setIsEditing(true);
-    event.target.parentNode.classList.add("student-profile-container-animation");
-    focusInput();
-  };
-
-  const focusInput = ()=>{
+    animateFormRef.current.classList.add("animate");
     inputRef.current.focus();
-  }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -169,7 +166,7 @@ const SingleStudent = () => {
           </IconButton>
         </div>
       {/* {isEditing ? ( */}
-        <div className="edit-student-form-container">
+        <div className="edit-student-form-container" ref={animateFormRef}>
         <h1 className="header">Edit Profile Form</h1>
           {/* Display the form to edit student information */}
           <EditStudentForm
