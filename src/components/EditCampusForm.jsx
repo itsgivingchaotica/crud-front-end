@@ -59,14 +59,12 @@ const EditCampusForm = ({handleChangeName, handleChangeAddress, handleChangeImag
       <div className="input-container-add-campus">
         <TextField id="form-input-add-campus" type="text" label="Name" placeholder="Campus Name" 
           variant="outlined" name="name" value={editedCampus.name} onChange={handleChangeName}
-          // error={failedSubmit && !editedCampus.name} helperText={failedSubmit && !editedCampus.name? "Required" : null}
           error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
         />
       </div>
       <div className="input-container-add-campus">
         <TextField id="form-input-add-campus" type="text" label="Address" placeholder="Address" 
           variant="outlined" name="address" value={editedCampus.address} onChange={handleChangeAddress}
-          // error={failedSubmit && !editedCampus.address} helperText= {failedSubmit && !editedCampus.address? "Required" : null}
           error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
         />
       </div> 
@@ -74,39 +72,15 @@ const EditCampusForm = ({handleChangeName, handleChangeAddress, handleChangeImag
       <div className="input-multiline-container-add-campus">
         <TextField id="form-input-multiline-add-campus" type="text" multiline rows={4} label="Description" placeholder="Description" 
           variant="outlined" name="description" value={editedCampus.description} onChange={handleChangeDescription}
-          // error={failedSubmit && !editedCampus.description} helperText={failedSubmit && !editedCampus.description? "Required" : null}
           error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
           />
       </div>
       <div className="input-multiline-container-add-campus">
         <Button id="btn-form-add-campus" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
       </div>
-
-            {/* <input
-            type="text"
-            name="name"
-            value={editedCampus.name}
-            placeholder="School Name"
-            onChange={handleChangeName}
-            />
-            <input
-            type="text"
-            name="address"
-            value={editedCampus.address}
-            placeholder="Address"
-            onChange={handleChangeAddress}
-            />
-            <input
-            type="text"
-            name="description"
-            value={editedCampus.description}
-            placeholder="Description"
-            onChange={handleChangeDescription}
-            />
-            <button type="submit">Done</button> */}
-        </form>
-        </>
-        </ThemeProvider>
+    </form>
+    </>
+    </ThemeProvider>
   )
 }
 

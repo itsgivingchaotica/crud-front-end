@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { EditCampusForm } from '../.././components'
+import { EditCampusForm, DeleteButtonSnackbar } from '../.././components';
 import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
 import { searchStudentsByCampusThunk } from '../../redux/students/student.actions'
 import axios from 'axios';
 import { Button } from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
+import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 
 
   const SingleCampus = () => {
@@ -122,7 +123,8 @@ import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded
       <div>
         <h1>{singleCampus.name}</h1>
         <button onClick={handleEditCampus}>Edit</button>
-        <button onClick={handleDeleteCampus}>Delete</button>
+        {/* <button onClick={handleDeleteCampus}>Delete</button> */}
+        <DeleteButtonSnackbar handleClickDelete={handleDeleteCampus} navigate={navigateToAllCampuses}/>
       </div>
        {isEditing ? (
         <div>

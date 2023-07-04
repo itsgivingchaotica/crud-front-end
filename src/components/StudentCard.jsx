@@ -3,6 +3,7 @@ import "../styles/studentCard.css";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { deleteStudentThunk } from '../redux/students/student.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import DeleteButtonSnackbar from './DeleteButtonSnackbar';
 import axios from 'axios';
 
 const StudentCard = (props) => {
@@ -12,10 +13,10 @@ const StudentCard = (props) => {
   const navigate = useNavigate();
 
   const handleClickDelete = () => {
-    let result = window.confirm("Are you sure you want to delete the student?");
-    if (result === true){
+    // let result = window.confirm("Are you sure you want to delete the student?");
+    // if (result === true){
       dispatch(deleteStudentThunk(props.id));
-    }
+    // }
 
   }
 
@@ -47,7 +48,7 @@ const StudentCard = (props) => {
         <h3>campusId: {props.campusId}</h3>
         {enrolledCampus.name?<h3 onClick={visitSingleCampusPage}>Enrolled Campus: {enrolledCampus.name}</h3>
           :<h3>Enrolled Campus: Not Enrolled</h3>}
-        <button onClick={handleClickDelete}>Delete Student</button>
+        <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
         <NavLink to={`/students/${props.id}`}>Student Profile</NavLink>
     </div>
   )

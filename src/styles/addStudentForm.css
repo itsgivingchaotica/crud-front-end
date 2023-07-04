@@ -1,15 +1,7 @@
-/* .MuiInputBase-input  {
-    background: rgb(75, 75, 20);
-  } */
-  /* .MuiTextField-root {
-    background: var(--beaver);
-    border-color: green;
-  } */
-
 .add-student-page::before {    
     content: "";
     background-image: url(../hallway-with-bag-floor.jpg);
-    height:120vh;
+    height:100vh;
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -84,7 +76,7 @@
 
 @keyframes slide {
     0% {
-        right: -100px;
+        right: -800px;
     }
 
     100% {

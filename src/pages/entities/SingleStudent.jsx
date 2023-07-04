@@ -1,5 +1,6 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import DeleteButtonSnackbar from '../../components/DeleteButtonSnackbar';
+import "../../styles/singleStudentPage.css";
 import { useParams, useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,8 +8,9 @@ import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
-import { Button } from '@mui/material';
+import { Button, IconButton} from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
 const SingleStudent = () => {
   const allStudents = useSelector((state) => state.students.studentList);
@@ -16,6 +18,7 @@ const SingleStudent = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const inputRef = useRef(null);
 
   const [singleStudent, setSingleStudent] = useState('');
   const [enrolledCampus, setEnrolledCampus] = useState("");
@@ -40,9 +43,15 @@ const SingleStudent = () => {
   }, [])
 
 
-  const handleEditStudent = () => {
+  const handleEditStudent = (event) => {
     setIsEditing(true);
+    event.target.parentNode.classList.add("student-profile-container-animation");
+    focusInput();
   };
+
+  const focusInput = ()=>{
+    inputRef.current.focus();
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -142,15 +151,26 @@ const SingleStudent = () => {
         </div>
       )}
     > 
-    <div style={{ marginTop: '120px' }}>
-        <div>
-          <h1>{singleStudent.firstName}</h1>
-          {enrolledCampus.name?<h1 onClick={visitSingleCampusPage}>{enrolledCampus.name}</h1>:<h1>Not enrolled to campus</h1>}
-          <button onClick={handleEditStudent}>Edit</button>
-          <button onClick={handleDeleteStudent}>Delete</button>
+    <div style={{ marginTop: '120px' }} className="single-student-page">
+        <div className="student-profile-container">
+          <h1 className="header">{singleStudent.firstName + " " + singleStudent.lastName}</h1>
+          <img className="student-image" src={singleStudent.imageUrl}></img>
+          <h3>Email: {singleStudent.email}</h3>
+          <h3>GPA: {singleStudent.gpa}</h3>
+          {enrolledCampus.name?<h3 onClick={visitSingleCampusPage}>Campus: {enrolledCampus.name}</h3>:<h3>Campus: Not enrolled to campus</h3>}
+          <IconButton id="profile-btn" aria-label="edit"
+          onClick={handleEditStudent}>
+            <EditRoundedIcon />
+          </IconButton>
+          <DeleteButtonSnackbar handleClickDelete={handleDeleteStudent} navigate={navigateToAllStudents}/>
+          <IconButton id="profile-btn" aria-label="return" 
+          onClick={navigateToAllStudents}>
+            <KeyboardReturnRoundedIcon />
+          </IconButton>
         </div>
-      {isEditing ? (
-        <div>
+      {/* {isEditing ? ( */}
+        <div className="edit-student-form-container">
+        <h1 className="header">Edit Profile Form</h1>
           {/* Display the form to edit student information */}
           <EditStudentForm
             handleChangeFirstName={handleChangeFirstName}
@@ -163,11 +183,11 @@ const SingleStudent = () => {
             editedStudent={editedStudent}
             allCampuses = {allCampuses}
             failedSubmit = {failedSubmit}
+            inputRef={inputRef}
           />
           {formErrorMessage? <h3>{formErrorMessage}</h3> : null}
         </div>
-      ) : null}
-      <Button id="btn-return-add-campus" onClick={navigateToAllStudents} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Campus List</Button>
+      {/* ) : null} */}
     </div>
     </ErrorBoundary>
   );

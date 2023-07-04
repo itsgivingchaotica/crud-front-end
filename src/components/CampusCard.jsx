@@ -1,6 +1,7 @@
 import React from 'react'
 import "../styles/campusCard.css";
 import { NavLink } from 'react-router-dom';
+import DeleteButtonSnackbar from './DeleteButtonSnackbar';
 import { searchStudentsByCampusThunk } from '../redux/students/student.actions';
 import { useDispatch, useSelector } from 'react-redux'
 import {deleteCampusThunk} from '../redux/campuses/campus.actions';
@@ -16,11 +17,7 @@ const CampusCard = (props) => {
   // };
 
   const handleClickDelete = () => {
-    let result = window.confirm("Are you sure you want to delete the campus?");
-    if (result === true){
-      dispatch(deleteCampusThunk(props.id));
-    }
-
+    dispatch(deleteCampusThunk(props.id));
   }
 
   return (
@@ -30,7 +27,7 @@ const CampusCard = (props) => {
         <h3>{props.address}</h3>
         <img className="campus-image" src={props.imageUrl}></img>
         <h3>{props.description}</h3>
-        <button onClick={handleClickDelete}>Delete Campus</button>
+        <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
         <button key={props.id}>
             <NavLink to={`/campuses/${props.id}`}>Campus Profile</NavLink>
         </button>
