@@ -9,12 +9,12 @@ import "../styles/navbar.css";
 import SideNavlinks from './SideNavlinks';
 
 const Navbar = () => {
-  const isMobileScreen = useMediaQuery("(maxWidth: 414px)");
-  const isSmallScreen = useMediaQuery("(maxWidth: 700px")
+  const isMobileScreen = useMediaQuery("(max-width: 414px)");
+  const isSmallScreen = useMediaQuery("(max-width: 700px")
   
   return (
     <div id="navbar-container">
-      <div id="navbar">
+      <div id="navbar" style={{zIndex:99}}>
           <>
             <div className="home-navlink">
               <NavLink to="/">
