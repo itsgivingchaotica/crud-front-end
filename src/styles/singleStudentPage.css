@@ -1,0 +1,102 @@
+.single-student-page::before {    
+    content: "";
+    background-image: url(../hallway-with-bag-floor.jpg);
+    height:100vh;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.student-profile-container{
+    display: inline-block;
+    position: relative;
+    padding: 0 5%;
+    animation-name: slideright;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    transition: 500ms ease-in-out;
+    border: 3px solid var(--burnt-umber);
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px rgb(61, 59, 59);
+    padding: 1rem;
+    margin: 20px 25px;
+    background-color: rgba(222, 218, 199, 0.458);
+    width: 330px;
+}
+
+.edit-student-form-container{
+    display:inline-block;
+    position: relative;
+    animation-name: slideleft;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    transition: 500ms ease-in-out;
+    margin-bottom: 20px;
+    margin: 10px 25px;
+}
+
+.header{
+    position: relative;
+    text-shadow: 1px 2px 2px var(--beaver);
+    margin: 30px;
+    font-size: 2.5rem;
+}
+
+#btn-form-edit-student{
+    background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
+    color: var(--buff);
+    border: rgba(196, 97, 97, 0.296) 3px solid;
+    box-shadow:4px 4px 4px black;
+    text-shadow: 1px 2px 2px black;
+    font-size: 15px;
+    font-family: 'Helvetica Neue';
+    font-weight: 700;
+    width: 150px;
+    position: relative;
+    top: 10px;
+}
+
+#btn-form-edit-student:hover{
+    box-shadow: 6px 6px 6px rgb(59, 58, 58);
+    transition: 400ms ease-in-out;
+}
+
+#profile-btn{
+    color: var(--burnt-umber);
+    position: relative;
+}
+
+#profile-btn:hover{
+    box-shadow: 6px 6px 6px rgb(59, 58, 58);
+    border: 2px solid;
+    transition: 400ms ease-in-out;
+}
+
+@keyframes slideleft {
+    0% {
+        right: -500px;
+    }
+
+    100% {
+        right: 0px;
+    }
+}
+
+/* @keyframes slideright {
+    0% {
+        left: -400px;
+    }
+
+    100% {
+        left: 0px;
+    }
+} */
+

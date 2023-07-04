@@ -4,7 +4,7 @@ import { TextField, Button, MenuItem, createTheme, ThemeProvider} from '@mui/mat
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
 const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleChangeImageUrl, handleChangeEmail, 
-    handleChangeGpa, handleChangeCampus, handleSubmit, editedStudent, allCampuses, failedSubmit}) => {
+    handleChangeGpa, handleChangeCampus, handleSubmit, editedStudent, allCampuses, failedSubmit, inputRef}) => {
 
   const theme = createTheme({
     components: {
@@ -59,7 +59,7 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
       <div className="input-container">
         <TextField id="form-input" type="text" label="First Name *" placeholder="First Name" 
         error={isEmpty && failedSubmit} helperText={isEmpty && failedSubmit? "At least one field required": null}
-        variant="outlined" name="firstName" value={editedStudent.firstName} onChange={handleChangeFirstName}/>
+        variant="outlined" name="firstName" value={editedStudent.firstName} onChange={handleChangeFirstName} inputRef={inputRef}/>
       </div>
       <div className="input-container">
         <TextField id="form-input" type="text" label="Last Name *" placeholder="Last Name"
@@ -93,7 +93,7 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
       </div>
       <br></br>
       <div className="input-container">
-        <Button id="btn-form" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
+        <Button id="btn-form-edit-student" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
       </div>
             {/* <input
             type="text"
