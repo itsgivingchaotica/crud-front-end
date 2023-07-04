@@ -44,7 +44,7 @@ const Home = () => {
         </div>
       ) : (
         <div className="home" style={{display:'flex', justifyContent:'center'}}>
-          <Grid container sx={{maxHeight:'50vh', marginLeft:'20px'}}>
+          <Grid container sx={{maxHeight:'50vh', marginLeft:'80px'}}>
             <Grid item xs={6} md={7} style={{ display: 'flex', justifyContent: 'flex-end'}}>
               <div style={{ color: 'white', transform: 'translateY(200px)', paddingTop:'20px',backgroundColor:'rgb(66, 55, 52,0.9)'}}>
                 <Typography variant='h3' sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700', textShadow: '-1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black'}}>
