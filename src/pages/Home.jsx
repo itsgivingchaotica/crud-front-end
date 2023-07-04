@@ -63,7 +63,7 @@ const Home = () => {
                 </Typography>
               </div>
             </Grid>
-            <Grid item xs={6} md={5} style={{transform:'translateY(33vh)', paddingTop:'40px'}}>
+            <Grid item xs={6} md={5} style={{transform:'translateY(33vh)', paddingTop:'20px'}}>
             <Typography variant='h4' sx={{fontFamily: `'Manrope', sans-serif`, fontWeight:'700',color:'white', paddingBottom:'20px', textShadow:'3px 3px 3px black'}}>Upload New Entry:</Typography>
               <AddEntityButtonGroup />
             </Grid>

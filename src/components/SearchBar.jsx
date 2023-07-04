@@ -75,20 +75,6 @@ const SearchBar = () => {
     color: 'black',
     backgroundColor: 'white',
     width: isSmallScreen ? '100%' : '60%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
-  };
-
-  const searchIconWrapperStyle = {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: '400px',
   };
 
   const handleSearchTerm = (e) => {
@@ -119,7 +105,7 @@ const SearchBar = () => {
   return (
     <Box sx={{ flexGrow: 1, transform: 'translateY(110px)'}}>
       <AppBar position="relative">
-        <Toolbar sx={{ backgroundColor: 'var(--bone)', paddingTop: '15px', paddingBottom: '15px', position: 'relative', justifyContent:'center',display:'flex' }}>
+        <Toolbar sx={{ backgroundColor: 'var(--bone)', paddingTop: '8px', paddingBottom: '5px', position: 'relative', justifyContent:'center',display:'flex' }}>
           <div style={searchStyle} onKeyDown={(e) => {
         if (e.key === 'Enter') {
             handleSearch(e);
@@ -152,7 +138,7 @@ const SearchBar = () => {
                   label="Search" 
                   value={searchTerm}
                   onChange={(e) => handleSearchTerm(e)}
-                  autoComplete="off"
+                  autoComplete="off" 
                 />
               )}
               onChange={(event, value) => {
@@ -170,8 +156,6 @@ const SearchBar = () => {
               open={isAutocompleteOpen}
               isOptionEqualToValue={(option, value) => option.id === value?.id} // Update the equality test
             />
-            <div style={searchIconWrapperStyle}>
-            </div>
           </div>
         </Toolbar>
       </AppBar>

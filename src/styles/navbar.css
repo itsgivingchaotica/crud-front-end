@@ -9,7 +9,7 @@
     --celadon-2: #95d5b2;
     --mint: #74c69dff;
     --mint-2: #52b788ff;
-    --sea-green: #40916cff;
+    --sea-green: rgb(64, 145, 108);
     --dartmouth-green: rgb(45, 106, 79);
     --brunswick-green: rgb(27, 67, 50);
     --dark-green: rgb(34, 43, 40);
@@ -66,7 +66,7 @@
 .side-navlinks{
     justify-content: right;
     align-items: center;
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Ysabeau Infant', sans-serif;
     font-weight: 700;
     font-size: 26px;
     text-shadow: 2px 2px 2px black;

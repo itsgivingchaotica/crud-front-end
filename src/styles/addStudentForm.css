@@ -54,7 +54,6 @@
 }
 
 #btn-form:hover{
-    box-shadow: 6px 6px 6px rgb(59, 58, 58);
     transition: 400ms ease-in-out;
 }
 
@@ -77,11 +76,6 @@
         transition: 500ms ease-in-out;
         position: relative;
         margin: 20px 0;
-}
-
-#btn-return:hover{
-    box-shadow: 6px 6px 6px rgb(59, 58, 58);
-    transition: 400ms ease-in-out;
 }
 
 #form-input{
