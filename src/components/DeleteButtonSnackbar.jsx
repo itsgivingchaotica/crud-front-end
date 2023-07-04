@@ -15,7 +15,6 @@ const DeleteButtonSnackbar = (props) => {
         return;
       }
       setOpen(false);
-      props.handleClickDelete();
     };
   
     const handleUndo = (event) => {
