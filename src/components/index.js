@@ -5,3 +5,4 @@ export { default as StudentCard } from "./StudentCard"
 export { default as CampusCard } from "./CampusCard"
 export { default as EditCampusForm } from "./EditCampusForm"
 export { default as EditStudentForm } from "./EditStudentForm"
+export {default as DeleteButtonSnackbar} from "./DeleteButtonSnackbar";

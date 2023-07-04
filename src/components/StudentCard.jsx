@@ -48,8 +48,7 @@ const StudentCard = (props) => {
         <h3>campusId: {props.campusId}</h3>
         {enrolledCampus.name?<h3 onClick={visitSingleCampusPage}>Enrolled Campus: {enrolledCampus.name}</h3>
           :<h3>Enrolled Campus: Not Enrolled</h3>}
-        {/* <button onClick={handleClickDelete}>Delete Student</button> */}
-        <DeleteButtonSnackbar handleDeleteStudent={handleClickDelete}/>
+        <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
         <NavLink to={`/students/${props.id}`}>Student Profile</NavLink>
     </div>
   )

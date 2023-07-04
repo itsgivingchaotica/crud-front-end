@@ -15,9 +15,9 @@ const DeleteButtonSnackbar = (props) => {
         return;
       }
       setOpen(false);
-      props.handleDeleteStudent();
-      if(props.navigateToAllStudents){
-        props.navigateToAllStudents();
+      props.handleClickDelete();
+      if(props.navigate){
+        props.navigate();
       }
     };
   
