@@ -69,14 +69,14 @@
     animation-fill-mode: forwards;
     transition: 500ms ease-in-out;
     position: relative;
-    margin-top: 10px;
+    margin-top: 12px;
     width: 40%;
 }
 
 #btn-add-campus{
     background-image: linear-gradient(rgb(94, 194, 149), var(--sea-green), rgb(94, 194, 149));
     color: var(--bone);
-    border: rgba(196, 97, 97, 0.296) 3px solid;
+    border: rgba(13, 81, 38, 0.296) 3px solid;
     box-shadow: 2px 2px 2px var(--darmouth-green);
     text-shadow: 1px 2px 2px black;
     position: relative;
@@ -86,18 +86,17 @@
     animation-fill-mode: forwards;
     transition: 500ms ease-in-out;
     position: relative;
-    margin-top: 10px;
+    margin-top: 12px;
     width: 40%;
 }
 
 #btn-return-add-campus:hover{
     background-image: linear-gradient(rgb(242, 136, 136), var(--burnt-umber), rgb(242, 136, 136));
-    box-shadow: 3px 3px 3px var(--darmouth-green);
     transition: 400ms ease-in-out;
+
 }
 
 #btn-add-campus:hover {
-    box-shadow: 3px 3px 3px var(--darmouth-green);
     transition: 400ms ease-in-out;
     background-image: linear-gradient(rgb(123, 255, 196), var(--sea-green), rgb(123, 255, 196));
 }

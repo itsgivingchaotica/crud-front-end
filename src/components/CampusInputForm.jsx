@@ -94,9 +94,9 @@ const CampusInputForm= () => {
     return (
         //  <div style={{position: 'fixed'}}>
         <Card sx={{ padding: '36px', height:'100%'}}>
-        <Typography variant="h4" mb={2} mt={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight: '700', transform:'translateX(-30px)' }}>
-  <div style={{ display: 'flex', alignItems: 'center', marginRight: '10px' }}>
-    <img width="80" height="80" src="https://img.icons8.com/bubbles/80/plus.png" alt="plus" />
+        <Typography variant={isMobileScreen ? "h5" : "h4"} mb={2} mt={2} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight: '700', transform:isMobileScreen ? 'translateX(-10px)' : 'translateX(-30px)'}}>
+  <div style={{ display: 'flex', alignItems: 'center', marginRight: '10px'}}>
+  {isMobileScreen ? (<img width="50" height="50" src="https://img.icons8.com/bubbles/50/plus.png" alt="plus" />) :(<img width="80" height="80" src="https://img.icons8.com/bubbles/80/plus.png" alt="plus" />)}
   </div>
   ADD CAMPUS
 </Typography>
