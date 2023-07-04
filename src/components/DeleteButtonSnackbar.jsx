@@ -16,7 +16,9 @@ const DeleteButtonSnackbar = (props) => {
       }
       setOpen(false);
       props.handleDeleteStudent();
-      props.navigateToAllStudents();
+      if(props.navigateToAllStudents){
+        props.navigateToAllStudents();
+      }
     };
   
     const handleUndo = (event) => {
@@ -41,7 +43,7 @@ const DeleteButtonSnackbar = (props) => {
   
 
   return (
-    <div>
+    <>
         <IconButton id="profile-btn" aria-label="delete" onClick={handleClickOpen}>
             <DeleteRoundedIcon />
         </IconButton>
@@ -52,7 +54,7 @@ const DeleteButtonSnackbar = (props) => {
         message="Profile will be deleted in few seconds"
         action={action}
         />
-  </div>
+  </>
   )
 }
 
