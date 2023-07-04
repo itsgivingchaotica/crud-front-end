@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { useMediaQuery, useTheme } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -11,8 +12,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllCampusesThunk } from '../redux/campuses/campus.actions';
 import { fetchAllStudentsThunk } from '../redux/students/student.actions';
 
+//inspired by https://codesandbox.io/s/hgyj4j?file=/demo.tsx
 const SearchBar = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const isSmallScreen = useMediaQuery('(max-width: 700px');
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,40 +23,44 @@ const SearchBar = () => {
   const studentList = useSelector((state) => state.students.studentList);
   const campusList = useSelector((state) => state.campuses.campusList);
 
-  const unifyOptions = (list, type) => {
+  const searchOptions = (list, type) => {
     return list.map((item) => {
       if (type === 'student') {
         return {
-          id: item.email,
+          id: item.id,
           label: `${item.firstName} ${item.lastName}`,
-          imageUrl: item.imageUrl,
+          email: item.email,
           type: 'student',
         };
       } else if (type === 'campus') {
         return {
-          id: item.name,
+          id: item.id,
           label: item.name,
-          imageUrl: item.imageUrl,
+          address: item.address,
           type: 'campus',
         };
       }
     });
   };
 
-  const unifiedStudentList = unifyOptions(studentList, 'student');
-  const unifiedCampusList = unifyOptions(campusList, 'campus');
-  const options = [...unifiedCampusList, ...unifiedStudentList];
+  const searchStudentList = searchOptions(studentList, 'student');
+  const searchCampusList = searchOptions(campusList, 'campus');
+  const options = [...searchCampusList, ...searchStudentList];
 
   const handleSearch = (result) => {
-    const isStudent = studentList.find((student) => student.id === result.id);
-    const isCampus = campusList.find((campus) => campus.id === result.id);
+    // const isStudent = studentList.filter((student) => (student.id === result.id) && ((student.firstName + ' ' + student.lastName ) === result.label));
+    // console.log(isStudent);
+    
+    // const isCampus = campusList.filter((campus) => (campus.id === result.id) && (campus.name === result.label));
+    // console.log(isCampus);
 
-    if (isStudent) {
+    if (result.type==='student') {
       // Handle student click
-      console.log('Student clicked:', result);
-    } else if (isCampus) {
+       navigate(`/students/${result.id}`);
+     
+    } else if (result.type==='campus') {
       // Handle campus click
-      console.log('Campus clicked:', result);
+      navigate(`/campuses/${result.id}`);
     }
 
     setAutocompleteOpen(false); // Close the Autocomplete dropdown
@@ -67,7 +74,6 @@ const SearchBar = () => {
     borderRadius: '16px',
     color: 'black',
     backgroundColor: 'white',
-    marginLeft: isSmallScreen ? '-10%' : '20%',
     width: isSmallScreen ? '100%' : '60%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
@@ -88,8 +94,22 @@ const SearchBar = () => {
   const handleSearchTerm = (e) => {
     const query = e.target.value;
     setSearchTerm(query);
-    setAutocompleteOpen(query.length > 0); // Open the autocomplete when there is input
+    console.log("🚀 ~ file: SearchBar.jsx:97 ~ handleSearchTerm ~ query:", query)
+    setAutocompleteOpen(query.length > 0);
   };
+
+  const handleSearchIconClick = () => {
+  if (searchTerm) {
+    const result = options.filter((option) => {
+      return option.label.toLowerCase() === searchTerm.toLowerCase();
+    });
+    console.log("🚀 ~ file: SearchBar.jsx:104 ~ handleSearchIconClick ~ result:", result);
+    if (result) {
+        console.log("SEARCHING!")
+      handleSearch(result);
+    }
+  }
+};
 
   useEffect(() => {
     dispatch(fetchAllCampusesThunk());
@@ -97,14 +117,17 @@ const SearchBar = () => {
   }, [dispatch]);
 
   return (
-    <Box sx={{ flexGrow: 1, transform: 'translateY(110px)' }}>
-      <AppBar position="static">
-        <Toolbar sx={{ backgroundColor: 'var(--bone)', paddingTop: '10px', paddingBottom: '10px' }}>
-          <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
-          </IconButton>
-          <div style={searchStyle}>
+    <Box sx={{ flexGrow: 1, transform: 'translateY(110px)'}}>
+      <AppBar position="relative">
+        <Toolbar sx={{ backgroundColor: 'var(--bone)', paddingTop: '15px', paddingBottom: '15px', position: 'relative', justifyContent:'center',display:'flex' }}>
+          <div style={searchStyle} onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+            handleSearch(e);
+        }}}>
+          <IconButton variant="contained" aria-label="open drawer" sx={{ mr: 2 }} >
+        <SearchIcon />
+      </IconButton>
             <Autocomplete
-              disablePortal
               id="combo-box-demo"
               options={options}
               getOptionLabel={(option) => option.label}
@@ -126,7 +149,7 @@ const SearchBar = () => {
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  label="Search"
+                  label="Search" 
                   value={searchTerm}
                   onChange={(e) => handleSearchTerm(e)}
                   autoComplete="off"
@@ -148,7 +171,6 @@ const SearchBar = () => {
               isOptionEqualToValue={(option, value) => option.id === value?.id} // Update the equality test
             />
             <div style={searchIconWrapperStyle}>
-              <SearchIcon />
             </div>
           </div>
         </Toolbar>
