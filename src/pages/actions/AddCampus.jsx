@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { createTheme, ThemeProvider } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import { deleteBatchCampusThunk, fetchAllCampusesThunk, clearBatchCampuses } from '../../redux/campuses/campus.actions'
-import StudentInputForm from '../../components/StudentInputForm'
+import CampusInputForm from '../../components/CampusInputForm'
 import BatchCampusCard from '../../components/BatchCampusCard'
 import "../../styles/addCampusForm.css"
 
@@ -97,7 +97,7 @@ const AddCampus = () => {
       <div className = "grid" styles={{backgroundColor:'red'}}>
      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }} sx={{justifyContent: "flex-start", paddingTop: '80px', paddingLeft:'15px' }}>
       <Grid item xs={12} md={6}>
-        <StudentInputForm/>
+        <CampusInputForm/>
       </Grid>
       <Grid item xs={12} md={4}>
         <Grid container spacing={2} >
@@ -111,17 +111,6 @@ const AddCampus = () => {
       </Grid>
     </Grid>
     </div>
-
-
-
-
-    
-
-
-
-
-
-
     </ErrorBoundary>
     </ThemeProvider>
   )
