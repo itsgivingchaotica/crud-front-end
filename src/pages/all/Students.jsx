@@ -4,13 +4,18 @@ import {useDispatch, useSelector} from 'react-redux';
 import { ErrorBoundary } from 'react-error-boundary';
 import { fetchAllStudentsThunk } from '../../redux/students/student.actions';
 import { StudentListItems } from '../../components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Students = () => {
   const allStudents = useSelector((state) => state.students.studentList) //state is an object, students in an object, studentList is the array in student object
   console.log('allStudents in students component', allStudents);
   const dispatch = useDispatch();
+  const location = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, [location]);
+  
   const fetchAllStudents = () => {
       return dispatch(fetchAllStudentsThunk());
   }
