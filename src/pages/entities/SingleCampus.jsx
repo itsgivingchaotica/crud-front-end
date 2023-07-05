@@ -7,9 +7,10 @@ import { EditCampusForm, DeleteButtonSnackbar } from '../.././components';
 import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
 import { searchStudentsByCampusThunk } from '../../redux/students/student.actions'
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
-import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import "../../styles/singleCampusPage.css";
 
 
   const SingleCampus = () => {
@@ -119,12 +120,21 @@ import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
         </div>
       )}
     > 
-    <div style={{marginTop: "120px"}}>
-      <div>
-        <h1>{singleCampus.name}</h1>
-        <button onClick={handleEditCampus}>Edit</button>
-        {/* <button onClick={handleDeleteCampus}>Delete</button> */}
+    <div style={{marginTop: "120px"}} className="single-campus-page">
+      <div className="campus-profile-container">
+        <h1 className="campus-name">{singleCampus.name}</h1>
+        <h3 className="campus-address">{singleCampus.address}</h3>
+        <img className="campus-image" src={singleCampus.imageUrl}></img>
+        <h3 className="campus-description">Description: {singleCampus.description}</h3>
+        <IconButton id="profile-btn" aria-label="edit"
+          onClick={handleEditCampus}>
+            <EditRoundedIcon />
+        </IconButton>
         <DeleteButtonSnackbar handleClickDelete={handleDeleteCampus} navigate={navigateToAllCampuses}/>
+        <IconButton id="profile-btn" aria-label="return" 
+          onClick={navigateToAllCampuses}>
+            <KeyboardReturnRoundedIcon />
+          </IconButton>
       </div>
        {isEditing ? (
         <div>
