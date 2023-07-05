@@ -5,7 +5,10 @@ import {
   ADD_STUDENT, 
   DELETE_STUDENT, 
   EDIT_STUDENT,
-  SEARCH_STUDENTS_BY_CAMPUS } from "./student.types"
+  SEARCH_STUDENTS_BY_CAMPUS,
+  ADD_BATCH_STUDENT, 
+  CLEAR_BATCH_STUDENTS,
+  DELETE_BATCH_STUDENT } from "./student.types"
 
 export const fetchAllStudents = (payload) => {
     return {
@@ -118,4 +121,41 @@ export const searchStudentsByCampusThunk = (campusId) => {
   };
 };
 
+export const addBatchStudent = (payload) => {
+     return{
+        type: ADD_BATCH_STUDENT,
+        payload: payload
+    }
+}
 
+export const addBatchStudentThunk = (student) => {
+    return async(dispatch) => {
+        try{
+            const res = await axios.post("http://localhost:8080/api/students", {
+                firstName: student.firstName,
+                lastName: student.lastName,
+                email: student.email,
+                gpa: student.gpa,
+                campusId: student.campusId
+            });
+            dispatch(addStudent(res.data));
+            dispatch(addBatchStudent(res.data));
+        }
+        catch(error){
+            console.log(error.message);
+        }
+    }
+}
+
+export const clearBatchStudents = () => {
+    return{
+        type: CLEAR_BATCH_STUDENTS,
+    }
+}
+
+export const deleteBatchStudent = (studentId) => {
+  return {
+    type: DELETE_BATCH_STUDENT,
+    payload: studentId
+  };
+};
