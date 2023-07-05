@@ -1,4 +1,11 @@
-import { FETCH_ALL_CAMPUSES, ADD_CAMPUS, EDIT_CAMPUS, DELETE_CAMPUS } from "./campus.types"
+import { 
+    FETCH_ALL_CAMPUSES, 
+    ADD_CAMPUS, 
+    EDIT_CAMPUS, 
+    DELETE_CAMPUS,
+    ADD_BATCH_CAMPUS, 
+    CLEAR_BATCH_CAMPUSES,
+    DELETE_BATCH_CAMPUS } from "./campus.types"
 import axios from 'axios';
 
 export const fetchAllCampuses = (payload) => {
@@ -35,7 +42,6 @@ export const addCampusThunk = (campus) => {
             console.log("running");
             const res = await axios.post("http://localhost:8080/api/campuses", {
                 name: campus.name,
-                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
             });
@@ -59,7 +65,6 @@ export const editCampusThunk = (editedCampus, id) => {
       const res = await axios.put(
         `http://localhost:8080/api/campuses/${id}`, {
             name: editedCampus.name,
-            imageUrl: editedCampus.imageUrl,
             address: editedCampus.address,
             description: editedCampus.description,
         }
@@ -84,6 +89,57 @@ export const deleteCampusThunk = (campusId) => {
         try {
             await axios.delete(`http://localhost:8080/api/campuses/${campusId}`);
             console.log("campus deleted");
+            dispatch(deleteCampus(campusId));
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+};
+
+export const addBatchCampus = (payload) => {
+     return{
+        type: ADD_BATCH_CAMPUS,
+        payload: payload
+    }
+}
+
+export const addBatchCampusThunk = (campus) => {
+    return async(dispatch) => {
+        try{
+            const res = await axios.post("http://localhost:8080/api/campuses", {
+                name: campus.name,
+                address: campus.address,
+                description: campus.description,
+            });
+            dispatch(addCampus(res.data));
+            dispatch(addBatchCampus(res.data));
+            console.log("🚀 ~ file: campus.actions.js:119 ~ returnasync ~ addBatchCampus:", addBatchCampus)
+        }
+        catch(error){
+            console.log(error.message);
+        }
+    }
+}
+
+export const clearBatchCampuses = () => {
+    return{
+        type: CLEAR_BATCH_CAMPUSES,
+    }
+}
+
+export const deleteBatchCampus = (campusId) => {
+  return {
+    type: DELETE_BATCH_CAMPUS,
+    payload: campusId
+  };
+};
+
+export const deleteBatchCampusThunk = 
+  (campusId) => {
+    return async (dispatch) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/campuses/${campusId}`);
+            dispatch(deleteBatchCampus(campusId));
             dispatch(deleteCampus(campusId));
         } catch (error) {
             console.log(error.message);

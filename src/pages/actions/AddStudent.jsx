@@ -1,15 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux'
-import { clearBatchStudents } from '../../redux/students/student.actions';
-import { useNavigate } from 'react-router-dom';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
-import {  fetchAllStudentsThunk } from '../../redux/students/student.actions';
-import { deleteBatchStudentThunk } from '../../redux/students/student.actions';
-import { useMediaQuery } from '@mui/material'
-import { TextField, MenuItem, FormControl, Button, Grid, createTheme, ThemeProvider} from '@mui/material';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
+import {  fetchAllStudentsThunk, deleteBatchStudentThunk, clearBatchStudents } from '../../redux/students/student.actions';
+import { useMediaQuery, createTheme, ThemeProvider } from '@mui/material'
+import Grid from '@mui/material/Grid'
 import StudentInputForm from '../../components/StudentInputForm';
 import BatchStudentCard from '../../components/BatchStudentCard'
 import "../../styles/addStudentForm.css"
@@ -109,7 +104,8 @@ const AddStudent = () => {
         <StudentInputForm/>
       </Grid>
       <Grid item xs={12} md={4}>
-        <Grid container spacing={2} sx={{overflow:'auto', marginTop: isMediumScreen ? '100px' : '20px'}}>
+        <Grid container spacing={2} sx={{overflow:'auto', marginTop: isMediumScreen ? '100px' : '20px', padding:'5px'}}>
+        {/* LIST THE BATCH OF STUDENTS IN STACK FASHION */}
           {studentBatch.map((entry, index) => (
           <Grid item xs={12} key={index}>
               <BatchStudentCard entry={entry} handleDeleteStudent={handleDeleteStudent}/>

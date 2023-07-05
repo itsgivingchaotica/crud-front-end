@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import "../styles/studentCard.css";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useMediaQuery } from '@mui/material'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -18,9 +16,7 @@ import axios from 'axios';
 const BatchStudentCard = ({entry,handleDeleteStudent}) => {
   const [enrolledCampus, setEnrolledCampus] = useState("");
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isMediumScreen = useMediaQuery('(max-width: 900px)');
 
   const { id, campusId, firstName, lastName, gpa, imageUrl, email } = entry;
 
@@ -47,7 +43,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
   
   return (
     <Card>
-      {/* NAME: REQUIRED */}
+      {/* NAME: REQUIRED, FIRST, LAST*/}
       <CardContent sx={{borderBottom:'4px solid black'}}>
         <Typography 
           variant="h4" 
@@ -61,25 +57,22 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
           {/* IMAGE URL: DEFAULT REQUIRED */}
             {(<CardContent 
               sx={{ display: 'flex', alignItems: 'center', height:'110%',width:'110%'}}>
-                <img src={imageUrl} alt='${firstName} ${lastName} image' styles={{justifyContent:'center' }}/>
+                <img src={imageUrl} alt={`${firstName} ${lastName} profile image`}  styles={{justifyContent:'center' }}/>
               </CardContent>)}
               <CardContent sx={{marginLeft:'30px'}}>
                 <NavLink to={`/students/${id}`} style={{textDecoration:'none'}} >
-                  {/* <Typography 
-                  variant='h4' 
-                  sx={{fontFamily: `'Roboto', sans-serif`, color:'black', textDecoration:'none'}}>
-                    Go to Student Profile
-                  </Typography> */}
                   <Tooltip title="GO TO PROFILE" placement='left' arrow TransitionComponent={Zoom}>
-                  <Button variant='contained' color="success" sx={{marginBottom:'10px'}}>
-                  <img width="70" height="70" src="https://img.icons8.com/color/70/student-center.png" alt="student-center"/>
-                  </Button>
+                    <Button variant='contained' color="success" sx={{marginBottom:'10px'}}>
+                      <img width="70" height="70" src="https://img.icons8.com/color/70/student-center.png" alt="student-center"/>
+                    </Button>
                   </Tooltip>
-                  </NavLink>
+                </NavLink>
+                {/* DELETE STUDENT AND UNDO SNACKBAR*/}
                 <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
               </CardContent>
             </Stack>
             <Stack direction='row' justifyContent='space-between' width='100%'>
+            {/* STUDENT DETAILS AND OPTIONS */}
             <Stack direction='column'>
             {/* EMAIL: REQUIRED */}
             <Tooltip title="CONTACT" TransitionComponent={Zoom}  arrow>
@@ -108,13 +101,14 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
               </CardContent>
               </Tooltip>
                <Divider light/>
-                {/* CAMPUS ID: REQUIRED */}
+                {/* CAMPUS ID: OPTIONAL */}
                 <Tooltip title="VISIT SITE" TransitionComponent={Zoom}  arrow>
               <CardContent sx={{ display: 'flex', alignItems: 'center', '&:hover': {
           cursor: 'pointer', color:'var(--gold)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
                 <div styles={{marginRight:'10px'}} onClick={visitSingleCampusPage}>
                   <img width="35" height="35" src="https://img.icons8.com/ios-glyphs/35/university-campus.png" alt="university-campus"/>
                 </div>
+                {/* SHOW CAMPUS IF ENROLLED */}
                 {enrolledCampus.name? (
                   <Typography variant='h5' 
                   sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px', '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}>
@@ -123,11 +117,11 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                     sx={{marginLeft:'10px'}}>Not Enrolled</Typography>)
                   }
                 </CardContent>
-                </Tooltip>
-                </Stack>
+              </Tooltip>
+            </Stack>
           </Stack>
     </Card>
-        )
+  )
 }
 
 export default BatchStudentCard
