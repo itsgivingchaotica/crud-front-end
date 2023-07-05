@@ -24,7 +24,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
 
     const handleClickDelete = () => {
     handleDeleteStudent(entry.id);
-  };
+    };
 
   const visitSingleCampusPage = () => {
     navigate(`/campuses/${enrolledCampus.id}`);

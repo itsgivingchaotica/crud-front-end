@@ -160,9 +160,9 @@ const SingleStudent = () => {
           onClick={handleEditStudent}>
             <EditRoundedIcon />
           </IconButton>
-          <DeleteButtonSnackbar onClick={handleDeleteStudent} />
+          <DeleteButtonSnackbar onClick={handleDeleteStudent} handleClickDelete={handleDeleteStudent} />
           <IconButton id="profile-btn" aria-label="return" 
-          onClick={navigateToAllStudents}>
+          handleClickDelete={handleDeleteStudent}>
             <KeyboardReturnRoundedIcon />
           </IconButton>
         </div>
