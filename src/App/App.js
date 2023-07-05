@@ -6,11 +6,11 @@ import { Navbar } from "../components"
 import { all, entity, action } from '../pages'
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import './App.css';
-
+  
 function App() {
   return (
     <HelmetProvider>
-      <Router>
+    <Router>
         <div className="App">
           <div className="Navbar" >
             <Navbar/>

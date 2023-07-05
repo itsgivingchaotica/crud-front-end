@@ -76,6 +76,7 @@ const AddEntityButtonGroup = () => {
       <div style={{ maxWidth: '70%' }}>
         {/* ADD NEW CAMPUS */}
         <Button variant='contained'>
+         <NavLink to='/campuses/addCampus' style={{textDecoration: 'none'}}>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <Typography variant={isSmallScreen ? 'subtitle1' : 'h5'} sx={{ color: 'var(--bone)', fontWeight: '470', textShadow: '3px 1px 2px black', fontFamily: `'Jost', sans-serif`, marginRight: '20px' }}>
               Campus
@@ -87,6 +88,7 @@ const AddEntityButtonGroup = () => {
               alt="library"
             />
           </div>
+          </NavLink>
         </Button>
         {/* ADD NEW STUDENT */}
         <Button variant='contained'>

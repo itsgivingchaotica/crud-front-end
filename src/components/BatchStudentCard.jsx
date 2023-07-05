@@ -104,8 +104,8 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                 {/* CAMPUS ID: OPTIONAL */}
                 <Tooltip title="VISIT SITE" TransitionComponent={Zoom}  arrow>
               <CardContent sx={{ display: 'flex', alignItems: 'center', '&:hover': {
-          cursor: 'pointer', color:'var(--gold)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
-                <div styles={{marginRight:'10px'}} onClick={visitSingleCampusPage}>
+          cursor: 'pointer', color:'var(--gold)', textShadow: '1px 1px 1px var(--dark-green)'}}} onClick={visitSingleCampusPage}>
+                <div styles={{marginRight:'10px'}}>
                   <img width="35" height="35" src="https://img.icons8.com/ios-glyphs/35/university-campus.png" alt="university-campus"/>
                 </div>
                 {/* SHOW CAMPUS IF ENROLLED */}
