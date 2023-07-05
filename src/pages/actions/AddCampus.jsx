@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createTheme, ThemeProvider } from '@mui/material'
+import { useMediaQuery, createTheme, ThemeProvider } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import { deleteBatchCampusThunk, fetchAllCampusesThunk, clearBatchCampuses } from '../../redux/campuses/campus.actions'
 import CampusInputForm from '../../components/CampusInputForm'
@@ -10,6 +10,8 @@ import BatchCampusCard from '../../components/BatchCampusCard'
 import "../../styles/addCampusForm.css"
 
 const AddCampus = () => {
+
+  const isMediumScreen = useMediaQuery('(max-width: 900px)');
 
   const theme = createTheme({
     components: {
@@ -100,10 +102,10 @@ const AddCampus = () => {
         <CampusInputForm/>
       </Grid>
       <Grid item xs={12} md={4}>
-        <Grid container spacing={2} >
+        <Grid container spacing={2}  sx={{overflow:'auto', marginTop: isMediumScreen ? '100px' : '20px',padding:'5px'}}>
         {/* LIST THE BATCH OF CAMPUSES IN STACK FASHION */}
           {campusBatch.map((entry, index) => (
-          <Grid item xs={6} key={index}>
+          <Grid item xs={12} key={index}>
                <BatchCampusCard entry={entry} handleDeleteCampus={handleDeleteCampus}/>
             </Grid>
           )).reverse()}

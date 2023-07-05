@@ -42,7 +42,6 @@ export const addCampusThunk = (campus) => {
             console.log("running");
             const res = await axios.post("http://localhost:8080/api/campuses", {
                 name: campus.name,
-                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
             });
@@ -66,7 +65,6 @@ export const editCampusThunk = (editedCampus, id) => {
       const res = await axios.put(
         `http://localhost:8080/api/campuses/${id}`, {
             name: editedCampus.name,
-            imageUrl: editedCampus.imageUrl,
             address: editedCampus.address,
             description: editedCampus.description,
         }
@@ -110,12 +108,12 @@ export const addBatchCampusThunk = (campus) => {
         try{
             const res = await axios.post("http://localhost:8080/api/campuses", {
                 name: campus.name,
-                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
             });
             dispatch(addCampus(res.data));
             dispatch(addBatchCampus(res.data));
+            console.log("🚀 ~ file: campus.actions.js:119 ~ returnasync ~ addBatchCampus:", addBatchCampus)
         }
         catch(error){
             console.log(error.message);

@@ -104,7 +104,7 @@ const AddStudent = () => {
         <StudentInputForm/>
       </Grid>
       <Grid item xs={12} md={4}>
-        <Grid container spacing={2} sx={{overflow:'auto', marginTop: isMediumScreen ? '100px' : '20px'}}>
+        <Grid container spacing={2} sx={{overflow:'auto', marginTop: isMediumScreen ? '100px' : '20px', padding:'5px'}}>
         {/* LIST THE BATCH OF STUDENTS IN STACK FASHION */}
           {studentBatch.map((entry, index) => (
           <Grid item xs={12} key={index}>

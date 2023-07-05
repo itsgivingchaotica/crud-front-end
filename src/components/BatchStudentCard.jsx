@@ -57,7 +57,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
           {/* IMAGE URL: DEFAULT REQUIRED */}
             {(<CardContent 
               sx={{ display: 'flex', alignItems: 'center', height:'110%',width:'110%'}}>
-                <img src={imageUrl} alt='${firstName} ${lastName} image' styles={{justifyContent:'center' }}/>
+                <img src={imageUrl} alt={`${firstName} ${lastName} profile image`}  styles={{justifyContent:'center' }}/>
               </CardContent>)}
               <CardContent sx={{marginLeft:'30px'}}>
                 <NavLink to={`/students/${id}`} style={{textDecoration:'none'}} >

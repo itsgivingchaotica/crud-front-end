@@ -24,7 +24,7 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
     };
 
   return (
-    <Card>
+    <Card sx={{overflow:'scroll'}}>
       {/* NAME: REQUIRED */}
       <CardContent sx={{borderBottom:'4px solid black'}}>
         <Typography 
@@ -39,10 +39,10 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
           {/* IMAGE URL: DEFAULT REQUIRED */}
             {(<CardContent 
               sx={{ display: 'flex', alignItems: 'center', height:'110%',width:'110%'}}>
-                <img src={imageUrl} alt='${firstName} ${lastName} image' styles={{justifyContent:'center' }}/>
+                <img src={imageUrl} alt={`${name} profile image`} styles={{justifyContent:'center' }}/>
               </CardContent>)}
               <CardContent sx={{marginLeft:'30px'}}>
-                <NavLink to={`/students/${id}`} style={{textDecoration:'none'}} >
+                <NavLink to={`/campuses/${id}`} style={{textDecoration:'none'}} >
                   <Tooltip title="GO TO PROFILE" placement='left' arrow TransitionComponent={Zoom}>
                     <Button variant='contained' color="success" sx={{marginBottom:'10px'}}>
                       <img width="70" height="70" src="https://img.icons8.com/color/70/student-center.png" alt="student-center"/>
@@ -70,12 +70,11 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
               </Tooltip>
                <Divider light/>
                 {/* DESCRIPTION: REQUIRED */}
-              <CardContent sx={{ display: 'flex', alignItems: 'center', '&:hover': {
-                cursor: 'pointer', color:'var(--gold)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
+              <CardContent sx={{ display: 'flex'}}>
                 <div style={{marginRight:'10px'}} >
                     <Typography 
-                    variant="h6" 
-                    sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px'}}>
+                    variant="subtitle1" 
+                    sx={{fontFamily: `'Manrope',sans-serif`, justifyContent:'flex-start !important'}}>
                         {description}
                     </Typography>
                 </div>
