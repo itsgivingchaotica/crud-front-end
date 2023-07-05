@@ -8,7 +8,9 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
+import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
+import Zoom from '@mui/material/Zoom';
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
 import EmailIcon from '@mui/icons-material/Email';
 import axios from 'axios';
@@ -68,9 +70,11 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                   sx={{fontFamily: `'Roboto', sans-serif`, color:'black', textDecoration:'none'}}>
                     Go to Student Profile
                   </Typography> */}
+                  <Tooltip title="GO TO PROFILE" placement='left' arrow TransitionComponent={Zoom}>
                   <Button variant='contained' color="success" sx={{marginBottom:'10px'}}>
                   <img width="70" height="70" src="https://img.icons8.com/color/70/student-center.png" alt="student-center"/>
                   </Button>
+                  </Tooltip>
                   </NavLink>
                 <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
               </CardContent>
@@ -78,6 +82,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
             <Stack direction='row' justifyContent='space-between' width='100%'>
             <Stack direction='column'>
             {/* EMAIL: REQUIRED */}
+            <Tooltip title="CONTACT" TransitionComponent={Zoom}  arrow>
               <CardContent sx={{ display:'flex', alignItems: 'center', width:'100%',  '&:hover': {
           cursor: 'pointer', color:'var(--mint-2)'
         , textShadow: '1px 1px 1px var(--dark-green)'},}}>
@@ -88,8 +93,10 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                     {email}
                 </Typography>
               </CardContent>
+              </Tooltip>
                 <Divider light/>
               {/* GPA: REQUIRED */}
+              <Tooltip title="SHOW TRANSCRIPT" TransitionComponent={Zoom}  arrow>
               <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', '&:hover': {
           cursor: 'pointer', color:'var(--indigo)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
                 <img width="35" height="35" src="https://img.icons8.com/sf-regular-filled/48/report-card.png" alt="report-card"/>
@@ -99,8 +106,10 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                   {gpa} GPA 
                 </Typography>
               </CardContent>
+              </Tooltip>
                <Divider light/>
                 {/* CAMPUS ID: REQUIRED */}
+                <Tooltip title="VISIT SITE" TransitionComponent={Zoom}  arrow>
               <CardContent sx={{ display: 'flex', alignItems: 'center', '&:hover': {
           cursor: 'pointer', color:'var(--gold)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
                 <div styles={{marginRight:'10px'}} onClick={visitSingleCampusPage}>
@@ -114,6 +123,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                     sx={{marginLeft:'10px'}}>Not Enrolled</Typography>)
                   }
                 </CardContent>
+                </Tooltip>
                 </Stack>
           </Stack>
     </Card>
