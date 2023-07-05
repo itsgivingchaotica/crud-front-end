@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
-import { Button, IconButton, Snackbar } from '@mui/material';
+import React, {useState} from 'react'
+import { Button, IconButton, Snackbar } from '@mui/material'
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
-import CloseIcon from '@mui/icons-material/Close';;
+import CloseIcon from '@mui/icons-material/Close'
+import Tooltip from '@mui/material/Tooltip'
+import Zoom from '@mui/material/Zoom'
 
 const DeleteButtonSnackbar = (props) => {
     const [open, setOpen] = useState(false);
@@ -44,9 +46,11 @@ const DeleteButtonSnackbar = (props) => {
 
   return (
     <>
+    <Tooltip title="DELETE" placement='left' arrow TransitionComponent={Zoom}>
         <Button variant='outlined' color='error' onClick={handleClickOpen} sx={{height:'70px', width:'100px', '&:hover': {color: 'white', backgroundColor: 'red'}}}>
             <DeleteRoundedIcon style={{height:'60px',width:'60px'}}/>
         </Button>
+        </Tooltip>
         <Snackbar
         open={open}
         autoHideDuration={5000}
