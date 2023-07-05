@@ -10,7 +10,7 @@ import ContactsIcon from '@mui/icons-material/Contacts'
 import AddIcon from '@mui/icons-material/Add'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import { useMediaQuery } from '@mui/material'
-import { addStudentThunk } from '.././redux/students/student.actions';
+import { addStudentThunk, deleteBatchStudent,  addBatchStudentThunk } from '.././redux/students/student.actions'
 import { useDispatch, useSelector } from 'react-redux'
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import ".././styles/addCampusForm.css"
@@ -79,7 +79,7 @@ const StudentInputForm= () => {
             "gpa": gpa
         }
         if (firstName && lastName && gpa && email && campusId){
-          dispatch(addStudentThunk(newStudent))
+          dispatch(addBatchStudentThunk(newStudent))
           setFirstName("");
           setLastName("");
           setCampusId('');
