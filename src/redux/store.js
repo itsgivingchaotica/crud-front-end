@@ -8,6 +8,5 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 export const store = createStore(
     rootReducer, //reducers
     {}, //default state
-    // applyMiddleware(thunk.withExtraArgument({axios}),logger)
     composeWithDevTools(applyMiddleware(thunk.withExtraArgument({axios}), logger))
 )

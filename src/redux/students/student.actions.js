@@ -159,3 +159,17 @@ export const deleteBatchStudent = (studentId) => {
     payload: studentId
   };
 };
+
+export const deleteBatchStudentThunk = 
+  (studentId) => {
+    return async (dispatch) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/students/${studentId}`);
+            console.log("student deleted");
+            dispatch(deleteBatchStudent(studentId));
+            dispatch(deleteStudent(studentId));
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+};

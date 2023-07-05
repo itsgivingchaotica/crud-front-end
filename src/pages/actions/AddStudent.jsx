@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux'
-import { addStudent, addStudentThunk } from '../../redux/students/student.actions';
+import { clearBatchStudents } from '../../redux/students/student.actions';
 import { useNavigate } from 'react-router-dom';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
 import {  fetchAllStudentsThunk } from '../../redux/students/student.actions';
-import { deleteStudentThunk } from '../../redux/students/student.actions';
+import { deleteBatchStudentThunk } from '../../redux/students/student.actions';
 import { useMediaQuery } from '@mui/material'
 import { TextField, MenuItem, FormControl, Button, Grid, createTheme, ThemeProvider} from '@mui/material';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
@@ -69,7 +69,7 @@ const AddStudent = () => {
 
   const handleDeleteStudent = (studentId) => {
     try {
-      dispatch(deleteStudentThunk(studentId));
+      dispatch(deleteBatchStudentThunk(studentId));
       dispatch(fetchAllStudentsThunk());
     } catch (error) {
       // Handle error if needed
@@ -81,7 +81,11 @@ const AddStudent = () => {
     fetchAllStudents();
   }, []);
 
-  const studentBatch = useSelector((state) => state.students.studentList);
+  useEffect(() => {
+    dispatch(clearBatchStudents());
+  },[dispatch])
+
+  const studentBatch = useSelector((state) => state.students.batchStudentList);
 
     const fetchAllCampuses = () => {
         return dispatch(fetchAllCampusesThunk());
@@ -110,7 +114,7 @@ const AddStudent = () => {
           <Grid item xs={12} key={index}>
               <BatchStudentCard entry={entry} handleDeleteStudent={handleDeleteStudent}/>
             </Grid>
-          ))}
+          )).reverse()}
         </Grid>
       </Grid>
     </Grid>

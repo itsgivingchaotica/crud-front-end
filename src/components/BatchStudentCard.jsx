@@ -6,7 +6,7 @@ import { useMediaQuery } from '@mui/material'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import IconButton from '@mui/material/IconButton'
+import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
@@ -75,37 +75,42 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                 <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
               </CardContent>
             </Stack>
-            <Stack direction='row' justifyContent='space-between'>
+            <Stack direction='row' justifyContent='space-between' width='100%'>
             <Stack direction='column'>
             {/* EMAIL: REQUIRED */}
-              <CardContent sx={{ display:'flex', alignItems: 'center'}}>
-                <EmailIcon sx={{width:'30px', height:'30px'}}/>
+              <CardContent sx={{ display:'flex', alignItems: 'center', width:'100%',  '&:hover': {
+          cursor: 'pointer', color:'var(--mint-2)'
+        , textShadow: '1px 1px 1px var(--dark-green)'},}}>
+                <EmailIcon sx={{width:'30px', height:'30px',color:'black'}}/>
                 <Typography 
-                  variant="subtitle1" 
-                  sx={{fontFamily: `'Roboto', sans-serif`, marginLeft:'10px'}}>
+                  variant="h5" 
+                  sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px'}}>
                     {email}
                 </Typography>
               </CardContent>
-
-              {/* IMAGE URL: REQUIRED */}
-              <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', }}>
+                <Divider light/>
+              {/* GPA: REQUIRED */}
+              <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', '&:hover': {
+          cursor: 'pointer', color:'var(--indigo)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
                 <img width="35" height="35" src="https://img.icons8.com/sf-regular-filled/48/report-card.png" alt="report-card"/>
                 <Typography 
-                  variant='subtitle2'
-                  sx={{marginLeft:'10px'}}> 
+                  variant='h5'
+                  sx={{marginLeft:'10px', fontFamily:`'Manrope',sans-serif`, '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}> 
                   {gpa} GPA 
                 </Typography>
               </CardContent>
+               <Divider light/>
                 {/* CAMPUS ID: REQUIRED */}
-              <CardContent sx={{ display: 'flex', alignItems: 'center'}}>
+              <CardContent sx={{ display: 'flex', alignItems: 'center', '&:hover': {
+          cursor: 'pointer', color:'var(--gold)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
                 <div styles={{marginRight:'10px'}} onClick={visitSingleCampusPage}>
                   <img width="35" height="35" src="https://img.icons8.com/ios-glyphs/35/university-campus.png" alt="university-campus"/>
                 </div>
                 {enrolledCampus.name? (
-                  <Typography variant='subtitle1' 
-                  sx={{fontFamily: `'Roboto', sans-serif`, marginLeft:'10px'}}>
+                  <Typography variant='h5' 
+                  sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px', '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}>
                     {enrolledCampus.name}
-                  </Typography>) : ( <Typography variant='subtitle1' 
+                  </Typography>) : ( <Typography variant='h5' 
                     sx={{marginLeft:'10px'}}>Not Enrolled</Typography>)
                   }
                 </CardContent>
