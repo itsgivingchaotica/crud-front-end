@@ -5,11 +5,10 @@ import Card from '@mui/material/Card'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import ContactsIcon from '@mui/icons-material/Contacts'
 import AddIcon from '@mui/icons-material/Add'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import { useMediaQuery } from '@mui/material'
-import { addCampusThunk } from '.././redux/campuses/campus.actions';
+import { addBatchCampusThunk } from '.././redux/campuses/campus.actions';
 import { useDispatch } from 'react-redux'
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import ".././styles/addCampusForm.css"
@@ -63,10 +62,11 @@ const CampusInputForm= () => {
             "description":description,
         }
         if (name && address && description){
-          dispatch(addCampusThunk(newCampus))
+          dispatch(addBatchCampusThunk(newCampus))
           setName("");
           setAddress("");
           setDescription("");
+          setImageUrl('');
         //   navigateToAllCampuses();   TO NAVIGATE BACK TO ALL CAMPUSES PAGE
         setIsSubmitted(true);
         setTimeout(() => {

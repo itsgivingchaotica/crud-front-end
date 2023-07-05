@@ -9,7 +9,7 @@ import '../styles/home.css';
 import AddEntityButtonGroup from '../components/AddEntityButtonGroup';
 
 const Home = () => {
-  const isMobileScreen = useMediaQuery('(max-width: 900px)');
+  const isMediumScreen = useMediaQuery('(max-width: 900px)');
 
   return (
     <ErrorBoundary
@@ -20,7 +20,7 @@ const Home = () => {
         </div>
       )}
     >
-      {isMobileScreen ? (
+      {isMediumScreen ? (
         <div className="home">
           <div style={{ color: 'white', transform: 'translateY(100px)', backgroundColor:'rgba(66, 55, 52,0.5)'}}>
              <Typography variant='h6' sx={{fontFamily: `'Manrope', sans-serif`, fontWeight:'700', textShadow: '-1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black', marginTop:'30px', marginLeft:'10px', }}>
@@ -46,7 +46,7 @@ const Home = () => {
         <div className="home" style={{display:'flex', justifyContent:'center'}}>
           <Grid container sx={{maxHeight:'50vh', marginLeft:'80px'}}>
             <Grid item xs={6} md={7} style={{ display: 'flex', justifyContent: 'flex-end'}}>
-              <div style={{ color: 'white', transform: 'translateY(200px)', paddingTop:'20px',backgroundColor:'rgb(66, 55, 52,0.9)'}}>
+              <div style={{ color: 'white', transform: 'translateY(200px)', padding:'20px',backgroundColor:'rgb(66, 55, 52,0.9)'}}>
                 <Typography variant='h3' sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700', textShadow: '-1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black'}}>
                   Experience software designed to make your academic operations 
                   <div style={{display: 'flex', justifyContent:'center'}}><Typography variant='h1'sx={{fontFamily:`'Tangerine', cursive`, color:'var(--celadon-2)'}}>faster</Typography>
