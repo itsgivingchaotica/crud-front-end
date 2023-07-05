@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import "../styles/studentCard.css";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useMediaQuery } from '@mui/material'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -18,9 +16,7 @@ import axios from 'axios';
 const BatchStudentCard = ({entry,handleDeleteStudent}) => {
   const [enrolledCampus, setEnrolledCampus] = useState("");
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isMediumScreen = useMediaQuery('(max-width: 900px)');
 
   const { id, campusId, firstName, lastName, gpa, imageUrl, email } = entry;
 

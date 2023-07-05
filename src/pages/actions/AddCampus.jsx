@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import { ErrorBoundary } from 'react-error-boundary';
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
-import { TextField, Button, createTheme, ThemeProvider, Grid} from '@mui/material';
-import { useSelector } from 'react-redux'
-import CampusInputForm from '../../components/CampusInputForm';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import React, { useEffect } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { createTheme, ThemeProvider } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import { deleteBatchCampusThunk, fetchAllCampusesThunk, clearBatchCampuses } from '../../redux/campuses/campus.actions'
+import StudentInputForm from '../../components/StudentInputForm'
+import BatchCampusCard from '../../components/BatchCampusCard'
 import "../../styles/addCampusForm.css"
 
 const AddCampus = () => {
@@ -54,10 +55,34 @@ const AddCampus = () => {
     },
   });
 
-    const newEntries = useSelector((state) => state.campuses.campusList);
+    const campusBatch = useSelector((state) => state.campuses.batchCampusList);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+     const fetchAllCampuses = () => {
+    return dispatch(fetchAllCampusesThunk());
+  };
+
+
+     const handleDeleteCampus = (campusId) => {
+    try {
+      dispatch(deleteBatchCampusThunk(campusId));
+      dispatch(fetchAllCampusesThunk());
+    } catch (error) {
+      // Handle error if needed
+      console.log(error);
+    }
+  };
+
+   useEffect(() => {
+    fetchAllCampuses();
+  }, []);
+
+  useEffect(() => {
+    dispatch(clearBatchCampuses());
+  },[dispatch])
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -70,17 +95,18 @@ const AddCampus = () => {
       )}
     > 
       <div className = "grid" styles={{backgroundColor:'red'}}>
-     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }} sx={{justifyContent: "flex-start", paddingTop: '80px' }}>
+     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }} sx={{justifyContent: "flex-start", paddingTop: '80px', paddingLeft:'15px' }}>
       <Grid item xs={12} md={6}>
-        <CampusInputForm/>
+        <StudentInputForm/>
       </Grid>
       <Grid item xs={12} md={4}>
         <Grid container spacing={2} >
-          {newEntries.map((entry, index) => (
+        {/* LIST THE BATCH OF CAMPUSES IN STACK FASHION */}
+          {campusBatch.map((entry, index) => (
           <Grid item xs={6} key={index}>
-              {/* <lay.ContactCard contact={contact} /> */}
+               <BatchCampusCard entry={entry} handleDeleteCampus={handleDeleteCampus}/>
             </Grid>
-          ))}
+          )).reverse()}
         </Grid>
       </Grid>
     </Grid>
