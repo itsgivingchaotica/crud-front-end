@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,8 +10,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import Typography from '@mui/material/Typography'
 
   //filter options: by last name, by first name, by gpa, by schoolnames, 
@@ -52,7 +51,7 @@ const StudentDrawer = () => {
             <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
              <img width="70" height="70" src="https://img.icons8.com/water-color/100/alphabetical-sorting.png" alt="alphabetical-sorting"/>
               </ListItemIcon>
-              <ListItemText primary={'By Last Name'} />
+              <ListItemText primary={'By Last Name'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
           {/* BY GPA HIGH */}
@@ -61,7 +60,7 @@ const StudentDrawer = () => {
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-calculator.png" alt="apple-calculator"/>
               </ListItemIcon>
-              <ListItemText primary={'By GPA HIGH'} />
+              <ListItemText primary={'By GPA HIGH'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
           <ListItem diabledPadding>
@@ -70,7 +69,7 @@ const StudentDrawer = () => {
             <ListItemIcon>
             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/cancel--v1.png" alt="cancel--v1"/>
               </ListItemIcon>
-              <ListItemText primary={'Clear Filter'} />
+              <ListItemText primary={'Clear Filter'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
         {/* ))} */}
@@ -86,30 +85,36 @@ const StudentDrawer = () => {
       </ListItem>
         {/* SHOW ALL CAMPUSES */}
         <ListItem diabledPadding>
+        <NavLink to="/campuses" style={{ textDecoration: 'none' }}>
           <ListItemButton>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/library.png" alt="library"/>
               </ListItemIcon>
-              <ListItemText primary={'Show All Campuses'} />
+              <ListItemText primary={'Show All Campuses'} sx={{color:'black'}}/>
             </ListItemButton>
+            </NavLink>
           </ListItem>
           {/* ADD A CAMPUS */}
           <ListItem diabledPadding>
+           <NavLink to='/campuses/addCampus' style={{textDecoration: 'none'}}>
           <ListItemButton>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/add-file.png" alt="add-file"/>
               </ListItemIcon>
-              <ListItemText primary={'Add a Campus'} />
+              <ListItemText primary={'Add a Campus'} sx={{color:'black'}}/>
             </ListItemButton>
+            </NavLink>
           </ListItem>
           <ListItem diabledPadding>
+          <NavLink to="/students/addStudent" style={{ textDecoration: 'none' }}>
           {/* ADD A STUDENT */}
           <ListItemButton>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/education.png" alt="education"/>
               </ListItemIcon>
-              <ListItemText primary={'Add a Student'} />
+              <ListItemText primary={'Add a Student'} sx={{color:'black'}}/>
             </ListItemButton>
+            </NavLink>
           </ListItem>
         {/* ))} */}
       </List>

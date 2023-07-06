@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom'
 import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,8 +10,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import Typography from '@mui/material/Typography'
 
   //filter options: by name, by number of students enrolled
@@ -47,30 +46,30 @@ const CampusDrawer = () => {
         </Typography>
       </ListItem>
         {/* BY NAME */}
-        <ListItem diabledPadding>
+        <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
              <img width="70" height="70" src="https://img.icons8.com/water-color/100/alphabetical-sorting.png" alt="alphabetical-sorting"/>
               </ListItemIcon>
-              <ListItemText primary={'By School Name'} />
+              <ListItemText primary={'By School Name'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
           {/* BY STUDENTS ENROLLED*/}
-          <ListItem diabledPadding>
+          <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-calculator.png" alt="apple-calculator"/>
               </ListItemIcon>
-              <ListItemText primary={'By Students Enrolled'} />
+              <ListItemText primary={'By Students Enrolled'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
-          <ListItem diabledPadding>
+          <ListItem disablePadding>
           {/* CLEAR FILTERS */}
           <ListItemButton>
             <ListItemIcon>
             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/cancel--v1.png" alt="cancel--v1"/>
               </ListItemIcon>
-              <ListItemText primary={'Clear Filter'} />
+              <ListItemText primary={'Clear Filter'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
         {/* ))} */}
@@ -85,31 +84,37 @@ const CampusDrawer = () => {
         </Typography>
       </ListItem>
         {/* SHOW ALL STUDENTS */}
-        <ListItem diabledPadding>
+        <ListItem disablePadding>
+        <NavLink to="/students" style={{ textDecoration: 'none' }}>
           <ListItemButton>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/education.png" alt="education"/>
               </ListItemIcon>
-              <ListItemText primary={'Show All Students'} />
+              <ListItemText primary={'Show All Students'} sx={{color:'black'}}/>
             </ListItemButton>
+            </NavLink>
           </ListItem>
           {/* ADD A STUDENT */}
-          <ListItem diabledPadding>
+          <ListItem disablePadding>
+          <NavLink to="/students/addStudent" style={{ textDecoration: 'none' }}>
           <ListItemButton>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/student-male.png" alt="student-male"/>
               </ListItemIcon>
-              <ListItemText primary={'Add a Student'} />
+              <ListItemText primary={'Add a Student'} sx={{color:'black'}}/>
             </ListItemButton>
+            </NavLink>
           </ListItem>
-          <ListItem diabledPadding>
+          <ListItem disablePadding>
           {/* ADD A CAMPUS */}
+          <NavLink to='/campuses/addCampus' style={{textDecoration: 'none'}}>
           <ListItemButton>
             <ListItemIcon>
             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/library.png" alt="library"/>
               </ListItemIcon>
-              <ListItemText primary={'Add a Campus'} />
+              <ListItemText primary={'Add a Campus'} sx={{color:'black'}}/>
             </ListItemButton>
+            </NavLink>
           </ListItem>
         {/* ))} */}
       </List>

@@ -20,10 +20,11 @@ const Campuses = () => {
   const [pagination, setPagination] = useState({
     count: 0,
     from: 0,
-    to: isMobileScreen ? 3 : 9
+    to: isMobileScreen ? 3 : 9,
   });
 
   const fetchAllCampuses = () => {
+    console.log(" FETCH THUNK CAMPUSES ALL")
       return dispatch(fetchAllCampusesThunk());
   }
 
@@ -33,7 +34,7 @@ const Campuses = () => {
       topRef.current.scrollIntoView({ top: 0, behavior: 'smooth' });
     };
     scrollToTop();
-  }, [pagination]);
+  }, [dispatch,pagination]);
 
   return (
     <ErrorBoundary
@@ -44,7 +45,7 @@ const Campuses = () => {
         </div>
       )}
     >
-      <div ref={topRef} style={{ marginTop: '120px', minHeight: '300vh', width: '100%', backgroundColor: 'var(--off-white)', position:'relative' }}>
+      <div ref={topRef} style={{ marginTop: '120px', minHeight: '320vh', width: '100%', backgroundColor: 'var(--off-white)', position:'relative' }}>
         <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ justifyContent: 'center', paddingTop: '10px', paddingLeft: '15px', height: '100vh', width: '100%', textShadow: '1px 1px 1px black', color: 'var(--garnet)'}}>
           <Typography variant={isMobileScreen ? 'h3' : 'h1'} sx={{ fontFamily: `'Tangerine', sans-serif`, fontWeight: '700', marginTop: '30px', marginLeft: '20px', border:'3px solid white', width: '100%', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}>
             Campus Profiles
