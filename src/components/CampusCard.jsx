@@ -1,38 +1,99 @@
 import React from 'react'
-import "../styles/campusCard.css";
+import { useMediaQuery } from '@mui/material'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import Divider from '@mui/material/Divider'
+import Stack from '@mui/material/Stack'
+import Tooltip from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
+import Zoom from '@mui/material/Zoom'
 import { NavLink } from 'react-router-dom';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
-import { searchStudentsByCampusThunk } from '../redux/students/student.actions';
+// import { searchStudentsByCampusThunk } from '../redux/students/student.actions';
 import { useDispatch, useSelector } from 'react-redux'
 import {deleteCampusThunk} from '../redux/campuses/campus.actions';
+import "../styles/campusCard.css";
 
 const CampusCard = (props) => {
 
-    // const { id, name, imageUrl, address, description } = props
-    const dispatch = useDispatch(); 
+  const { id, name, imageUrl, address, description } = props
 
-  //   const handleClick = async (campusId) => {
-  //   dispatch(searchStudentsByCampusThunk(campusId));
-  //   console.log("clicked the card")
-  // };
+  const dispatch = useDispatch(); 
+  const isSmallScreen = useMediaQuery('(max-width: 700px');
+  const isMediumScreen = useMediaQuery('(max-width: 1000px)');
 
   const handleClickDelete = () => {
     dispatch(deleteCampusThunk(props.id));
   }
 
   return (
-    <div>
-        <h1>Campus</h1>
-        <h3>{props.name}</h3>
-        <h3>{props.address}</h3>
-        <img className="campus-image" src={props.imageUrl}></img>
-        <h3>{props.description}</h3>
-        <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
-        <button key={props.id}>
-            <NavLink to={`/campuses/${props.id}`}>Campus Profile</NavLink>
-        </button>
-    </div>
+    <Card sx={{paddingBottom: '30px', overflow:'scroll', paddingTop: '10px'}}>
+      {/* NAME: REQUIRED*/}
+      <CardContent sx={{borderBottom:'4px solid black'}}>
+        <Typography 
+          variant="h4" 
+          sx={{fontFamily:`'Ysabeau Infant', sans-serif`, fontWeight:'700'}}
+        > 
+          {name}
+        </Typography>
+      </CardContent>
+          <Stack direction='row'>
+          {/* IMAGE URL: DEFAULT REQUIRED */}
+            {(<CardContent
+              sx={{ display: 'flex', alignItems: 'center', height:'100%',width:'100%'}}>
+                <img src={imageUrl} alt={`${name} profile`}  styles={{justifyContent:'center' }}/>
+              </CardContent>)}
+            </Stack>
+            <Stack direction='row' justifyContent='space-between' width='100%'>
+            {/* CAMPUS DETAILS AND OPTIONS */}
+            <Stack direction='column'>
+            {/* ADDRESS: REQUIRED */}
+            <Tooltip title="SHOW MAP" TransitionComponent={Zoom}  arrow>
+              <CardContent sx={{ display:'flex', alignItems: 'center', width:'100%', '&:hover': {
+          cursor: 'pointer', color:'var(--mint-2)'
+        , textShadow: '1px 1px 1px var(--dark-green)'},}}>
+                <LocationOnIcon/>
+                <Typography 
+                  variant={isMediumScreen ? "subtitle1" : isSmallScreen ? 'h6' : 'subtitle1'}
+                  sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px', overflowWrap: 'break-word'}}>
+                    {address}
+                </Typography>
+              </CardContent>
+              </Tooltip>
+                <Divider light/>
+              {/* DESCRIPTION: REQUIRED */}
+              <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px'}}>
+                <Typography 
+                  variant='subtitle1'
+                  sx={{marginLeft:'10px', fontFamily:`'Manrope',sans-serif`, marginTop:'20px', '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}> 
+                  {description}
+                </Typography>
+              </CardContent>
+            </Stack>
+            
+          </Stack>
+          <CardContent sx={{marginLeft:'30px', justifyContent: 'center'}}>
+                <NavLink to={`/campuses/${id}`} style={{textDecoration:'none'}} >
+                  <Tooltip title="GO TO PROFILE" placement='left' arrow TransitionComponent={Zoom}>
+                    <Button variant='contained' color="success" sx={{marginRight:'10px', marginLeft:'-40px',flexDirection:'column', paddingLeft:'22px', paddingRight:'22px'}}>
+                      <img
+                        width="55"
+                        height="55"
+                        src="https://img.icons8.com/bubbles/80/library.png"
+                        alt="library"
+                      />
+                      Profile
+                    </Button>
+                  </Tooltip>
+                </NavLink>
+                {/* DELETE CAMPUS AND UNDO SNACKBAR*/}
+                <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
+              </CardContent>
+    </Card>
   )
+  
 }
 
 export default CampusCard

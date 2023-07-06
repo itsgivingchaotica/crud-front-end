@@ -47,7 +47,7 @@ const DeleteButtonSnackbar = (props) => {
   return (
     <>
     <Tooltip title="DELETE" placement='left' arrow TransitionComponent={Zoom}>
-        <Button variant='outlined' color='error' onClick={handleClickOpen} sx={{height:'90px', width:'100px', '&:hover': {color: 'white', backgroundColor: 'red', display: 'flex', flexDirection:'column'}}}>
+        <Button variant='outlined' color='error' onClick={handleClickOpen} sx={{height:'90px', width:'100px', '&:hover': {color: 'white', backgroundColor: 'red'}}}>
             <DeleteRoundedIcon style={{height:'60px',width:'60px'}}/>
         </Button>
         </Tooltip>

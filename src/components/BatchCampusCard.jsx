@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import Zoom from '@mui/material/Zoom';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
 import EmailIcon from '@mui/icons-material/Email';
 import axios from 'axios';
@@ -45,7 +46,12 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
                 <NavLink to={`/campuses/${id}`} style={{textDecoration:'none'}} >
                   <Tooltip title="GO TO PROFILE" placement='left' arrow TransitionComponent={Zoom}>
                     <Button variant='contained' color="success" sx={{marginBottom:'10px'}}>
-                      <img width="70" height="70" src="https://img.icons8.com/color/70/student-center.png" alt="student-center"/>
+                      <img
+                        width="80"
+                        height="80"
+                        src="https://img.icons8.com/bubbles/80/library.png"
+                        alt="library"
+                      />
                     </Button>
                   </Tooltip>
                 </NavLink>
@@ -60,7 +66,7 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
               <Tooltip title="SHOW MAP" TransitionComponent={Zoom}  arrow>
               <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', '&:hover': {
           cursor: 'pointer', color:'var(--indigo)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
-                <img width="35" height="35" src="https://img.icons8.com/sf-regular-filled/48/report-card.png" alt="report-card"/>
+                <LocationOnIcon/>
                 <Typography 
                   variant='h5'
                   sx={{marginLeft:'10px', fontFamily:`'Manrope',sans-serif`, '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}> 
