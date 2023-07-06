@@ -40,32 +40,78 @@ const CampusDrawer = () => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-      <ListItem><Typography variant="h5">Filter</Typography></ListItem>
-        {['Name', 'Number of Students Enrolled', 'Clear'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+       <List sx={{fontFamily:''}}>
+      <ListItem sx={{borderBottom:'2px solid black'}}>
+        <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
+            FILTER OPTIONS
+        </Typography>
+      </ListItem>
+        {/* BY NAME */}
+        <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
+             <img width="70" height="70" src="https://img.icons8.com/water-color/100/alphabetical-sorting.png" alt="alphabetical-sorting"/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'By School Name'} />
             </ListItemButton>
           </ListItem>
-        ))}
+          {/* BY STUDENTS ENROLLED*/}
+          <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-calculator.png" alt="apple-calculator"/>
+              </ListItemIcon>
+              <ListItemText primary={'By Students Enrolled'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem diabledPadding>
+          {/* CLEAR FILTERS */}
+          <ListItemButton>
+            <ListItemIcon>
+            <img width="100" height="100" src="https://img.icons8.com/bubbles/100/cancel--v1.png" alt="cancel--v1"/>
+              </ListItemIcon>
+              <ListItemText primary={'Clear Filter'} />
+            </ListItemButton>
+          </ListItem>
+        {/* ))} */}
       </List>
+      
       <Divider />
+
       <List>
-      <ListItem><Typography variant="h5">Quick Links</Typography></ListItem>
-        {['All students', 'Add a student', 'Add a campus'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+      <ListItem sx={{borderBottom:'2px solid black'}}>
+        <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
+            Quick Links
+        </Typography>
+      </ListItem>
+        {/* SHOW ALL STUDENTS */}
+        <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/education.png" alt="education"/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'Show All Students'} />
             </ListItemButton>
           </ListItem>
-        ))}
+          {/* ADD A STUDENT */}
+          <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/student-male.png" alt="student-male"/>
+              </ListItemIcon>
+              <ListItemText primary={'Add a Student'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem diabledPadding>
+          {/* ADD A CAMPUS */}
+          <ListItemButton>
+            <ListItemIcon>
+            <img width="100" height="100" src="https://img.icons8.com/bubbles/100/library.png" alt="library"/>
+              </ListItemIcon>
+              <ListItemText primary={'Add a Campus'} />
+            </ListItemButton>
+          </ListItem>
+        {/* ))} */}
       </List>
     </Box>
   );
