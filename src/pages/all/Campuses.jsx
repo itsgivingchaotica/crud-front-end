@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,19 +9,33 @@ import Typography from '@mui/material/Typography'
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions'
 import { CampusListItems } from '../../components'
 import CampusDrawer from '../../components/CampusDrawer'
+import CampusPagination from '../../components/CampusPagination'
+
+const pageSize = 9;
 
 const Campuses = () => {
    const allCampuses = useSelector((state) => state.campuses.campusList) //state is an object, campuses in an object, campusList is the array in campuses object
+   const campusSlice = useSelector((state) => state.campuses.campusSliceList)
   const dispatch = useDispatch();
   const isMobileScreen = useMediaQuery('(max-width: 414px)');
+  const topRef = useRef(null)
+  const [pagination, setPagination] = useState({
+    count: 0,
+    from: 0,
+    to: pageSize
+  });
 
   const fetchAllCampuses = () => {
       return dispatch(fetchAllCampusesThunk());
   }
 
-  useEffect(() =>{
-      fetchAllCampuses();
-  }, [])
+  useEffect(() => {
+    fetchAllCampuses();
+    const scrollToTop = () => {
+      topRef.current.scrollIntoView({ top: 0, behavior: 'smooth' });
+    };
+    scrollToTop();
+  }, [pagination]);
 
   return (
     <ErrorBoundary
@@ -32,7 +46,7 @@ const Campuses = () => {
         </div>
       )}
     >
-      <div style={{ marginTop: '120px', minHeight: '550vh', width: '100%', backgroundColor: 'var(--off-white)' }}>
+      <div ref={topRef} style={{ marginTop: '120px', minHeight: '300vh', width: '100%', backgroundColor: 'var(--off-white)', position:'relative' }}>
         <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ justifyContent: 'center', paddingTop: '10px', paddingLeft: '15px', height: '100vh', width: '100%', textShadow: '1px 1px 1px black', color: 'var(--garnet)'}}>
           <Typography variant={isMobileScreen ? 'h3' : 'h1'} sx={{ fontFamily: `'Tangerine', sans-serif`, fontWeight: '700', marginTop: '30px', marginLeft: '20px', border:'3px solid white', width: '100%', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}>
             Campus Profiles
@@ -49,10 +63,13 @@ const Campuses = () => {
             <CampusDrawer />
           </Grid>
 
-          <Grid item xs={12} md={12}>
-            {allCampuses.length > 0 ? <CampusListItems allCampuses={allCampuses} /> : <h1>No campuses in our list! Add some!</h1>}
+          <Grid item xs={12} md={12} sx={{marginBottom:'20px'}}>
+            {campusSlice.length > 0 ? <CampusListItems allCampuses={campusSlice} /> : <h1>No campuses in our list! Add some!</h1>}
           </Grid>
         </Grid>
+        <div style={{backgroundColor:'red', position:'absolute', bottom:0, left:0, width: '100%'}}>
+          <CampusPagination pagination={pagination} setPagination={setPagination} pageSize={pageSize}/>
+        </div>
       </div>
     </ErrorBoundary>
   );

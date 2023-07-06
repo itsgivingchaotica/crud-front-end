@@ -5,11 +5,13 @@ import {
     DELETE_CAMPUS, 
     ADD_BATCH_CAMPUS, 
     CLEAR_BATCH_CAMPUSES, 
-    DELETE_BATCH_CAMPUS } from "./campus.types";
+    DELETE_BATCH_CAMPUS,
+    FETCH_CAMPUS_SLICE } from "./campus.types";
 
 export const INITIAL_CAMPUSES_STATE = {
     campusList: [],
-    batchCampusList:[]
+    batchCampusList:[],
+    campusSliceList:[],
 };
 
 const campusReducer = (state = INITIAL_CAMPUSES_STATE, action) => {
@@ -37,6 +39,8 @@ const campusReducer = (state = INITIAL_CAMPUSES_STATE, action) => {
         case DELETE_BATCH_CAMPUS:
             const updatedBatchCampusList = state.batchCampusList.filter((campus) => campus.id !== action.payload);
             return { ...state, batchCampusList: updatedBatchCampusList };
+        case FETCH_CAMPUS_SLICE:
+             return {...state, campusSliceList: action.payload};
         default:
             return state;
     }
