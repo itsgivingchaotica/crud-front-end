@@ -11,8 +11,6 @@ import { CampusListItems } from '../../components'
 import CampusDrawer from '../../components/CampusDrawer'
 import CampusPagination from '../../components/CampusPagination'
 
-const pageSize = 9;
-
 const Campuses = () => {
    const allCampuses = useSelector((state) => state.campuses.campusList) //state is an object, campuses in an object, campusList is the array in campuses object
    const campusSlice = useSelector((state) => state.campuses.campusSliceList)
@@ -22,7 +20,7 @@ const Campuses = () => {
   const [pagination, setPagination] = useState({
     count: 0,
     from: 0,
-    to: pageSize
+    to: isMobileScreen ? 3 : 9
   });
 
   const fetchAllCampuses = () => {
@@ -67,8 +65,8 @@ const Campuses = () => {
             {campusSlice.length > 0 ? <CampusListItems allCampuses={campusSlice} /> : <h1>No campuses in our list! Add some!</h1>}
           </Grid>
         </Grid>
-        <div style={{backgroundColor:'red', position:'absolute', bottom:0, left:0, width: '100%'}}>
-          <CampusPagination pagination={pagination} setPagination={setPagination} pageSize={pageSize}/>
+        <div style={{backgroundColor:'var(--bone)', position:'absolute', bottom:0, left:0, width: '100%'}}>
+          <CampusPagination pagination={pagination} setPagination={setPagination} pageSize={isMobileScreen ? 3 : 9}/>
         </div>
       </div>
     </ErrorBoundary>
