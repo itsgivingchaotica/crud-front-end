@@ -50,12 +50,12 @@ const DeleteButtonSnackbar = (props) => {
         <Tooltip title="DELETE" placement='bottom' arrow TransitionComponent={Zoom}>
           <IconButton id="profile-btn" aria-label="delete" onClick={handleClickOpen}>
             <DeleteRoundedIcon />
-            </IconButton>
-          </Tooltip>  
+          </IconButton>
+        </Tooltip>  
         :<Tooltip title="DELETE" placement='left' arrow TransitionComponent={Zoom}>
-        <Button variant='outlined' color='error' onClick={handleClickOpen} sx={{height:'90px', width:'100px', '&:hover': {color: 'white', backgroundColor: 'red'}}}>
+          <Button variant='outlined' color='error' onClick={handleClickOpen} sx={{height:'90px', width:'100px', '&:hover': {color: 'white', backgroundColor: 'red'}}}>
             <DeleteRoundedIcon style={{height:'60px',width:'60px'}}/>
-        </Button>
+          </Button>
         </Tooltip>}
         <Snackbar
         open={open}
