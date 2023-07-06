@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useMediaQuery } from '@mui/material';
@@ -12,17 +12,10 @@ import StudentDrawer from '../../components/StudentDrawer';
 import '../../styles/students.css';
 
 const Students = () => {
-  const isSmallScreen = useMediaQuery('(max-width: 600px)');
-  const isMobileScreen = useMediaQuery('(max-width: 414px)');
-
-  const allStudents = useSelector((state) => state.students.studentList);
   const dispatch = useDispatch();
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scrolls to the top of the page
-  }, [location]);
-
+  const allStudents = useSelector((state) => state.students.studentList);
+  const isMobileScreen = useMediaQuery('(max-width: 414px)');
+  
   const fetchAllStudents = () => {
     return dispatch(fetchAllStudentsThunk());
   };

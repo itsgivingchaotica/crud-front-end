@@ -21,8 +21,7 @@ const StudentListItems = (props) => {
               email={student.email} 
               imageUrl={student.imageUrl} 
               gpa={student.gpa} 
-              campusId={student.campusId}>
-            </StudentCard>
+              campusId={student.campusId} />
           </Grid>)
     })}
     </Grid>
