@@ -8,7 +8,7 @@ import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
-import { Button, IconButton} from '@mui/material';
+import { Button, IconButton, Tooltip, Zoom} from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
@@ -152,19 +152,23 @@ const SingleStudent = () => {
     <div style={{ marginTop: '120px' }} className="single-student-page">
         <div className="student-profile-container">
           <h1 className="header">{singleStudent.firstName + " " + singleStudent.lastName}</h1>
-          <img className="student-image" src={singleStudent.imageUrl}></img>
-          <h3>Email: {singleStudent.email}</h3>
-          <h3>GPA: {singleStudent.gpa}</h3>
-          {enrolledCampus.name?<h3 onClick={visitSingleCampusPage}>Campus: {enrolledCampus.name}</h3>:<h3>Campus: Not enrolled to campus</h3>}
-          <IconButton id="profile-btn" aria-label="edit"
-          onClick={handleEditStudent}>
-            <EditRoundedIcon />
-          </IconButton>
-          <DeleteButtonSnackbar onClick={handleDeleteStudent} handleClickDelete={handleDeleteStudent} />
-          <IconButton id="profile-btn" aria-label="return" 
-          handleClickDelete={handleDeleteStudent}>
-            <KeyboardReturnRoundedIcon />
-          </IconButton>
+          <img className="ss-student-image" src={singleStudent.imageUrl}></img>
+          <h3 className="ss-body-card">Email: {singleStudent.email}</h3>
+          <h3 className="ss-body-card">GPA: {singleStudent.gpa}</h3>
+          {enrolledCampus.name?<h3 className="card-enrolled-campus" onClick={visitSingleCampusPage}>Campus: {enrolledCampus.name}</h3>:<h3 className="card-enrolled-campus">Campus: Not enrolled to campus</h3>}
+          <Tooltip title="EDIT" placement='left' arrow TransitionComponent={Zoom}>
+            <IconButton id="profile-btn" aria-label="edit"
+            onClick={handleEditStudent}>
+              <EditRoundedIcon />
+            </IconButton>
+          </Tooltip>  
+          <DeleteButtonSnackbar onClick={handleDeleteStudent} handleClickDelete={handleDeleteStudent} iconVersion="true"/>
+          <Tooltip title="RETURN TO LIST" placement='right' arrow TransitionComponent={Zoom}>
+            <IconButton id="profile-btn" aria-label="return" 
+            onClick={navigateToAllStudents}>
+              <KeyboardReturnRoundedIcon />
+            </IconButton>
+          </Tooltip>  
         </div>
       {/* {isEditing ? ( */}
         <div className="edit-student-form-container" ref={animateFormRef}>

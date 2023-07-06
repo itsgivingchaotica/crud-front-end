@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,7 +7,7 @@ import { EditCampusForm, DeleteButtonSnackbar } from '../.././components';
 import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
 import { searchStudentsByCampusThunk } from '../../redux/students/student.actions'
 import axios from 'axios';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, Tooltip, Zoom } from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import "../../styles/singleCampusPage.css";
@@ -24,6 +24,7 @@ import '../../styles/carousel.css'
   const [isEditing, setIsEditing] = useState('')
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const [failedSubmit, setFailedSubmit] = useState(false);
+  const editFormRef = useRef();
 
   const filteredStudents = useSelector(state => state.students.filteredStudentList);
 
@@ -36,6 +37,7 @@ import '../../styles/carousel.css'
 
   const handleEditCampus = () => {
       setIsEditing(true);
+      editFormRef.current.focus();
   }
 
   const handleSelectStudent = (studentId) => {
@@ -128,15 +130,19 @@ import '../../styles/carousel.css'
         <h3 className="sc-campus-address">{singleCampus.address}</h3>
         <img className="sc-campus-image" src={singleCampus.imageUrl}></img>
         <h3 className="sc-campus-description">{singleCampus.description}</h3>
-        <IconButton id="profile-btn" aria-label="edit"
-          onClick={handleEditCampus}>
-            <EditRoundedIcon />
-        </IconButton>
-        <DeleteButtonSnackbar handleClickDelete={handleDeleteCampus} navigate={navigateToAllCampuses}/>
-        <IconButton id="profile-btn" aria-label="return" 
-          onClick={navigateToAllCampuses}>
-            <KeyboardReturnRoundedIcon />
+        <Tooltip title="EDIT" placement='left' arrow TransitionComponent={Zoom}>
+          <IconButton id="profile-btn" aria-label="edit"
+            onClick={handleEditCampus}>
+              <EditRoundedIcon />
           </IconButton>
+        </Tooltip>
+        <DeleteButtonSnackbar handleClickDelete={handleDeleteCampus} navigate={navigateToAllCampuses} iconVersion="true"/>
+        <Tooltip title="RETURN TO LIST" placement='right' arrow TransitionComponent={Zoom}>
+          <IconButton id="profile-btn" aria-label="return" 
+            onClick={navigateToAllCampuses}>
+              <KeyboardReturnRoundedIcon />
+            </IconButton>
+          </Tooltip>  
       </div>
       <div>
         <div className="sc-enrolled-students-container">
@@ -148,7 +154,7 @@ import '../../styles/carousel.css'
         </div>
         <div className="sc-form-container">
           <h1 className="form-header">Edit Campus Form</h1>
-          <EditCampusForm 
+          <EditCampusForm editFormRef={editFormRef}
             handleChangeName={handleChangeName} 
             handleChangeAddress={handleChangeAddress} 
             handleSubmit={handleSubmit} 

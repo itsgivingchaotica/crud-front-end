@@ -2,9 +2,10 @@ import React from 'react'
 import { TextField, Button, createTheme, ThemeProvider} from '@mui/material';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import "../styles/addCampusForm.css"; //reusing styles from add campus form
+import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 
 const EditCampusForm = ({handleChangeName, handleChangeAddress, handleChangeImageUrl, 
-  handleChangeDescription, handleSubmit, editedCampus, failedSubmit}) => {
+  handleChangeDescription, handleSubmit, editedCampus, failedSubmit, editFormRef}) => {
 
   const theme = createTheme({
     components: {
@@ -57,7 +58,7 @@ const EditCampusForm = ({handleChangeName, handleChangeAddress, handleChangeImag
     <>
     <form onSubmit={handleSubmit}>
       <div className="input-container-add-campus">
-        <TextField id="form-input-add-campus" type="text" label="Name" placeholder="Campus Name" 
+        <TextField id="form-input-add-campus" type="text" label="Name" placeholder="Campus Name" inputRef={editFormRef}
           variant="outlined" name="name" value={editedCampus.name} onChange={handleChangeName}
           error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
         />
