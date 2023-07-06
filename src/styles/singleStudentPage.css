@@ -9,7 +9,7 @@
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.3;
+    opacity: 0.25;
     z-index: -1;
 }
 
@@ -22,28 +22,28 @@
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     transition: 500ms ease-in-out;
-    border: 3px solid var(--burnt-umber);
     border-radius: 1rem;
-    box-shadow: 1px 1px 5px 5px rgb(61, 59, 59);
+    box-shadow: 2px 2px 4px 4px var(--dark-green);
     padding: 1rem;
     margin: 20px 25px;
-    background-image: linear-gradient(rgba(222, 218, 199, 0.347), var(--bone),rgba(222, 218, 199, 0.342));
+    background-image: radial-gradient(rgba(64, 145, 109, 0.502), rgba(127, 48, 42, 0.401));
     width: 330px;
 }
 
 .edit-student-form-container{
     display:inline-block;
     position: relative;
-    /* animation-name: slideleft;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards; */
     margin-bottom: 20px;
     margin: 10px 25px;
-    background-image: linear-gradient(rgba(222, 218, 199, 0.347), var(--bone),rgba(222, 218, 199, 0.342));
+    /* background-image: radial-gradient(rgba(64, 145, 109, 0.183), rgba(127, 48, 42, 0.178)); */
+    background-image: linear-gradient(rgba(128, 128, 128, 0.133), rgba(255, 255, 255, 0.113), rgba(128, 128, 128, 0.136));
     border-radius: 1rem;
     padding: 0.8rem;
     visibility: hidden;
+    position: relative;
+    bottom: 1rem;
+    font-family:'Manrope','sans-serif';
+    text-shadow: 2px 2px 2px grey;
 }
 
 .animate{
@@ -59,7 +59,37 @@
     text-shadow: 1px 2px 2px var(--beaver);
     margin: 30px;
     font-size: 2.5rem;
+    border-bottom: 4px solid black;
+    font-family: 'Ysabeau Infant', 'sans-serif';
+    font-weight: '700';
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 2px grey;
 }
+.ss-body-card{
+    font-family:'Manrope','sans-serif';
+    font-weight: 500;
+    text-shadow: 2px 2px 2px grey;
+}
+
+.ss-student-image{
+    width: 180px;
+    height: 120px;
+    border-radius: 2rem;
+}
+
+.card-enrolled-campus{
+    font-family:'Manrope','sans-serif';
+    font-weight: 900;
+    text-shadow: 2px 2px 2px grey;
+    transition: 400ms ease;
+}
+
+.card-enrolled-campus:hover{
+    transition: 400ms ease;
+    color: var(--dartmouth-green);
+    cursor: pointer;
+}
+
 
 #btn-form-edit-student{
     background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
@@ -86,6 +116,7 @@
 #profile-btn{
     color: var(--burnt-umber);
     position: relative;
+    width: 3rem;
 }
 
 #profile-btn:hover{

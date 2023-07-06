@@ -54,6 +54,11 @@
     transition: 500ms ease-in-out;
 }
 
+#btn-form-add-campus:hover{
+    background-image: linear-gradient(rgb(242, 136, 136), var(--burnt-umber), rgb(242, 136, 136));
+    transition: 400ms ease-in-out;
+}
+
 #btn-return-add-campus{
     background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
     color: var(--bone);
