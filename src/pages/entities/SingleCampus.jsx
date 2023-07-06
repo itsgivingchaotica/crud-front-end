@@ -7,9 +7,12 @@ import { EditCampusForm, DeleteButtonSnackbar } from '../.././components';
 import { editCampusThunk, deleteCampusThunk } from '../../redux/campuses/campus.actions';
 import { searchStudentsByCampusThunk } from '../../redux/students/student.actions'
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
-import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import "../../styles/singleCampusPage.css";
+import Carousel from '../../components/Carousel';
+import '../../styles/carousel.css'
 
 
   const SingleCampus = () => {
@@ -119,16 +122,32 @@ import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
         </div>
       )}
     > 
-    <div style={{marginTop: "120px"}}>
-      <div>
-        <h1>{singleCampus.name}</h1>
-        <button onClick={handleEditCampus}>Edit</button>
-        {/* <button onClick={handleDeleteCampus}>Delete</button> */}
+    <div style={{marginTop: "130px"}} className="single-campus-page"> 
+      <div className="sc-campus-profile-container" style={{height: "auto"}}>
+        <h1 className="sc-campus-name">{singleCampus.name}</h1>
+        <h3 className="sc-campus-address">{singleCampus.address}</h3>
+        <img className="sc-campus-image" src={singleCampus.imageUrl}></img>
+        <h3 className="sc-campus-description">{singleCampus.description}</h3>
+        <IconButton id="profile-btn" aria-label="edit"
+          onClick={handleEditCampus}>
+            <EditRoundedIcon />
+        </IconButton>
         <DeleteButtonSnackbar handleClickDelete={handleDeleteCampus} navigate={navigateToAllCampuses}/>
+        <IconButton id="profile-btn" aria-label="return" 
+          onClick={navigateToAllCampuses}>
+            <KeyboardReturnRoundedIcon />
+          </IconButton>
       </div>
-       {isEditing ? (
-        <div>
-          {/* display the form to edit campus information */}
+      <div>
+        <div className="sc-enrolled-students-container">
+          <h2 className="sc-enrolled-students-header">Students enrolled at {singleCampus.name}:</h2>
+          <Carousel slides={filteredStudents} handleSelectStudent={handleSelectStudent}
+          campusName={singleCampus.name} numEnrolled={filteredStudents.length}/>
+
+          {/* } */}
+        </div>
+        <div className="sc-form-container">
+          <h1 className="form-header">Edit Campus Form</h1>
           <EditCampusForm 
             handleChangeName={handleChangeName} 
             handleChangeAddress={handleChangeAddress} 
@@ -138,24 +157,11 @@ import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
             editedCampus = {editedCampus}
             failedSubmit = {failedSubmit}  
             />
-            {/* {formErrorMessage? <h3>{formErrorMessage}</h3> : null} */}
+            {/* {formErrorMessage? <h3>{formErrorMessage}</h3> : null} */}        
         </div>
-        ) : null}
-      <div style={{marginTop: '20px'}}>
-          <h3>SHOWING ALL STUDENTS FROM {singleCampus.name}:</h3>
-          {filteredStudents.length>0?
-          filteredStudents.map((student) => (
-            <div key={student.id} onClick={() => handleSelectStudent(student.id)}>
-              {student.firstName} {student.lastName}
-              {student.imgUrl}
-              {student.email}
-              {student.gpa}
-            </div>
-          )):
-          <h3>No Students Enrolled to this Campus</h3>
-          }
       </div>
-      <Button id="btn-return-add-campus" onClick={navigateToAllCampuses} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}>Back to Campus List</Button>
+      <Button id="sc-btn-back" onClick={navigateToAllCampuses} variant="contained" 
+      endIcon={<KeyboardReturnRoundedIcon/>}>Back to List</Button>
     </div>
     </ErrorBoundary>
   )

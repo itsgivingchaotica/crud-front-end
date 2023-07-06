@@ -1,0 +1,128 @@
+.single-campus-page::before {    
+    content: "";
+    background-image: url(../hallway-with-bag-floor.jpg);
+    height:100vh;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+.sc-campus-profile-container{
+    /* border: 5px solid black; */
+    margin: 30px;
+    padding: 10px;
+    /* box-shadow: 2px 2px 5px 5px var(--sea-green); */
+    box-shadow: 2px 2px 4px 4px var(--dark-green);
+    height: auto;
+    display: block;
+    background-image: radial-gradient(rgba(64, 145, 109, 0.502), rgba(127, 48, 42, 0.401));
+}
+
+.sc-campus-name{
+    border-bottom: 4px solid black;
+    font-family: 'Ysabeau Infant', 'sans-serif';
+    font-weight: '700';
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 2px grey;
+}
+
+.sc-campus-image{
+    width: 340px;
+    height: 230px;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px 5px black;
+    border: solid black 1px;
+}
+
+.sc-campus-address{
+    text-shadow: '1px 1px 1px var(--dark-green)';
+    font-family:'Manrope','sans-serif';
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.sc-campus-description{
+    text-shadow: '1px 1px 1px var(--dark-green)';
+    font-family:'Manrope','sans-serif';
+    font-weight: 400;
+    font-size: 18px;
+    /* padding: 1rem;
+    margin: 1rem; */
+    border-bottom: 0.1rem solid grey;
+}
+
+.sc-enrolled-students-header{
+    font-family: 'Ysabeau Infant', 'sans-serif';
+    font-weight: '700';
+    font-size: 2rem;
+    text-shadow: 2px 2px 2px grey;
+    position: relative;
+    top: 2.5rem;
+}
+
+.sc-enrolled-student{
+    text-shadow: '1px 1px 1px var(--dark-green)';
+    font-family:'Manrope','sans-serif';
+    font-weight: 400;
+
+}
+
+.sc-enrolled-students-container{
+    margin-top: 120px;
+}
+
+#sc-btn-back{
+    background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
+    color: var(--bone);
+    border: rgba(196, 97, 97, 0.296) 3px solid;
+    box-shadow:2px 2px 2px black;
+    text-shadow: 1px 2px 2px black;
+    font-size: 15px;
+    font-weight: 700;
+    position: relative;
+    transition: 500ms ease-in-out;
+    position: relative;
+    margin-top: 120px;
+    width: 40%;
+}
+
+#sc-btn-back:hover{
+    background-image: linear-gradient(rgb(242, 136, 136), var(--burnt-umber), rgb(242, 136, 136));
+    transition: 400ms ease-in-out;
+
+}
+
+.sc-form-container{
+    position: relative;
+    bottom: 3rem;
+    margin-bottom: 5rem;
+    padding: 0 0 9rem 0;
+    text-shadow: 2px 2px 2px grey;
+    font-family: 'Ysabeau Infant', 'sans-serif'
+}
+
+
+@media only screen and (max-width: 700px) {
+    .sc-campus-profile-container{
+        margin: 30px;
+        margin-bottom: 40px;
+        padding: 10px;
+        box-shadow: none;
+        height: auto;
+        display: block;
+        background-image:none;
+    }
+  }
+
+  @media only screen and (max-width: 650px) {
+    #sc-btn-back{
+        position: relative;
+        margin-top: 200px;
+    }
+  }  
