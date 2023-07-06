@@ -36,7 +36,7 @@
 
 #btn-form-add-campus {
     background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
-    color: var(--buff);
+    color: var(--bone);
     border: rgba(196, 97, 97, 0.296) 3px solid;
     box-shadow:4px 4px 4px black;
     text-shadow: 1px 2px 2px black;

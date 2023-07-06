@@ -1,0 +1,51 @@
+.carousel-container{
+    display: block;
+    height: fit-content;
+    background-image: linear-gradient(rgba(128, 128, 128, 0.133), rgba(255, 255, 255, 0.113), rgba(128, 128, 128, 0.136));
+    padding: 8rem 0 1.5rem 0;
+    margin: 2rem 1rem;
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    bottom: 5.5rem;
+}
+
+.carousel{
+    color: var(--burnt-umber);
+    cursor: grab;
+}
+
+.carousel-image{
+    margin-bottom: 4rem;
+    width: 170px;
+    height: 150px;
+    border-radius: 100%;
+    box-shadow: 5px 5px 5px black;
+}
+
+.carousel-name{
+    text-shadow: 2px 2px 2px grey;
+    font-size: 1.8rem;
+    transition: 400ms ease;
+}
+
+.carousel-name:hover{
+    color: var(--buff);
+    cursor: pointer;
+    transition: 400ms ease;
+}
+
+:root {
+    --swiper-navigation-color: var(--burnt-umber);
+    --swiper-pagination-color: var(--burnt-umber);
+}
+
+/***********Media queries (tablets, medium devices) *************/
+@media screen and (max-width: 1024px){
+
+}
+@media screen and (max-width:600px){
+    .testimonial{
+        font-size: 1.2rem;
+    }
+}    
