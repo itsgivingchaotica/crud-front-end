@@ -34,38 +34,84 @@ const StudentDrawer = () => {
   };
 
   const list = (anchor) => (
-    <Box
+     <Box
       role="presentation"
       sx={{width: isMobileScreen ? 200 : 500}}
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-      <ListItem><Typography variant="h5">Filter</Typography></ListItem>
-        {['First Name', 'Last Name', 'Campus', 'GPA', 'Clear'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+       <List>
+      <ListItem sx={{borderBottom:'2px solid black'}}>
+        <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
+            FILTER OPTIONS
+        </Typography>
+      </ListItem>
+        {/* BY LAST NAME */}
+        <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
+             <img width="70" height="70" src="https://img.icons8.com/water-color/100/alphabetical-sorting.png" alt="alphabetical-sorting"/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'By Last Name'} />
             </ListItemButton>
           </ListItem>
-        ))}
+          {/* BY GPA HIGH */}
+          <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-calculator.png" alt="apple-calculator"/>
+              </ListItemIcon>
+              <ListItemText primary={'By GPA HIGH'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem diabledPadding>
+          {/* CLEAR FILTERS */}
+          <ListItemButton>
+            <ListItemIcon>
+            <img width="100" height="100" src="https://img.icons8.com/bubbles/100/cancel--v1.png" alt="cancel--v1"/>
+              </ListItemIcon>
+              <ListItemText primary={'Clear Filter'} />
+            </ListItemButton>
+          </ListItem>
+        {/* ))} */}
       </List>
+      
       <Divider />
+
       <List>
-      <ListItem><Typography variant="h5">Quick Links</Typography></ListItem>
-        {['All campuses', 'Add a campus', 'Add a student'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+      <ListItem sx={{borderBottom:'2px solid black'}}>
+        <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
+            Quick Links
+        </Typography>
+      </ListItem>
+        {/* SHOW ALL CAMPUSES */}
+        <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/library.png" alt="library"/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'Show All Campuses'} />
             </ListItemButton>
           </ListItem>
-        ))}
+          {/* ADD A CAMPUS */}
+          <ListItem diabledPadding>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/add-file.png" alt="add-file"/>
+              </ListItemIcon>
+              <ListItemText primary={'Add a Campus'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem diabledPadding>
+          {/* ADD A STUDENT */}
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/education.png" alt="education"/>
+              </ListItemIcon>
+              <ListItemText primary={'Add a Student'} />
+            </ListItemButton>
+          </ListItem>
+        {/* ))} */}
       </List>
     </Box>
   );

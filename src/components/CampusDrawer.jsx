@@ -40,7 +40,7 @@ const CampusDrawer = () => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-       <List sx={{fontFamily:''}}>
+       <List>
       <ListItem sx={{borderBottom:'2px solid black'}}>
         <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
             FILTER OPTIONS
