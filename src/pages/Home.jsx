@@ -24,11 +24,11 @@ const Home = () => {
         <div className="home">
           <div style={{ color: 'white', transform: 'translateY(100px)', backgroundColor:'rgba(66, 55, 52,0.5)'}}>
              <Typography variant='h6' sx={{fontFamily: `'Manrope', sans-serif`, fontWeight:'700', textShadow: '-1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black', marginTop:'30px', marginLeft:'10px', }}>
-                  <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}><Typography variant='h2'sx={{fontFamily:`'Tangerine', cursive`, textShadow: '1px 1px 1px var(--dark-green)', color:'var(--celadon-2)'}}>faster</Typography>
+                  <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}><Typography variant='h2'sx={{fontFamily:`'Tangerine', cursive`, textShadow: '1px 1px 1px var(--dark-green)', color:'var(--celadon-2)'}}>Faster</Typography>
                   <Typography variant='subtitle1' sx={{transform:'translateY(5px)',marginLeft:'10px', marginRight:'10px', textShadow: '-1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black, -1px 1px 0 black'}}> and more 
                   </Typography>
                   <Typography variant='h2'sx={{fontFamily:`'Tangerine', cursive`, textShadow: '1px 1px 1px var(--dark-green)', color:'var(--celadon-2)'}}>
-                  effective.
+                  Effective.
                   </Typography>
                   </div>
                 </Typography>
