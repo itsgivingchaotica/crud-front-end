@@ -29,7 +29,7 @@ const CampusCard = (props) => {
   }
 
   return (
-    <Card sx={{paddingBottom: '30px', overflow:'scroll', paddingTop: '10px'}}>
+    <Card sx={{paddingBottom: '30px', overflow:'scroll', paddingTop: '10px', height: '550px'}}>
       {/* NAME: REQUIRED*/}
       <CardContent sx={{borderBottom:'4px solid black'}}>
         <Typography 
