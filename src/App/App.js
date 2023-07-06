@@ -1,4 +1,4 @@
-import React from 'react' 
+import React, { useRef } from 'react' 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // import { Home, Students, Campuses } from "../pages"
 import Home from "../pages/Home"
@@ -8,6 +8,7 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import './App.css';
   
 function App() {
+
   return (
     <HelmetProvider>
     <Router>

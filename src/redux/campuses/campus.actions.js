@@ -5,7 +5,8 @@ import {
     DELETE_CAMPUS,
     ADD_BATCH_CAMPUS, 
     CLEAR_BATCH_CAMPUSES,
-    DELETE_BATCH_CAMPUS } from "./campus.types"
+    DELETE_BATCH_CAMPUS,
+    FETCH_CAMPUS_SLICE } from "./campus.types"
 import axios from 'axios';
 
 export const fetchAllCampuses = (payload) => {
@@ -20,10 +21,29 @@ export const fetchAllCampusesThunk = () =>{
     return async(dispatch) =>{
         try{
             const res = await axios.get("http://localhost:8080/api/campuses");
-            console.log('REDUX THUNK API CALL TO CAMPUSES ==>', res.data);
             dispatch(fetchAllCampuses(res.data));
         }
         catch(error){
+            console.error(error);
+        }
+    }
+}
+
+export const fetchCampusSlice = (payload) => {
+    return {
+        type: FETCH_CAMPUS_SLICE,
+        payload: payload
+    }
+}
+
+export const fetchCampusSliceThunk = ({from,to}) => {
+    return async(dispatch) => {
+        try{
+            const res = await axios.get("http://localhost:8080/api/campuses");
+            const campuses = res.data.slice(from,to);
+            dispatch(fetchCampusSlice(campuses));
+            console.log("🚀 ~ file: campus.actions.js:37 ~ returnasync ~ campuses:", campuses)
+        } catch (error){
             console.error(error);
         }
     }
