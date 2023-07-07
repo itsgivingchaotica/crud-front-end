@@ -33,7 +33,8 @@ const StudentCard = (props) => {
   useEffect(()=> {
     const fetchStudentCampus = async()=>{
       try {
-        const res = await axios.get(`http://localhost:8080/api/campuses/${campusId}`)
+        // const res = await axios.get(`http://localhost:8080/api/campuses/${campusId}`)
+        const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/campuses/${campusId}`)
         const campusResponse = res.data;
         setEnrolledCampus(campusResponse);
       } catch(error){
@@ -42,12 +43,6 @@ const StudentCard = (props) => {
     }
     fetchStudentCampus();  
   }, [])
-
-  // useEffect(() => {
-  //   if (pagination.count > 0) {
-  //     dispatch(fetchStudentSliceThunk(pagination.from, pagination.to));
-  //   }
-  // }, [dispatch, pagination]);
   
   return (
 
