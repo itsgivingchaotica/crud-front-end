@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box';
@@ -11,10 +12,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography'
+import { sortCampusesByStudentsThunk, sortCampusDescThunk, sortCampusAscThunk, fetchCampusSliceThunk } from '.././redux/campuses/campus.actions'
 
   //filter options: by name, by number of students enrolled
 
-const CampusDrawer = () => {
+const CampusDrawer = ({pagination}) => {
   const [state, setState] = useState({
     right: false,
   });
@@ -32,6 +34,28 @@ const CampusDrawer = () => {
     setState({ ...state, [anchor]: open });
   };
 
+  const dispatch = useDispatch();
+
+  const handleSortByEnrollments  = () =>{
+    dispatch(sortCampusesByStudentsThunk(pagination.from,pagination.to));
+  }
+
+  const handleSortByNameDesc = () => {
+    dispatch(sortCampusDescThunk(pagination.from,pagination.to));
+  }
+
+  const handleSortByNameAsc = () => {
+    dispatch(sortCampusAscThunk(pagination.from,pagination.to));
+  }
+
+  const handleClearFilter = () => {
+    dispatch(fetchCampusSliceThunk(pagination.from,pagination.to));
+  }
+
+  // useEffect(() => {
+  //   console.log("🚀 ~ file: CampusDrawer.jsx:38 ~ useEffect ~ sortCampusesByStudentsThunk:", sortCampusesByStudentsThunk)
+  // })
+
   const list = (anchor) => (
     <Box
       role="presentation"
@@ -45,18 +69,27 @@ const CampusDrawer = () => {
             FILTER OPTIONS
         </Typography>
       </ListItem>
-        {/* BY NAME */}
+        {/* BY LAST NAME ASCENDING */}
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleSortByNameAsc}>
             <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
              <img width="70" height="70" src="https://img.icons8.com/water-color/100/alphabetical-sorting.png" alt="alphabetical-sorting"/>
               </ListItemIcon>
-              <ListItemText primary={'By School Name'} sx={{color:'black'}}/>
+              <ListItemText primary={'By School Name Ascending'} sx={{color:'black'}}/>
+            </ListItemButton>
+          </ListItem>
+          {/* BY LAST NAME DESCENDING */}
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleSortByNameDesc}>
+            <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
+             <img width="70" height="70" src="https://img.icons8.com/color/100/alphabetical-sorting-2.png" alt="alphabetical-sorting-2"/>
+              </ListItemIcon>
+              <ListItemText primary={'By School Name Descending'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
           {/* BY STUDENTS ENROLLED*/}
           <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleSortByEnrollments}>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-calculator.png" alt="apple-calculator"/>
               </ListItemIcon>
@@ -65,7 +98,7 @@ const CampusDrawer = () => {
           </ListItem>
           <ListItem disablePadding>
           {/* CLEAR FILTERS */}
-          <ListItemButton>
+          <ListItemButton onClick={handleClearFilter}>
             <ListItemIcon>
             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/cancel--v1.png" alt="cancel--v1"/>
               </ListItemIcon>
@@ -80,7 +113,7 @@ const CampusDrawer = () => {
       <List>
       <ListItem sx={{borderBottom:'2px solid black'}}>
         <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
-            Quick Links
+            QUICK LINKS
         </Typography>
       </ListItem>
         {/* SHOW ALL STUDENTS */}

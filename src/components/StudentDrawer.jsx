@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { useMediaQuery } from '@mui/material'
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box'
+import Drawer from '@mui/material/Drawer'
+import Button from '@mui/material/Button'
+import List from '@mui/material/List'
+import Divider from '@mui/material/Divider'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
+import { sortStudentDescThunk, sortStudentAscThunk, fetchStudentSliceThunk, sortStudentGpaHighThunk } from '.././redux/students/student.actions'
 
   //filter options: by last name, by first name, by gpa, by schoolnames, 
 
-const StudentDrawer = () => {
+const StudentDrawer = ({pagination}) => {
   const [state, setState] = useState({
     right: false,
   });
@@ -32,6 +34,24 @@ const StudentDrawer = () => {
     setState({ ...state, [anchor]: open });
   };
 
+  const dispatch = useDispatch();
+
+  const handleSortByGpaHigh = () => {
+    dispatch(sortStudentGpaHighThunk(pagination.from,pagination.to));
+  }
+
+  const handleSortByLastNameDesc = () => {
+    dispatch(sortStudentDescThunk(pagination.from,pagination.to));
+  }
+
+  const handleSortByLastNameAsc = () => {
+    dispatch(sortStudentAscThunk(pagination.from,pagination.to));
+  }
+
+  const handleClearFilter = () => {
+    dispatch(fetchStudentSliceThunk(pagination.from,pagination.to));
+  }
+
   const list = (anchor) => (
      <Box
       role="presentation"
@@ -45,27 +65,36 @@ const StudentDrawer = () => {
             FILTER OPTIONS
         </Typography>
       </ListItem>
-        {/* BY LAST NAME */}
-        <ListItem diabledPadding>
-          <ListItemButton>
+        {/* BY LAST NAME ASC*/}
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleSortByLastNameAsc}>
             <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
              <img width="70" height="70" src="https://img.icons8.com/water-color/100/alphabetical-sorting.png" alt="alphabetical-sorting"/>
               </ListItemIcon>
-              <ListItemText primary={'By Last Name'} sx={{color:'black'}}/>
+              <ListItemText primary={'By Last Name Ascending'} sx={{color:'black'}}/>
+            </ListItemButton>
+          </ListItem>
+          {/* BY LAST NAME DESC*/}
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleSortByLastNameDesc}>
+            <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
+             <img width="70" height="70" src="https://img.icons8.com/color/100/alphabetical-sorting-2.png" alt="alphabetical-sorting-2"/>
+              </ListItemIcon>
+              <ListItemText primary={'By Last Name Descending'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
           {/* BY GPA HIGH */}
-          <ListItem diabledPadding>
-          <ListItemButton>
+          <ListItem disablePadding>
+          <ListItemButton onClick={handleSortByGpaHigh}>
             <ListItemIcon>
              <img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-calculator.png" alt="apple-calculator"/>
               </ListItemIcon>
               <ListItemText primary={'By GPA HIGH'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
-          <ListItem diabledPadding>
+          <ListItem disablePadding>
           {/* CLEAR FILTERS */}
-          <ListItemButton>
+          <ListItemButton onClick={handleClearFilter}>
             <ListItemIcon>
             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/cancel--v1.png" alt="cancel--v1"/>
               </ListItemIcon>
@@ -80,11 +109,11 @@ const StudentDrawer = () => {
       <List>
       <ListItem sx={{borderBottom:'2px solid black'}}>
         <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
-            Quick Links
+            QUICK LINKS
         </Typography>
       </ListItem>
         {/* SHOW ALL CAMPUSES */}
-        <ListItem diabledPadding>
+        <ListItem disablePadding>
         <NavLink to="/campuses" style={{ textDecoration: 'none' }}>
           <ListItemButton>
             <ListItemIcon>
@@ -95,7 +124,7 @@ const StudentDrawer = () => {
             </NavLink>
           </ListItem>
           {/* ADD A CAMPUS */}
-          <ListItem diabledPadding>
+          <ListItem disablePadding>
            <NavLink to='/campuses/addCampus' style={{textDecoration: 'none'}}>
           <ListItemButton>
             <ListItemIcon>
@@ -105,7 +134,7 @@ const StudentDrawer = () => {
             </ListItemButton>
             </NavLink>
           </ListItem>
-          <ListItem diabledPadding>
+          <ListItem disablePadding>
           <NavLink to="/students/addStudent" style={{ textDecoration: 'none' }}>
           {/* ADD A STUDENT */}
           <ListItemButton>
