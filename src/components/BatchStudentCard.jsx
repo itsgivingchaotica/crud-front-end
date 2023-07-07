@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import "../styles/studentCard.css";
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -14,20 +16,25 @@ import EmailIcon from '@mui/icons-material/Email';
 import axios from 'axios';
 
 const BatchStudentCard = ({entry,handleDeleteStudent}) => {
-  const [enrolledCampus, setEnrolledCampus] = useState("");
-
-  const navigate = useNavigate();
-
   const { id, campusId, firstName, lastName, gpa, imageUrl, email } = entry;
+  const navigate = useNavigate();
+  //the students' enrolled campus
+  const [enrolledCampus, setEnrolledCampus] = useState("");
+  const isExtraLargeScreen = useMediaQuery('(max-width: 1050px)');
+  const isLargeScreen = useMediaQuery('(max-width: 900px)');
+  const isMediumScreen = useMediaQuery('(max-width: 700px)');
+  const isMobileScreen = useMediaQuery('(max-width: 414px)');
 
-    const handleClickDelete = () => {
-    handleDeleteStudent(entry.id);
-    };
+  const handleClickDelete = () => {
+  handleDeleteStudent(entry.id);
+  };
 
+  //you can visit the student's campuses page from their profile, granted they are enrolled
   const visitSingleCampusPage = () => {
     navigate(`/campuses/${enrolledCampus.id}`);
   }
 
+  //display the student's campus 
   useEffect(()=> {
     const fetchStudentCampus = async()=>{
       try {
@@ -42,7 +49,8 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
   }, [])
   
   return (
-    <Card>
+    <Box sx={{display:'flex',justifyContent:'center'}}>
+    <Card sx={{overflow:'scroll'}}>
       {/* NAME: REQUIRED, FIRST, LAST*/}
       <CardContent sx={{borderBottom:'4px solid black'}}>
         <Typography 
@@ -59,19 +67,21 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
               sx={{ display: 'flex', alignItems: 'center', height:'110%',width:'110%'}}>
                 <img src={imageUrl} alt={`${firstName} ${lastName} profile image`}  styles={{justifyContent:'center' }}/>
               </CardContent>)}
-              <CardContent sx={{marginLeft:'30px'}}>
+            </Stack>
+            <Stack direction='row' justifyContent='center'>
+              <CardContent sx={{ alignItems:'center', marginLeft:'30px'}}>
                 <NavLink to={`/students/${id}`} style={{textDecoration:'none'}} >
                   <Tooltip title="GO TO PROFILE" placement='left' arrow TransitionComponent={Zoom}>
-                    <Button variant='contained' color="success" sx={{marginBottom:'10px'}}>
-                      <img width="70" height="70" src="https://img.icons8.com/color/70/student-center.png" alt="student-center"/>
+                    <Button variant='contained' color="success" sx={{marginRight:'10px', marginLeft:'-40px',flexDirection:'column', paddingLeft:'12px', paddingRight:'12px'}}>
+                      <img width="80" height="80" src="https://img.icons8.com/color/70/student-center.png" alt="student-center"/>
                     </Button>
                   </Tooltip>
                 </NavLink>
                 {/* DELETE STUDENT AND UNDO SNACKBAR*/}
                 <DeleteButtonSnackbar handleClickDelete={handleClickDelete}/>
               </CardContent>
-            </Stack>
-            <Stack direction='row' justifyContent='space-between' width='100%'>
+              </Stack>
+            <Stack direction='row' justifyContent='space-between' width='100%' >
             {/* STUDENT DETAILS AND OPTIONS */}
             <Stack direction='column'>
             {/* EMAIL: REQUIRED */}
@@ -121,6 +131,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
             </Stack>
           </Stack>
     </Card>
+    </Box>
   )
 }
 

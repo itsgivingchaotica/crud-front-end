@@ -60,7 +60,6 @@ const AddCampus = () => {
     const campusBatch = useSelector((state) => state.campuses.batchCampusList);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
      const fetchAllCampuses = () => {
     return dispatch(fetchAllCampusesThunk());

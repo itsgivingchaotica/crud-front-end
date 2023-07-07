@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
-import { deleteStudentThunk } from '../redux/students/student.actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -10,6 +9,7 @@ import Stack from '@mui/material/Stack'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import Zoom from '@mui/material/Zoom'
+import { deleteStudentThunk, fetchStudentSliceThunk } from '../redux/students/student.actions';
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
 import EmailIcon from '@mui/icons-material/Email';
 import axios from 'axios';
@@ -17,17 +17,14 @@ import "../styles/studentCard.css";
 
 const StudentCard = (props) => {
   const [enrolledCampus, setEnrolledCampus] = useState("");
-  const { id, firstName, lastName, email, imageUrl, gpa, campusId } = props;
+  const { id, firstName, lastName, email, imageUrl, gpa, campusId, pagination } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleClickDelete = () => {
-    // let result = window.confirm("Are you sure you want to delete the student?");
-    // if (result === true){
-      dispatch(deleteStudentThunk(id));
-    // }
-
-  }
+  const handleClickDelete = async () => {
+  await dispatch(deleteStudentThunk(id));
+  dispatch(fetchStudentSliceThunk(pagination.from, pagination.to));
+};
 
   const visitSingleCampusPage = () => {
     navigate(`/campuses/${enrolledCampus.id}`);
@@ -45,6 +42,12 @@ const StudentCard = (props) => {
     }
     fetchStudentCampus();  
   }, [])
+
+  // useEffect(() => {
+  //   if (pagination.count > 0) {
+  //     dispatch(fetchStudentSliceThunk(pagination.from, pagination.to));
+  //   }
+  // }, [dispatch, pagination]);
   
   return (
 
@@ -76,7 +79,7 @@ const StudentCard = (props) => {
         , textShadow: '1px 1px 1px var(--dark-green)'},}}>
                 <EmailIcon sx={{width:'30px', height:'30px',color:'black'}}/>
                 <Typography 
-                  variant="h5" 
+                  variant="h6" 
                   sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px'}}>
                     {email}
                 </Typography>
