@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import ContactsIcon from '@mui/icons-material/Contacts'
+import { FormControl } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import { useMediaQuery } from '@mui/material'
@@ -75,10 +76,10 @@ const StudentInputForm= () => {
             "lastName": lastName,
             "imageUrl": imageUrl,
             "email": email,
-            "campusId": campusId,
-            "gpa": gpa
+            "gpa": gpa,
+            "campusId": campusId
         }
-        if (firstName && lastName && gpa && email){
+        if (firstName && lastName && email && gpa){
             if(gpa<0 || gpa>4){
                 setErrorMessage("GPA must be between 0 and 4");
                 setFailedSubmit(true);
@@ -113,7 +114,6 @@ const StudentInputForm= () => {
 
 
   useEffect(() => {
-  // This effect will run only once when the component mounts
     setIsFirstNameTouched(false);
     setIsLastNameTouched(false);
     setIsGpaTouched(false);
@@ -130,10 +130,9 @@ const StudentInputForm= () => {
   </div>
   ADD STUDENT
 </Typography>
-
+<FormControl onSubmit={handleSubmit}>
         <Stack component="form" >
-        <Stack direction='row' justifyContent='space-evenly' >
-            {/* FIRST NAME*/}
+        <Stack direction='row' justifyContent='space-evenly' > 
             <TextField 
                 id="outlined-basic" type="text"
                 helperText="First Name *" name="firstName"
@@ -195,7 +194,7 @@ const StudentInputForm= () => {
                 onChange={handleChangeGpa}
                 error={(isGpaTouched && !gpa) || (failedSubmit && !gpa) || (gpa<0 || gpa>4) ? true : false}
                 InputProps={{ onBlur: () => setIsGpaTouched(true) }}
-                />              
+                />                
             </Stack>
              <Stack direction="row" justifyContent={'space-around'}>
              <Button id="btn-return-add-campus" onClick={navigateToAllStudents} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}><Typography variant={isSmallScreen ? 'subtitle1' : 'h5'} sx={{ color: 'var(--bone)', fontWeight: '700', textShadow: '3px 1px 2px black', fontFamily: `'Ysabeau Infant', sans-serif` }}>
@@ -205,7 +204,7 @@ const StudentInputForm= () => {
                 variant="outlined" 
                 type="submit"  
                 endIcon={<AddIcon />} 
-                onClick={handleSubmit}>
+                >
                  <Typography variant={isSmallScreen ? 'subtitle1' : 'h5'} sx={{ color: 'var(--bone)', fontWeight: '700', textShadow: '3px 1px 2px black', fontFamily: `'Ysabeau Infant', sans-serif` }}>
               Add
             </Typography>
@@ -219,6 +218,7 @@ const StudentInputForm= () => {
                     Submitted!
             </Typography>
         </Stack>
+        </FormControl>
     </Card>
     )
 }
