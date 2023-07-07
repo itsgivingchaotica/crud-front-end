@@ -65,7 +65,7 @@ const Campuses = () => {
           </Grid>
 
           <Grid item xs={12} md={12} sx={{marginBottom:'20px'}}>
-            {campusSlice.length > 0 ? <CampusListItems allCampuses={campusSlice} pagination={pagination}/> : <Typography variant='h2' sx={{fontFamily:`'Ysabeau Infant', sans-serif`}}>No students in our list!Add some!</Typography>}
+            {campusSlice.length > 0 ? <CampusListItems allCampuses={campusSlice} pagination={pagination}/> : <Typography variant='h2' sx={{fontFamily:`'Ysabeau Infant', sans-serif`}}>No campuses in our list! Add some!</Typography>}
           </Grid>
         </Grid>
         <div style={{backgroundColor:'var(--bone)', position:'absolute', bottom:0, left:0, width: '100%'}}>
