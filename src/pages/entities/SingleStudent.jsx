@@ -154,7 +154,7 @@ const SingleStudent = () => {
           <h1 className="header">{singleStudent.firstName + " " + singleStudent.lastName}</h1>
           <img className="ss-student-image" src={singleStudent.imageUrl}></img>
           <h3 className="ss-body-card">Email: {singleStudent.email}</h3>
-          <h3 className="ss-body-card">GPA: {singleStudent.gpa}</h3>
+          <h3 className="ss-body-card">GPA: {parseFloat(singleStudent.gpa).toFixed(2)}</h3>
           {enrolledCampus.name?<h3 className="card-enrolled-campus" onClick={visitSingleCampusPage}>Campus: {enrolledCampus.name}</h3>:<h3 className="card-enrolled-campus">Campus: Not enrolled to campus</h3>}
           <Tooltip title="EDIT" placement='left' arrow TransitionComponent={Zoom}>
             <IconButton id="profile-btn" aria-label="edit"
