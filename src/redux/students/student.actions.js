@@ -115,7 +115,8 @@ export const addStudentThunk = (student) => {
                 lastName: student.lastName,
                 email: student.email,
                 gpa: student.gpa,
-                campusId: student.campusId
+                campusId: student.campusId,
+                imageURL: student.imageUrl
             });
             dispatch(addStudent(res.data));
         }

@@ -86,7 +86,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
             <Stack direction='column'>
             {/* EMAIL: REQUIRED */}
             <Tooltip title="CONTACT" TransitionComponent={Zoom}  arrow>
-              <CardContent sx={{ display:'flex', alignItems: 'center', width:'100%',  '&:hover': {
+              <CardContent onClick={() => window.location.href = `mailto:${email}`} sx={{ display:'flex', alignItems: 'center', width:'100%',  '&:hover': {
           cursor: 'pointer', color:'var(--mint-2)'
         , textShadow: '1px 1px 1px var(--dark-green)'},}}>
                 <EmailIcon sx={{width:'30px', height:'30px',color:'black'}}/>
@@ -106,7 +106,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                 <Typography 
                   variant='h5'
                   sx={{marginLeft:'10px', fontFamily:`'Manrope',sans-serif`, '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}> 
-                  {gpa} GPA 
+                  {parseFloat(gpa).toFixed(2)} GPA 
                 </Typography>
               </CardContent>
               </Tooltip>

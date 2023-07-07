@@ -66,7 +66,8 @@ const CampusInputForm= () => {
           setName("");
           setAddress("");
           setDescription("");
-          setImageUrl('');
+          setImageUrl("");
+          setFailedSubmit(false);
         //   navigateToAllCampuses();   TO NAVIGATE BACK TO ALL CAMPUSES PAGE
         setIsSubmitted(true);
         setTimeout(() => {
@@ -103,47 +104,45 @@ const CampusInputForm= () => {
         <Stack component="form" maxWidth='500px' sx={{margin:"0 auto"}}>
             {/* CAMPUS NAME */}
             <TextField 
-                id="outlined-basic" 
-                helperText="Name" 
-                variant="outlined"
+                id="outlined-basic" type="text"
+                variant="outlined" name="name"
                 value={name}
-                required
-                onChange={(e) => (handleChangeSchoolName(e))}
-                error={isNameTouched && !name}
+                onChange={handleChangeSchoolName}
+                error={(isNameTouched && !name) || (failedSubmit && !name)}
+                helperText="Campus Name *"
                 InputProps={{ onBlur: () => setIsNameTouched(true) }}
+                />                
+            {/* CAMPUS ADDRESS */}
+            <TextField 
+                id="outlined-basic" type="text"
+                variant="outlined" name="address"
+                value={address}
+                multiline
+                onChange={handleChangeAddress}
+                error={(isAddressTouched && !address) || (failedSubmit && !address)}
+                helperText="Address *"
+                InputProps={{ onBlur: () => setIsAddressTouched(true) }}
                 />
             {/* IMAGE URL */}
             <TextField 
-                id="outlined-basic" 
-                helperText="Image Url" 
-                variant="outlined" 
-                value={imageUrl} 
-                onChange={(e) => handleChangeImageUrl(e)}
-                />
-            {/* CAMPUS ADDRESS */}
-            <TextField 
-                id="outlined-basic" 
-                helperText="Address" 
-                variant="outlined" 
-                value={address} 
-                required
-                multiline
-                onChange={(e) => handleChangeAddress(e)}
-                error={isAddressTouched && !address}
-                InputProps={{ onBlur: () => setIsAddressTouched(true) }}
-                />
+                id="outlined-basic" type="text" 
+                variant="outlined"
+                helperText="Image URL"
+                value={imageUrl}
+                onChange={handleChangeImageUrl}
+                />                
             {/* DESCRIPTION */}
             <TextField 
-                id="outlined-basic" 
-                helperText="Description" 
-                variant="outlined" 
+                id="outlined-basic" type="text" rows={3}
+                variant="outlined" name="description"
                 value={description} 
-                required
                 multiline
-                onChange={(e) => handleChangeDescription(e)}
-                error={isDescriptionTouched && !description}
+                onChange={handleChangeDescription}
+                error={(isDescriptionTouched && !description) || (failedSubmit && !description)}
+                helperText="Description *"
                 InputProps={{ onBlur: () => setIsDescriptionTouched(true) }}
                 />
+
              <Stack direction="row" justifyContent={'space-around'}>
              <Button id="btn-return-add-campus" onClick={navigateToAllCampuses} variant="contained" endIcon={<KeyboardReturnRoundedIcon/>}><Typography variant={isSmallScreen ? 'subtitle1' : 'h5'} sx={{ color: 'var(--bone)', fontWeight: '700', textShadow: '3px 1px 2px black', fontFamily: `'Ysabeau Infant', sans-serif` }}>
               Back

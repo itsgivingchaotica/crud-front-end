@@ -133,6 +133,7 @@ export const addCampusThunk = (campus) => {
                 name: campus.name,
                 address: campus.address,
                 description: campus.description,
+                imageURL: campus.imageUrl
             });
             dispatch(addCampus(res.data));
         }
