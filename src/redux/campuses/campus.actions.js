@@ -174,6 +174,7 @@ export const editCampusThunk = (editedCampus, id) => {
       const res = await axios.put(
         `https://crud-backend-dusky.vercel.app/api/campuses/${id}`, {
             name: editedCampus.name,
+            imageUrl: editedCampus.imageUrl,
             address: editedCampus.address,
             description: editedCampus.description,
         }
@@ -225,6 +226,7 @@ export const addBatchCampusThunk = (campus) => {
             // });
             const res = await axios.post("https://crud-backend-dusky.vercel.app/api/campuses", {
                 name: campus.name,
+                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
             });

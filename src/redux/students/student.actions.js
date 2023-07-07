@@ -236,6 +236,7 @@ export const addBatchStudentThunk = (student) => {
              const res = await axios.post("https://crud-backend-dusky.vercel.app/api/students", {
                 firstName: student.firstName,
                 lastName: student.lastName,
+                imageUrl: students.imageUrl,
                 email: student.email,
                 gpa: student.gpa,
                 campusId: student.campusId
