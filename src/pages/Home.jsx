@@ -1,8 +1,6 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import SearchBar from '../components/SearchBar'
 import { useMediaQuery } from '@mui/material';
 import { ErrorBoundary } from 'react-error-boundary';
 import '../styles/home.css';

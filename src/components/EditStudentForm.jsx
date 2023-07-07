@@ -17,20 +17,13 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
             '& label.Mui-focused': {
               color: 'black',
             },
-            // '& .MuiInput-underline:after': {
-            //   borderBottomColor: '#3E68A8',
-            // },
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
                 borderColor: 'black',
                 boxShadow: '2px 2px 2px black',
                 },
               '&:hover fieldset': {
-                // borderColor: 'var(--burnt-umber)',
                 borderWidth: '0.15rem',
-              },
-              '&.Mui-focused fieldset': {
-                // borderColor: 'green',
               },
             },
           },

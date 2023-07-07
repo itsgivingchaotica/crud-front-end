@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import { useMediaQuery } from '@mui/material';
 import '../styles/navbar.css'
 
-const ScholarLogo = ({ }) => {
+const ScholarLogo = () => {
 
     const isMobileScreen = useMediaQuery("(max-width: 414px)")
   return (
