@@ -221,6 +221,7 @@ export const addBatchCampusThunk = (campus) => {
         try{
             const res = await axios.post("http://localhost:8080/api/campuses", {
                 name: campus.name,
+                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
             });
