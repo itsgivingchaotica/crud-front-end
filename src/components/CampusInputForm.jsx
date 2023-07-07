@@ -66,7 +66,7 @@ const CampusInputForm= () => {
           setName("");
           setAddress("");
           setDescription("");
-          setImageUrl('');
+          setImageUrl("");
           setFailedSubmit(false);
         //   navigateToAllCampuses();   TO NAVIGATE BACK TO ALL CAMPUSES PAGE
         setIsSubmitted(true);

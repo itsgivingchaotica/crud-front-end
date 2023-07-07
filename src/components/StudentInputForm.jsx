@@ -32,7 +32,7 @@ const StudentInputForm= () => {
     const [imageUrl, setImageUrl] = useState("")
     const [gpa, setGpa] = useState("")
     const [isGpaTouched, setIsGpaTouched] = useState(false);
-    const [campusId, setCampusId] = useState("")
+    const [campusId, setCampusId] = useState()
     const [isCampusIdTouched, setIsCampusIdTouched] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const isMobileScreen = useMediaQuery("(max-width: 414px)");
@@ -88,7 +88,7 @@ const StudentInputForm= () => {
                 dispatch(addBatchStudentThunk(newStudent))
                 setFirstName("");
                 setLastName("");
-                setCampusId("");
+                setCampusId(null);
                 setGpa("");
                 setImageUrl("");
                 setEmail("");
@@ -175,7 +175,7 @@ const StudentInputForm= () => {
                 />
                 <Stack direction='row' justifyContent='space-evenly' >
             {/* CAMPUS ID */}
-            <TextField select helperText="Campus" defaultValue="choose" sx={{width:'80%', textAlign: "left"}} onChange={handleChangeCampusId}>
+            <TextField select helperText="Campus" defaultValue="choose" sx={{width:'80%', textAlign: "left"}} onChange={handleChangeCampusId} name='campusId'>
                 <MenuItem value="choose" disabled>Select Campus</MenuItem>
                     {allCampuses.map((campus) => {
                         return <MenuItem key={campus.id} value={campus.id} id={campus.id}>
@@ -189,7 +189,7 @@ const StudentInputForm= () => {
                 type="number" inputProps={{ step: "0.01",  onBlur: () => setIsGpaTouched(true)}} 
                 helperText={(gpa<0 || gpa>4) ?"GPA * (0-4)" : "GPA *"}
                 variant="outlined" 
-                value={gpa} 
+                value={gpa} name='gpa'
                 sx={{marginLeft:'10px'}}
                 onChange={handleChangeGpa}
                 error={(isGpaTouched && !gpa) || (failedSubmit && !gpa) || (gpa<0 || gpa>4) ? true : false}
