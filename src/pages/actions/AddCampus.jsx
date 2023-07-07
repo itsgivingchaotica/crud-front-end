@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { useMediaQuery, createTheme, ThemeProvider } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import { deleteBatchCampusThunk, fetchAllCampusesThunk, clearBatchCampuses } from '../../redux/campuses/campus.actions'

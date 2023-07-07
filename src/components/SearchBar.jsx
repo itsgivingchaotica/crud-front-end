@@ -40,6 +40,7 @@ const SearchBar = () => {
           type: 'campus',
         };
       }
+      return null;
     });
   };
 
@@ -84,18 +85,18 @@ const SearchBar = () => {
     setAutocompleteOpen(query.length > 0);
   };
 
-  const handleSearchIconClick = () => {
-  if (searchTerm) {
-    const result = options.filter((option) => {
-      return option.label.toLowerCase() === searchTerm.toLowerCase();
-    });
-    console.log("🚀 ~ file: SearchBar.jsx:104 ~ handleSearchIconClick ~ result:", result);
-    if (result) {
-        console.log("SEARCHING!")
-      handleSearch(result);
-    }
-  }
-};
+//   const handleSearchIconClick = () => {
+//   if (searchTerm) {
+//     const result = options.filter((option) => {
+//       return option.label.toLowerCase() === searchTerm.toLowerCase();
+//     });
+//     console.log("🚀 ~ file: SearchBar.jsx:104 ~ handleSearchIconClick ~ result:", result);
+//     if (result) {
+//         console.log("SEARCHING!")
+//       handleSearch(result);
+//     }
+//   }
+// };
 
   useEffect(() => {
     dispatch(fetchAllCampusesThunk());

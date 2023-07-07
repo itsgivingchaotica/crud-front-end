@@ -69,16 +69,3 @@ const DeleteButtonSnackbar = (props) => {
 }
 
 export default DeleteButtonSnackbar
-
-{/* <>
-<IconButton id="profile-btn" aria-label="delete" onClick={handleClickOpen}>
-    <DeleteRoundedIcon />
-</IconButton>
-<Snackbar
-open={open}
-autoHideDuration={6000}
-onClose={handleClose}
-message="Profile will be deleted in few seconds"
-action={action}
-/>
-</> */}

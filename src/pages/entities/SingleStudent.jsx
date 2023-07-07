@@ -8,7 +8,7 @@ import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
-import { Button, IconButton, Tooltip, Zoom} from '@mui/material';
+import { IconButton, Tooltip, Zoom} from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 
@@ -152,7 +152,7 @@ const SingleStudent = () => {
     <div style={{ marginTop: '120px' }} className="single-student-page">
         <div className="student-profile-container">
           <h1 className="header">{singleStudent.firstName + " " + singleStudent.lastName}</h1>
-          <img className="ss-student-image" src={singleStudent.imageUrl}></img>
+          <img className="ss-student-image" src={singleStudent.imageUrl} alt="single student placeholder"></img>
           <h3 className="ss-body-card">Email: {singleStudent.email}</h3>
           <h3 className="ss-body-card">GPA: {parseFloat(singleStudent.gpa).toFixed(2)}</h3>
           {enrolledCampus.name?<h3 className="card-enrolled-campus" onClick={visitSingleCampusPage}>Campus: {enrolledCampus.name}</h3>:<h3 className="card-enrolled-campus">Campus: Not enrolled to campus</h3>}

@@ -6,12 +6,11 @@ import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import ContactsIcon from '@mui/icons-material/Contacts'
 import { FormControl } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import { useMediaQuery } from '@mui/material'
-import { addStudentThunk, deleteBatchStudent,  addBatchStudentThunk } from '.././redux/students/student.actions'
+import { addBatchStudentThunk } from '.././redux/students/student.actions'
 import { useDispatch, useSelector } from 'react-redux'
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import ".././styles/addCampusForm.css"

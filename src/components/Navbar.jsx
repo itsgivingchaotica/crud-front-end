@@ -1,5 +1,4 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
 import { useMediaQuery } from '@mui/material';
 import ScholarLogo from './ScholarLogo';
 import SideMenuToggle from './SideMenuToggle'
