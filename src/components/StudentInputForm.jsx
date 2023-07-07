@@ -84,8 +84,7 @@ const StudentInputForm= () => {
                 setFailedSubmit(true);
             }
             else{
-                // dispatch(addBatchStudentThunk(newStudent))
-                dispatch(addStudentThunk);
+                dispatch(addBatchStudentThunk(newStudent))
                 setFirstName("");
                 setLastName("");
                 setCampusId("");
