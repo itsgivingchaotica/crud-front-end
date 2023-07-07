@@ -8,7 +8,11 @@ import {
   SEARCH_STUDENTS_BY_CAMPUS,
   ADD_BATCH_STUDENT, 
   CLEAR_BATCH_STUDENTS,
-  DELETE_BATCH_STUDENT } from "./student.types"
+  DELETE_BATCH_STUDENT,
+  FETCH_STUDENT_SLICE,
+  SORT_STUDENT_LIST } from "./student.types"
+
+export const getStudentList = (state) => state.student.studentList;
 
 export const fetchAllStudents = (payload) => {
     return {
@@ -26,6 +30,72 @@ export const fetchAllStudentsThunk = () =>{
         }
         catch(error){
             console.error(error);
+        }
+    }
+}
+
+export const fetchStudentSlice = (payload) => {
+    return {
+        type: FETCH_STUDENT_SLICE,
+        payload: payload
+    }
+}
+
+export const fetchStudentSliceThunk = ({from,to}) => {
+    return async(dispatch) => {
+        try {
+            const res = await axios.get("http://localhost:8080/api/students");
+            const students = res.data.slice(from,to);
+            dispatch(fetchStudentSlice(students));
+        } catch (error){
+            console.log(error)
+        }
+    }
+}
+
+//after sorting students by filter type and put in the studentSliceList in campus reducer
+export const sortStudent = (payload) => {
+    return {
+        type: SORT_STUDENT_LIST,
+        payload: payload
+    }
+}
+
+//sort the students last names by ascending order
+export const sortStudentAscThunk = ({from,to}) => {
+  return async(dispatch) => {
+    try{
+      const res = await axios.get("http://localhost:8080/api/students/sortedStudent/ascending");
+      const students = res.data.slice(from,to);
+      dispatch(sortStudent(students));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+//sort the students last names by descending order
+export const sortStudentDescThunk = ({from,to}) => {
+  return async(dispatch) => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/students/sortedStudent/descending");
+      const students = res.data.slice(from,to);
+      dispatch(sortStudent(students));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+//sort by gpa high then add to studentSlice list
+export const sortStudentGpaHighThunk = ({from,to}) => {
+    return async(dispatch) => {
+        try{
+            const res = await axios.get("http://localhost:8080/api/students/sortedStudent/gpaHigh");
+            const students = res.data.slice(from,to);
+            dispatch(sortStudent(students));
+        } catch (error) {
+            console.log(error);
         }
     }
 }

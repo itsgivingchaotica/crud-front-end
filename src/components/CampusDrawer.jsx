@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,13 +11,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import Typography from '@mui/material/Typography'
+import { sortCampusesByStudentsThunk, sortCampusDescThunk, sortCampusAscThunk, fetchCampusSliceThunk } from '.././redux/campuses/campus.actions'
 
   //filter options: by name, by number of students enrolled
 
-const CampusDrawer = () => {
+const CampusDrawer = ({pagination}) => {
   const [state, setState] = useState({
     right: false,
   });
@@ -33,6 +34,28 @@ const CampusDrawer = () => {
     setState({ ...state, [anchor]: open });
   };
 
+  const dispatch = useDispatch();
+
+  const handleSortByEnrollments  = () =>{
+    dispatch(sortCampusesByStudentsThunk(pagination.from,pagination.to));
+  }
+
+  const handleSortByNameDesc = () => {
+    dispatch(sortCampusDescThunk(pagination.from,pagination.to));
+  }
+
+  const handleSortByNameAsc = () => {
+    dispatch(sortCampusAscThunk(pagination.from,pagination.to));
+  }
+
+  const handleClearFilter = () => {
+    dispatch(fetchCampusSliceThunk(pagination.from,pagination.to));
+  }
+
+  // useEffect(() => {
+  //   console.log("🚀 ~ file: CampusDrawer.jsx:38 ~ useEffect ~ sortCampusesByStudentsThunk:", sortCampusesByStudentsThunk)
+  // })
+
   const list = (anchor) => (
     <Box
       role="presentation"
@@ -40,32 +63,93 @@ const CampusDrawer = () => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-      <ListItem><Typography variant="h5">Filter</Typography></ListItem>
-        {['Name', 'Number of Students Enrolled', 'Clear'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+       <List>
+      <ListItem sx={{borderBottom:'2px solid black'}}>
+        <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
+            FILTER OPTIONS
+        </Typography>
+      </ListItem>
+        {/* BY LAST NAME ASCENDING */}
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleSortByNameAsc}>
+            <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
+             <img width="70" height="70" src="https://img.icons8.com/water-color/100/alphabetical-sorting.png" alt="alphabetical-sorting"/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'By School Name Ascending'} sx={{color:'black'}}/>
             </ListItemButton>
           </ListItem>
-        ))}
+          {/* BY LAST NAME DESCENDING */}
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleSortByNameDesc}>
+            <ListItemIcon sx={{marginLeft:'15px', marginRight:'12px'}}>
+             <img width="70" height="70" src="https://img.icons8.com/color/100/alphabetical-sorting-2.png" alt="alphabetical-sorting-2"/>
+              </ListItemIcon>
+              <ListItemText primary={'By School Name Descending'} sx={{color:'black'}}/>
+            </ListItemButton>
+          </ListItem>
+          {/* BY STUDENTS ENROLLED*/}
+          <ListItem disablePadding>
+          <ListItemButton onClick={handleSortByEnrollments}>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/apple-calculator.png" alt="apple-calculator"/>
+              </ListItemIcon>
+              <ListItemText primary={'By Students Enrolled'} sx={{color:'black'}}/>
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+          {/* CLEAR FILTERS */}
+          <ListItemButton onClick={handleClearFilter}>
+            <ListItemIcon>
+            <img width="100" height="100" src="https://img.icons8.com/bubbles/100/cancel--v1.png" alt="cancel--v1"/>
+              </ListItemIcon>
+              <ListItemText primary={'Clear Filter'} sx={{color:'black'}}/>
+            </ListItemButton>
+          </ListItem>
+        {/* ))} */}
       </List>
+      
       <Divider />
+
       <List>
-      <ListItem><Typography variant="h5">Quick Links</Typography></ListItem>
-        {['All students', 'Add a student', 'Add a campus'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+      <ListItem sx={{borderBottom:'2px solid black'}}>
+        <Typography variant="h5" sx={{fontFamily: `'Ysabeau Infant', sans-serif`, fontWeight:'700'}}>
+            QUICK LINKS
+        </Typography>
+      </ListItem>
+        {/* SHOW ALL STUDENTS */}
+        <ListItem disablePadding>
+        <NavLink to="/students" style={{ textDecoration: 'none' }}>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/education.png" alt="education"/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={'Show All Students'} sx={{color:'black'}}/>
             </ListItemButton>
+            </NavLink>
           </ListItem>
-        ))}
+          {/* ADD A STUDENT */}
+          <ListItem disablePadding>
+          <NavLink to="/students/addStudent" style={{ textDecoration: 'none' }}>
+          <ListItemButton>
+            <ListItemIcon>
+             <img width="100" height="100" src="https://img.icons8.com/bubbles/100/student-male.png" alt="student-male"/>
+              </ListItemIcon>
+              <ListItemText primary={'Add a Student'} sx={{color:'black'}}/>
+            </ListItemButton>
+            </NavLink>
+          </ListItem>
+          <ListItem disablePadding>
+          {/* ADD A CAMPUS */}
+          <NavLink to='/campuses/addCampus' style={{textDecoration: 'none'}}>
+          <ListItemButton>
+            <ListItemIcon>
+            <img width="100" height="100" src="https://img.icons8.com/bubbles/100/library.png" alt="library"/>
+              </ListItemIcon>
+              <ListItemText primary={'Add a Campus'} sx={{color:'black'}}/>
+            </ListItemButton>
+            </NavLink>
+          </ListItem>
+        {/* ))} */}
       </List>
     </Box>
   );

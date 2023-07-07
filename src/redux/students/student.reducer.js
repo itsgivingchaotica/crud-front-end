@@ -6,12 +6,16 @@ import {
   SEARCH_STUDENTS_BY_CAMPUS, 
   ADD_BATCH_STUDENT, 
   CLEAR_BATCH_STUDENTS, 
-  DELETE_BATCH_STUDENT } from "./student.types";
+  DELETE_BATCH_STUDENT,
+  FETCH_STUDENT_SLICE,
+  SORT_STUDENT_LIST } from "./student.types";
 
 export const INITIAL_STUDENTS_STATE = {
   studentList: [],
   filteredStudentList: [],
-  batchStudentList:[]
+  batchStudentList:[],
+  studentSliceList:[],
+  studentSortedList:[]
 };
 
 const studentReducer = (state = INITIAL_STUDENTS_STATE, action) => {
@@ -42,6 +46,10 @@ const studentReducer = (state = INITIAL_STUDENTS_STATE, action) => {
         ...state,
         filteredStudentList: action.payload
       };
+    case FETCH_STUDENT_SLICE:
+      return { ...state, studentSliceList: action.payload };
+    case SORT_STUDENT_LIST:
+      return { ...state, studentSliceList: action.payload };
     default:
       return state;
   }

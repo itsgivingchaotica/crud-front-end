@@ -11,33 +11,38 @@ import Zoom from '@mui/material/Zoom'
 import { NavLink } from 'react-router-dom';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
-// import { searchStudentsByCampusThunk } from '../redux/students/student.actions';
-import { useDispatch, useSelector } from 'react-redux'
-import {deleteCampusThunk} from '../redux/campuses/campus.actions';
+import { useDispatch } from 'react-redux'
+import { deleteCampusThunk,fetchCampusSliceThunk } from '../redux/campuses/campus.actions';
 import "../styles/campusCard.css";
 
 const CampusCard = (props) => {
 
-  const { id, name, imageUrl, address, description } = props
+  const { id, name, imageUrl, address, description, pagination } = props
 
   const dispatch = useDispatch(); 
   const isSmallScreen = useMediaQuery('(max-width: 700px');
   const isMediumScreen = useMediaQuery('(max-width: 1000px)');
+  const [firstAddress, ...restAddress] = address.split(',');
+  const address1 = firstAddress.trim();
+  const address2 = restAddress.join(',').trim();
 
-  const handleClickDelete = () => {
-    dispatch(deleteCampusThunk(props.id));
+  const handleClickDelete = async () => {
+    await dispatch(deleteCampusThunk(id));
+    dispatch(fetchCampusSliceThunk(pagination.from,pagination.to))
   }
 
   return (
-    <Card sx={{paddingBottom: '30px', overflow:'scroll', paddingTop: '10px', height: '550px'}}>
+    <Card sx={{paddingBottom: '30px', overflow:'scroll', paddingTop: '10px', height:'550px'}}>
       {/* NAME: REQUIRED*/}
       <CardContent sx={{borderBottom:'4px solid black'}}>
+      <NavLink to={`/campuses/${id}`} style={{textDecoration:'none', color:'black'}} >
         <Typography 
           variant="h4" 
           sx={{fontFamily:`'Ysabeau Infant', sans-serif`, fontWeight:'700'}}
         > 
           {name}
         </Typography>
+        </NavLink>
       </CardContent>
           <Stack direction='row'>
           {/* IMAGE URL: DEFAULT REQUIRED */}
@@ -55,11 +60,18 @@ const CampusCard = (props) => {
           cursor: 'pointer', color:'var(--mint-2)'
         , textShadow: '1px 1px 1px var(--dark-green)'},}}>
                 <LocationOnIcon/>
+                <div style={{display:'flex',flexDirection:'column', alignItems: 'left', marginLeft:'10px'}}>
                 <Typography 
                   variant={isMediumScreen ? "subtitle1" : isSmallScreen ? 'h6' : 'subtitle1'}
-                  sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px', overflowWrap: 'break-word'}}>
-                    {address}
+                  sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px', textAlign: "left"}}>
+                   {address1}
                 </Typography>
+                <Typography 
+                  variant={isMediumScreen ? "subtitle1" : isSmallScreen ? 'h6' : 'subtitle1'}
+                  sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px', textAlign: "left"}}>
+                {address2}
+                </Typography>
+                </div>
               </CardContent>
               </Tooltip>
                 <Divider light/>
@@ -67,7 +79,7 @@ const CampusCard = (props) => {
               <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px'}}>
                 <Typography 
                   variant='subtitle1'
-                  sx={{marginLeft:'10px', fontFamily:`'Manrope',sans-serif`, marginTop:'20px', '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}> 
+                  sx={{marginLeft:'10px', fontFamily:`'Manrope',sans-serif`, marginTop:'20px',textAlign: "left",'&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}> 
                   {description}
                 </Typography>
               </CardContent>

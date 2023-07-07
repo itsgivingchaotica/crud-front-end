@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import { CampusCard } from '../components';
 import { useMediaQuery } from '@mui/material'
 import Grid from '@mui/material/Grid'
+import { fetchCampusSliceThunk } from '.././redux/campuses/campus.actions'
 
 const CampusListItems = (props) => {
-  const { allCampuses } = props;
+  const { allCampuses, pagination } = props;
     const isMediumScreen = useMediaQuery('(max-width: 900px)');
   const isSmallScreen = useMediaQuery('(max-width: 700px')
+  const dispatch = useDispatch();
+
+   useEffect(()=>{
+     dispatch(fetchCampusSliceThunk(pagination.from,pagination.to))
+  },[dispatch])
 
   return (
      <Grid container spacing={2} sx={{ padding:'5px' }}>
@@ -19,7 +26,7 @@ const CampusListItems = (props) => {
               name={campus.name}
               imageUrl={campus.imageUrl}
               address={campus.address}
-              description={campus.description}
+              description={campus.description} pagination={pagination}
             />
           </Grid>
         );
