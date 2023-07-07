@@ -11,8 +11,6 @@ import Typography from '@mui/material/Typography'
 import Zoom from '@mui/material/Zoom';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
-import EmailIcon from '@mui/icons-material/Email';
-import axios from 'axios';
 
 const BatchCampusCard = ({entry,handleDeleteCampus}) => {
 

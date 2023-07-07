@@ -126,8 +126,8 @@ const SingleStudent = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        // const res = await axios.get(`http://localhost:8080/api/students/${id}`);
-        const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/students/${id}`)
+        const res = await axios.get(`http://localhost:8080/api/students/${id}`);
+        // const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/students/${id}`);
         const studentResponse = res.data;
         setSingleStudent(studentResponse);
 

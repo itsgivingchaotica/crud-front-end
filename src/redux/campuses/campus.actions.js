@@ -21,8 +21,8 @@ export const fetchAllCampuses = (payload) => {
 export const fetchAllCampusesThunk = () =>{
     return async(dispatch) =>{
         try{
-            // const res = await axios.get("http://localhost:8080/api/campuses");
-            const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses");
+            const res = await axios.get("http://localhost:8080/api/campuses");
+            // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses");
             dispatch(fetchAllCampuses(res.data));
         }
         catch(error){
@@ -41,8 +41,8 @@ export const fetchCampusSlice = (payload) => {
 export const fetchCampusSliceThunk = ({from,to}) => {
     return async(dispatch) => {
         try{
-            // const res = await axios.get("http://localhost:8080/api/campuses");
-            const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses");
+            const res = await axios.get("http://localhost:8080/api/campuses");
+            // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses");
             const campuses = res.data.slice(from,to);
             dispatch(fetchCampusSlice(campuses));
         } catch (error){
@@ -63,8 +63,8 @@ export const sortCampus = (payload) => {
 export const sortCampusAscThunk = ({from,to}) => {
   return async(dispatch) => {
     try{
-      // const res = await axios.get("http://localhost:8080/api/campuses/sortedCampus/ascending");
-      const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses/sortedCampus/ascending");
+      const res = await axios.get("http://localhost:8080/api/campuses/sortedCampus/ascending");
+      // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses/sortedCampus/ascending");
       const campuses = res.data.slice(from,to);
       dispatch(sortCampus(campuses));
     } catch (error) {
@@ -78,8 +78,8 @@ export const sortCampusDescThunk = ({from,to}) => {
   return async(dispatch) => {
     try {
       console.log("Sorting Z-A");
-      // const res = await axios.get("http://localhost:8080/api/campuses/sortedCampus/descending");
-      const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses/sortedCampus/descending")
+      const res = await axios.get("http://localhost:8080/api/campuses/sortedCampus/descending");
+      // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses/sortedCampus/descending");
       const campuses = res.data.slice(from,to);
       dispatch(sortCampus(campuses));
       console.log("🚀 ~ file: campus.actions.js:82 ~ returnasync ~ res:", res.data)
@@ -91,14 +91,14 @@ export const sortCampusDescThunk = ({from,to}) => {
 
 export const sortCampusesByStudentsThunk = ({from,to}) => async (dispatch) => {
   try {
-    // const response = await axios.get('http://localhost:8080/api/campuses');
-    const response = await axios.get('https://crud-backend-dusky.vercel.app/api/campuses');
+    const response = await axios.get('http://localhost:8080/api/campuses');
+    // const response = await axios.get('https://crud-backend-dusky.vercel.app/api/campuses');
     const campuses = response.data;
 
     const studentsByCampus = await Promise.all(
       campuses.map(async (campus) => {
-        // const response = await axios.get(`http://localhost:8080/api/students/byCampus/${campus.id}`);
-        const response = await axios.get(`https://crud-backend-dusky.vercel.app/api/students/byCampus/${campus.id}`);
+        const response = await axios.get(`http://localhost:8080/api/students/byCampus/${campus.id}`);
+        // const response = await axios.get(`https://crud-backend-dusky.vercel.app/api/students/byCampus/${campus.id}`);
         const students = response.data;
         const enrollmentCount = students.length; // Get the number of students
         return {
@@ -134,18 +134,18 @@ export const addCampusThunk = (campus) => {
     return async(dispatch) => {
         try{
             console.log("running");
-            // const res = await axios.post("http://localhost:8080/api/campuses", {
-            //     name: campus.name,
-            //     address: campus.address,
-            //     description: campus.description,
-            //     imageURL: campus.imageUrl
-            // });
-            const res = await axios.post("https://crud-backend-dusky.vercel.app/api/campuses", {
+            const res = await axios.post("http://localhost:8080/api/campuses", {
                 name: campus.name,
                 address: campus.address,
                 description: campus.description,
                 imageURL: campus.imageUrl
             });
+            // const res = await axios.post("https://crud-backend-dusky.vercel.app/api/campuses", {
+            //     name: campus.name,
+            //     address: campus.address,
+            //     description: campus.description,
+            //     imageURL: campus.imageUrl
+            // });
             dispatch(addCampus(res.data));
         }
         catch(error){
@@ -164,21 +164,21 @@ export const editCampus = (payload) => ({
 export const editCampusThunk = (editedCampus, id) => {
   return async (dispatch) => {
     try {
-      // const res = await axios.put(
-      //   `http://localhost:8080/api/campuses/${id}`, {
-      //       name: editedCampus.name,
-      //       address: editedCampus.address,
-      //       description: editedCampus.description,
-      //   }
-      // );
       const res = await axios.put(
-        `https://crud-backend-dusky.vercel.app/api/campuses/${id}`, {
+        `http://localhost:8080/api/campuses/${id}`, {
             name: editedCampus.name,
-            imageUrl: editedCampus.imageUrl,
             address: editedCampus.address,
             description: editedCampus.description,
         }
       );
+      // const res = await axios.put(
+      //   `https://crud-backend-dusky.vercel.app/api/campuses/${id}`, {
+      //       name: editedCampus.name,
+      //       imageUrl: editedCampus.imageUrl,
+      //       address: editedCampus.address,
+      //       description: editedCampus.description,
+      //   }
+      // );
       dispatch(editCampus(res.data));
     } catch (error) {
       console.log(error.message);
@@ -198,8 +198,8 @@ export const deleteCampus = (campusId) => {
 export const deleteCampusThunk = (campusId) => {
     return async (dispatch) => {
         try {
-            // await axios.delete(`http://localhost:8080/api/campuses/${campusId}`);
-            await axios.delete(`https://crud-backend-dusky.vercel.app/api/campuses/${campusId}`);
+            await axios.delete(`http://localhost:8080/api/campuses/${campusId}`);
+            // await axios.delete(`https://crud-backend-dusky.vercel.app/api/campuses/${campusId}`);
             dispatch(deleteCampus(campusId));
         } catch (error) {
             console.log(error.message);
@@ -219,17 +219,17 @@ export const addBatchCampus = (payload) => {
 export const addBatchCampusThunk = (campus) => {
     return async(dispatch) => {
         try{
-            // const res = await axios.post("http://localhost:8080/api/campuses", {
-            //     name: campus.name,
-            //     address: campus.address,
-            //     description: campus.description,
-            // });
-            const res = await axios.post("https://crud-backend-dusky.vercel.app/api/campuses", {
+            const res = await axios.post("http://localhost:8080/api/campuses", {
                 name: campus.name,
-                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
             });
+            // const res = await axios.post("https://crud-backend-dusky.vercel.app/api/campuses", {
+            //     name: campus.name,
+            //     imageUrl: campus.imageUrl,
+            //     address: campus.address,
+            //     description: campus.description,
+            // });
             dispatch(addCampus(res.data));
             dispatch(addBatchCampus(res.data));
         }
@@ -259,8 +259,8 @@ export const deleteBatchCampusThunk =
   (campusId) => {
     return async (dispatch) => {
         try {
-            // await axios.delete(`http://localhost:8080/api/campuses/${campusId}`);
-            await axios.delete(`https://crud-backend-dusky.vercel.app/api/campuses/${campusId}`);
+            await axios.delete(`http://localhost:8080/api/campuses/${campusId}`);
+            // await axios.delete(`https://crud-backend-dusky.vercel.app/api/campuses/${campusId}`);
             dispatch(deleteBatchCampus(campusId));
             dispatch(deleteCampus(campusId));
         } catch (error) {
