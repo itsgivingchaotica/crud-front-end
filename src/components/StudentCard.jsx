@@ -26,7 +26,7 @@ const StudentCard = (props) => {
 
   const handleClickDelete = async () => {
   await dispatch(deleteStudentThunk(id));
-  dispatch(fetchStudentSliceThunk(pagination.from, pagination.to));
+  setTimeout(() => dispatch(fetchStudentSliceThunk({from:pagination.from, to:pagination.to}),200));
 };
 
   const visitSingleCampusPage = () => {
@@ -36,6 +36,7 @@ const StudentCard = (props) => {
   useEffect(()=> {
     const fetchStudentCampus = async()=>{
       try {
+        dispatch(fetchStudentSliceThunk({from:pagination.from, to:pagination.to}));
         // const res = await axios.get(`http://localhost:8080/api/campuses/${campusId}`);
         const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/campuses/${campusId}`);
         const campusResponse = res.data;

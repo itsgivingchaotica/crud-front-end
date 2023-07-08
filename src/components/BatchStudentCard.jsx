@@ -117,7 +117,7 @@ const BatchStudentCard = ({entry,handleDeleteStudent}) => {
                 <Typography variant='subtitle1' 
                 sx={{fontFamily: `'Manrope',sans-serif`, marginLeft:'10px', '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}>
                   {enrolledCampus.name}
-                </Typography>) : ( <Typography variant='h5' 
+                </Typography>) : ( <Typography variant='subtitle1' 
                   sx={{marginLeft:'10px'}}>Not Enrolled</Typography>)
                 }
               </CardContent>
