@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import "../styles/studentCard.css";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -11,8 +12,6 @@ import Typography from '@mui/material/Typography'
 import Zoom from '@mui/material/Zoom';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteButtonSnackbar from './DeleteButtonSnackbar';
-import EmailIcon from '@mui/icons-material/Email';
-import axios from 'axios';
 
 const BatchCampusCard = ({entry,handleDeleteCampus}) => {
 
@@ -28,6 +27,7 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
   };
 
   return (
+    <Box sx={{display:'flex',justifyContent:'center'}}>
     <Card sx={{overflow:'scroll'}}>
       {/* NAME: REQUIRED */}
       <CardContent sx={{borderBottom:'4px solid black'}}>
@@ -42,16 +42,16 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
           <Stack direction='row'>
           {/* IMAGE URL: DEFAULT REQUIRED */}
             {(<CardContent 
-              sx={{ display: 'flex', alignItems: 'center', height:'110%',width:'110%'}}>
+              sx={{ display: 'flex', alignItems: 'center', height:'110%',width:'110%', justifyContent:'center'}}>
                 <img src={imageUrl} alt={`${name} profile image`} styles={{justifyContent:'center' }}/>
               </CardContent>)}
             </Stack>
-            <Stack direction='row' justifyContent='space-between' width='100%'>
+            <Stack direction='row' justifyContent='center'>
             {/* CAMPUS DETAILS AND OPTIONS */}
             <Stack direction='column'>
               {/* ADDRESS: REQUIRED */}
               <Tooltip title="SHOW MAP" TransitionComponent={Zoom}  arrow>
-              <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', '&:hover': {
+              <CardContent onClick={() => window.open(`http://www.google.com/maps/place/${address}`, '_blank')} sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', '&:hover': {
           cursor: 'pointer', color:'var(--indigo)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
                 <LocationOnIcon/>
                 <div style={{flexDirection:'column'}}>
@@ -97,6 +97,7 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
             </Stack>
           </Stack>
     </Card>
+    </Box>
   )
 }
 

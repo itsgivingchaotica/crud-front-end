@@ -77,12 +77,10 @@ export const sortCampusAscThunk = ({from,to}) => {
 export const sortCampusDescThunk = ({from,to}) => {
   return async(dispatch) => {
     try {
-      console.log("Sorting Z-A");
       // const res = await axios.get("http://localhost:8080/api/campuses/sortedCampus/descending");
-      const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses/sortedCampus/descending")
+      const res = await axios.get("https://crud-backend-dusky.vercel.app/api/campuses/sortedCampus/descending");
       const campuses = res.data.slice(from,to);
       dispatch(sortCampus(campuses));
-      console.log("🚀 ~ file: campus.actions.js:82 ~ returnasync ~ res:", res.data)
     } catch (error) {
       console.log(error)
     }
@@ -133,15 +131,15 @@ export const addCampus = (payload) =>{
 export const addCampusThunk = (campus) => {
     return async(dispatch) => {
         try{
-            console.log("running");
             // const res = await axios.post("http://localhost:8080/api/campuses", {
             //     name: campus.name,
+            //     imageUrl: campus.imageUrl,
             //     address: campus.address,
             //     description: campus.description,
-            //     imageURL: campus.imageUrl
             // });
             const res = await axios.post("https://crud-backend-dusky.vercel.app/api/campuses", {
                 name: campus.name,
+                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
                 imageURL: campus.imageUrl
@@ -169,6 +167,7 @@ export const editCampusThunk = (editedCampus, id) => {
       //       name: editedCampus.name,
       //       address: editedCampus.address,
       //       description: editedCampus.description,
+      //       imageUrl: editedCampus.imageUrl
       //   }
       // );
       const res = await axios.put(
@@ -221,6 +220,7 @@ export const addBatchCampusThunk = (campus) => {
         try{
             // const res = await axios.post("http://localhost:8080/api/campuses", {
             //     name: campus.name,
+            //     imageUrl: campus.imageUrl,
             //     address: campus.address,
             //     description: campus.description,
             // });

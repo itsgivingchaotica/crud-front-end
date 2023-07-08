@@ -43,7 +43,7 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
      },
   });
     
-  const isEmpty = !editedStudent.firstName && !editedStudent.lastName && !editedStudent.email && !editedStudent.address && !editedStudent.gpa && !editedStudent.campusId;  
+  const isEmpty = !editedStudent.firstName && !editedStudent.lastName && !editedStudent.email && !editedStudent.imageUrl && !editedStudent.gpa && !editedStudent.campusId;  
     
   return (
     <ThemeProvider theme={theme}>
@@ -61,20 +61,27 @@ const EditStudentForm = ({handleChangeFirstName, handleChangeLastName, handleCha
       </div>
       <br></br>
       <div className="input-container">
-        <TextField id="form-input" type="email" label="Email" placeholder="Email" 
+        <TextField id="form-input-long" type="email" label="Email" placeholder="Email" 
         helperText={isEmpty && failedSubmit? "At least one field required": null}
         variant="outlined" name="email" value={editedStudent.email} error={isEmpty && failedSubmit} 
         onChange={handleChangeEmail}/>
       </div>
       <br></br>
       <div className="input-container">
-        <TextField id="form-input" inputProps={{ step: ".01" }} 
+        <TextField id="form-input-long" type="text" label="Image URL" placeholder="Image URL" 
+        helperText={isEmpty && failedSubmit? "At least one field required": null}
+        variant="outlined" name="imageURL" value={editedStudent.imageUrl} error={isEmpty && failedSubmit} 
+        onChange={handleChangeImageUrl}/>
+      </div>
+      <br></br>
+      <div className="input-container">
+        <TextField id="form-input-gpa" inputProps={{ step: ".01" }} 
         error={(failedSubmit && isEmpty) || editedStudent.gpa<0 || editedStudent.gpa>4 ? true : false}
         type="number" label="GPA" placeholder="GPA" variant="outlined" name="gpa" value={editedStudent.gpa} step="5" 
         onChange={handleChangeGpa} helperText={isEmpty && failedSubmit? "At least one field required":"Must be between 0 and 4"}/>               
       </div>
       <div className="input-container">
-        <TextField id="form-input" select label="Campus" defaultValue="choose" onChange={handleChangeCampus} 
+        <TextField id="form-input-select" select label="Campus" defaultValue="choose" value={editedStudent.campusId} onChange={handleChangeCampus} 
         error={failedSubmit &&isEmpty} helperText={isEmpty && failedSubmit? "At least one field required" : null}>
           <MenuItem value="choose" disabled>Select Campus</MenuItem>
             {allCampuses.map((campus) => {

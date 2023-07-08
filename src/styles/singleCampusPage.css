@@ -47,6 +47,22 @@
     font-size: 22px;
 }
 
+.sc-address-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:fit-content;
+    margin: 0 auto;
+    color: var(--burnt-umber);
+}
+
+.sc-address-container:hover{
+    cursor: pointer;
+    color: var(--dartmouth-green);
+    transition: 200ms ease;
+
+}
+
 .sc-campus-description{
     text-shadow: '1px 1px 1px var(--dark-green)';
     font-family:'Manrope','sans-serif';
@@ -77,25 +93,8 @@
     margin-top: 120px;
 }
 
-#sc-btn-back{
-    background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
-    color: var(--bone);
-    border: rgba(196, 97, 97, 0.296) 3px solid;
-    box-shadow:2px 2px 2px black;
-    text-shadow: 1px 2px 2px black;
-    font-size: 15px;
-    font-weight: 700;
-    position: relative;
-    transition: 500ms ease-in-out;
-    position: relative;
-    margin-top: 120px;
-    width: 40%;
-}
-
-#sc-btn-back:hover{
-    background-image: linear-gradient(rgb(242, 136, 136), var(--burnt-umber), rgb(242, 136, 136));
-    transition: 400ms ease-in-out;
-
+.form-header{
+    font-size: 2.3rem;
 }
 
 .sc-form-container{
@@ -126,3 +125,10 @@
         margin-top: 200px;
     }
   }  
+
+  @media (max-width: 400px) {
+      .sc-campus-image {
+          width: 240px;
+          height: 180px;
+      }
+  }

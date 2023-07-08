@@ -10,6 +10,7 @@ import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions'
 import { CampusListItems } from '../../components'
 import CampusDrawer from '../../components/CampusDrawer'
 import CampusPagination from '../../components/CampusPagination'
+import '../../styles/banner.css'
 
 const Campuses = () => {
   const dispatch = useDispatch();
@@ -47,9 +48,10 @@ const Campuses = () => {
         </div>
       )}
     >
-      <div ref={topRef} style={{ marginTop: '120px', minHeight: '320vh', width: '100%', backgroundColor: 'var(--off-white)', position:'relative' }}>
+      <div ref={topRef} style={{ marginTop: '120px', minHeight: '340vh', width: '100%', backgroundColor: 'var(--off-white)', position:'relative' }}>
         <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ justifyContent: 'center', paddingTop: '10px', paddingLeft: '15px', height: '100vh', width: '100%', textShadow: '1px 1px 1px black', color: 'var(--garnet)'}}>
-          <Typography variant={isMobileScreen ? 'h3' : 'h1'} sx={{ fontFamily: `'Tangerine', sans-serif`, fontWeight: '700', marginTop: '130px', marginLeft: '20px', border:'3px solid white', width: '100%', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}>
+        <div className='banner-logo' style={{ width:'100vw',height:'100px',marginBottom:'20px', marginLeft:'20px'}}></div>
+          <Typography variant={isMobileScreen ? 'h3' : 'h1'} sx={{ fontFamily: `'Tangerine', sans-serif`, fontWeight: '700', marginLeft: '20px', border:'3px solid white', width: '100%', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}>
             Campus Profiles
           </Typography>
           <Grid item xs={12} md={8} sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', textAlign: 'center', marginTop: '-20px' }}>
@@ -65,10 +67,10 @@ const Campuses = () => {
           </Grid>
 
           <Grid item xs={12} md={12} sx={{marginBottom:'20px'}}>
-            {campusSlice.length > 0 ? <CampusListItems allCampuses={campusSlice} pagination={pagination}/> : <Typography variant='h2' sx={{fontFamily:`'Ysabeau Infant', sans-serif`}}>No students in our list!Add some!</Typography>}
+            {campusSlice.length > 0 ? <CampusListItems allCampuses={campusSlice} pagination={pagination}/> : <Typography variant='h2' sx={{fontFamily:`'Ysabeau Infant', sans-serif`}}>No campuses in our list! Add some!</Typography>}
           </Grid>
         </Grid>
-        <div style={{backgroundColor:'var(--bone)', position:'absolute', bottom:0, left:0, width: '100%'}}>
+        <div style={{backgroundColor:'var(--bone)', position:'fixed', bottom:0, left:0, width: '100%'}}>
           <CampusPagination pagination={pagination} setPagination={setPagination} pageSize={isMobileScreen ? 3 : 9}/>
         </div>
       </div>

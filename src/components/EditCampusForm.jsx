@@ -2,10 +2,11 @@ import React from 'react'
 import { TextField, Button, createTheme, ThemeProvider} from '@mui/material';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import "../styles/addCampusForm.css"; //reusing styles from add campus form
-import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
+import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 
 const EditCampusForm = ({handleChangeName, handleChangeAddress, handleChangeImageUrl, 
-  handleChangeDescription, handleSubmit, editedCampus, failedSubmit, editFormRef}) => {
+  handleChangeDescription, handleSubmit, editedCampus, failedSubmit, editFormRef,
+  navigateToAllCampuses}) => {
 
   const theme = createTheme({
     components: {
@@ -51,33 +52,42 @@ const EditCampusForm = ({handleChangeName, handleChangeAddress, handleChangeImag
     },
   });
 
-  const isEmpty = !editedCampus.name && !editedCampus.address && !editedCampus.description;
+  const isEmpty = !editedCampus.name && !editedCampus.address && !editedCampus.description && !editedCampus.imageUrl;
 
   return (
     <ThemeProvider theme={theme}>
     <>
     <form onSubmit={handleSubmit}>
-      <div className="input-container-add-campus">
-        <TextField id="form-input-add-campus" type="text" label="Name" placeholder="Campus Name" inputRef={editFormRef}
+      <div className="input-container-edit-campus">
+        <TextField className="form-input-edit-campus" type="text" label="Name" placeholder="Campus Name" inputRef={editFormRef}
           variant="outlined" name="name" value={editedCampus.name} onChange={handleChangeName}
           error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
         />
       </div>
-      <div className="input-container-add-campus">
-        <TextField id="form-input-add-campus" type="text" label="Address" placeholder="Address" 
+      <div className="input-container-edit-campus">
+        <TextField className="form-input-edit-campus" type="text" label="Address" placeholder="Address" 
           variant="outlined" name="address" value={editedCampus.address} onChange={handleChangeAddress}
           error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
         />
       </div> 
       <br></br>
-      <div className="input-multiline-container-add-campus">
-        <TextField id="form-input-multiline-add-campus" type="text" multiline rows={4} label="Description" placeholder="Description" 
+      <div className="input-container-edit-campus">
+        <TextField className="form-input-edit-campus-long" type="text" label="Image URL" placeholder="Address" 
+          variant="outlined" name="imageUrl" value={editedCampus.imageUrl} onChange={handleChangeImageUrl}
+          error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
+        />
+      </div> 
+      <br></br>
+      <div className="input-multiline-container-edit-campus">
+        <TextField className="form-input-multiline-edit-campus" type="text" multiline rows={4} label="Description" placeholder="Description" 
           variant="outlined" name="description" value={editedCampus.description} onChange={handleChangeDescription}
           error={failedSubmit && isEmpty} helperText={failedSubmit && isEmpty? "At least one field required" : null}
           />
       </div>
-      <div className="input-multiline-container-add-campus">
-        <Button id="btn-form-add-campus" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>    
+      <div className="edit-form-buttons-container">
+        <Button className="btn-form-edit-campus" type="submit" variant="contained" endIcon={<CheckRoundedIcon/>}>Done</Button>
+        <Button className="btn-back-form-edit-campus" onClick={navigateToAllCampuses} variant="contained" 
+      endIcon={<KeyboardReturnRoundedIcon/>}>Back</Button>
       </div>
     </form>
     </>

@@ -11,9 +11,9 @@ const CampusListItems = (props) => {
   const isSmallScreen = useMediaQuery('(max-width: 700px')
   const dispatch = useDispatch();
 
-   useEffect(()=>{
-     dispatch(fetchCampusSliceThunk(pagination.from,pagination.to))
-  },[dispatch])
+   useEffect(() => {
+  dispatch(fetchCampusSliceThunk(pagination));
+}, [dispatch, pagination]);
 
   return (
      <Grid container spacing={2} sx={{ padding:'5px' }}>

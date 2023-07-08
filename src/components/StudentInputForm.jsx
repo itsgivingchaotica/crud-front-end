@@ -45,6 +45,9 @@ const StudentInputForm= () => {
       navigate("/students");
     }
 
+     const trimmedImageUrl = imageUrl.trim();
+  const newImageUrl = trimmedImageUrl ? trimmedImageUrl : "https://i0.wp.com/cfe.umich.edu/wp-content/uploads/2015/09/blank-profile.jpg?fit=4016%2C2677&ssl=1";
+
      const handleChangeFirstName = (event) => {
         setFirstName(event.target.value);
     }
@@ -73,7 +76,7 @@ const StudentInputForm= () => {
         const newStudent = {
             "firstName": firstName,
             "lastName": lastName,
-            "imageUrl": imageUrl,
+            "imageUrl": newImageUrl,
             "email": email,
             "gpa": gpa,
             "campusId": campusId
@@ -137,6 +140,7 @@ const StudentInputForm= () => {
                 helperText="First Name *" name="firstName"
                 variant="outlined"
                 value={firstName}
+                multiline
                 sx={{width:'50%'}}
                 onChange={handleChangeFirstName}
                 error={(isFirstNameTouched && !firstName) || (failedSubmit && !firstName)}
@@ -147,6 +151,7 @@ const StudentInputForm= () => {
                 id="outlined-basic" type="text"
                 helperText="Last Name *" name="lastName"
                 variant="outlined"
+                multiline
                 value={lastName}
                 sx={{width:'50%', marginLeft:'10px'}}
                 onChange={handleChangeLastName}
@@ -157,7 +162,9 @@ const StudentInputForm= () => {
             {/* IMAGE URL */}
             <TextField 
                 id="outlined-basic" type="text"
-                helperText="Image Url" name="imageURL"
+                helperText="Image Url" 
+                multiline
+                name="imageURL"
                 variant="outlined" 
                 value={imageUrl} 
                 onChange={handleChangeImageUrl}
@@ -167,6 +174,7 @@ const StudentInputForm= () => {
                 id="outlined-basic" type="email"
                 helperText="Email *" name="email"
                 variant="outlined" 
+                multiline
                 value={email} required
                 onChange={handleChangeEmail}
                 error={(isEmailTouched && !email) || (failedSubmit && !email)}
@@ -174,8 +182,8 @@ const StudentInputForm= () => {
                 />
                 <Stack direction='row' justifyContent='space-evenly' >
             {/* CAMPUS ID */}
-            <TextField select helperText="Campus" defaultValue="choose" sx={{width:'80%', textAlign: "left"}} onChange={handleChangeCampusId} name='campusId'>
-                <MenuItem value="choose" disabled>Select Campus</MenuItem>
+            <TextField select helperText="Campus" defaultValue="choose" value={campusId} sx={{width:'80%', textAlign: "left"}} onChange={handleChangeCampusId} name='campusId'>
+                <MenuItem value={"choose"} disabled>Select Campus</MenuItem>
                     {allCampuses.map((campus) => {
                         return <MenuItem key={campus.id} value={campus.id} id={campus.id}>
                                 {campus.name + " - " + campus.id}

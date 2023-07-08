@@ -49,11 +49,6 @@ const SearchBar = () => {
   const options = [...searchCampusList, ...searchStudentList];
 
   const handleSearch = (result) => {
-    // const isStudent = studentList.filter((student) => (student.id === result.id) && ((student.firstName + ' ' + student.lastName ) === result.label));
-    // console.log(isStudent);
-    
-    // const isCampus = campusList.filter((campus) => (campus.id === result.id) && (campus.name === result.label));
-    // console.log(isCampus);
 
     if (result.type==='student') {
       // Handle student click
@@ -81,22 +76,8 @@ const SearchBar = () => {
   const handleSearchTerm = (e) => {
     const query = e.target.value;
     setSearchTerm(query);
-    console.log("🚀 ~ file: SearchBar.jsx:97 ~ handleSearchTerm ~ query:", query)
     setAutocompleteOpen(query.length > 0);
   };
-
-//   const handleSearchIconClick = () => {
-//   if (searchTerm) {
-//     const result = options.filter((option) => {
-//       return option.label.toLowerCase() === searchTerm.toLowerCase();
-//     });
-//     console.log("🚀 ~ file: SearchBar.jsx:104 ~ handleSearchIconClick ~ result:", result);
-//     if (result) {
-//         console.log("SEARCHING!")
-//       handleSearch(result);
-//     }
-//   }
-// };
 
   useEffect(() => {
     dispatch(fetchAllCampusesThunk());
