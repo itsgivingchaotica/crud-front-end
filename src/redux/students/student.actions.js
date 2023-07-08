@@ -49,6 +49,7 @@ export const fetchStudentSliceThunk = ({from,to}) => {
             // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students");
             const students = res.data.slice(from,to);
             dispatch(fetchStudentSlice(students));
+            console.log("SLICED STUDENTS : " + students + " from " + from + " to " + to)
         } catch (error){
             console.log(error)
         }

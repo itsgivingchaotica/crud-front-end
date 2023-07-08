@@ -33,7 +33,7 @@ const Students = () => {
   
   useEffect(() => {
     fetchAllStudents();
-    dispatch(fetchStudentSliceThunk(pagination.from,pagination.to))
+    // dispatch(fetchStudentSliceThunk(pagination.from,pagination.to))
     //when change in pagination and dispatching of thunk occurs, scroll to top of page
     const scrollToTop = () => {
       topRef.current.scrollIntoView({ top: 0, behavior: 'smooth' });
