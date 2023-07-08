@@ -41,9 +41,9 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
         </Typography>
       </CardContent>
           {/* IMAGE URL: DEFAULT REQUIRED */}
-           <Box sx={{ height: '200px', width: '300px'}}>
-             <CardMedia component="img" src={imageUrl} alt={`${name} profile image`} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', alignItems:'center'  }} />
-            </Box> 
+           <Box sx={{ height: '200px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' }}>
+  <CardMedia component="img" src={imageUrl} alt={`${name} profile image`} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }} />
+</Box>
             <Stack direction='row' justifyContent='center'>
             {/* CAMPUS DETAILS AND OPTIONS */}
             <Stack direction='column'>

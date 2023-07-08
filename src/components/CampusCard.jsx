@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -30,8 +30,16 @@ const CampusCard = (props) => {
 
   const handleClickDelete = async () => {
     await dispatch(deleteCampusThunk(id));
-    dispatch(fetchCampusSliceThunk(pagination.from,pagination.to))
+    dispatch(fetchCampusSliceThunk({from:pagination.from,to:pagination.to}))
   }
+
+  useEffect(() => {
+    try{
+      dispatch(fetchCampusSliceThunk({from:pagination.from, to:pagination.to}));
+    } catch (error){
+      console.log(error.message)
+    }
+  },[])
 
   return (
     <Card sx={{paddingBottom: '30px', overflow:'scroll', height:'550px'}}>

@@ -68,6 +68,7 @@ const StudentInputForm= () => {
     }
 
     const handleChangeCampusId = (event) => {
+        event.preventDefault();
         setCampusId(event.target.value);
     }
 
@@ -90,7 +91,7 @@ const StudentInputForm= () => {
                 dispatch(addBatchStudentThunk(newStudent))
                 setFirstName("");
                 setLastName("");
-                setCampusId(null);
+                setCampusId("");
                 setGpa("");
                 setImageUrl("");
                 setEmail("");
