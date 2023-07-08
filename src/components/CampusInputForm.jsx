@@ -109,6 +109,7 @@ const CampusInputForm= () => {
                 id="outlined-basic" type="text"
                 variant="outlined" name="name"
                 value={name}
+                multiline
                 onChange={handleChangeSchoolName}
                 error={(isNameTouched && !name) || (failedSubmit && !name)}
                 helperText="Campus Name *"
@@ -131,6 +132,7 @@ const CampusInputForm= () => {
                 variant="outlined"
                 helperText="Image URL"
                 value={imageUrl}
+                multiline
                 onChange={handleChangeImageUrl}
                 />                
             {/* DESCRIPTION */}

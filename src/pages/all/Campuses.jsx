@@ -10,6 +10,7 @@ import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions'
 import { CampusListItems } from '../../components'
 import CampusDrawer from '../../components/CampusDrawer'
 import CampusPagination from '../../components/CampusPagination'
+import '../../styles/banner.css'
 
 const Campuses = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,8 @@ const Campuses = () => {
     >
       <div ref={topRef} style={{ marginTop: '120px', minHeight: '340vh', width: '100%', backgroundColor: 'var(--off-white)', position:'relative' }}>
         <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ justifyContent: 'center', paddingTop: '10px', paddingLeft: '15px', height: '100vh', width: '100%', textShadow: '1px 1px 1px black', color: 'var(--garnet)'}}>
-          <Typography variant={isMobileScreen ? 'h3' : 'h1'} sx={{ fontFamily: `'Tangerine', sans-serif`, fontWeight: '700', marginTop: '130px', marginLeft: '20px', border:'3px solid white', width: '100%', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}>
+        <div className='banner-logo' style={{ width:'100vw',height:'100px',marginBottom:'20px', marginLeft:'20px'}}></div>
+          <Typography variant={isMobileScreen ? 'h3' : 'h1'} sx={{ fontFamily: `'Tangerine', sans-serif`, fontWeight: '700', marginLeft: '20px', border:'3px solid white', width: '100%', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}>
             Campus Profiles
           </Typography>
           <Grid item xs={12} md={8} sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', textAlign: 'center', marginTop: '-20px' }}>
