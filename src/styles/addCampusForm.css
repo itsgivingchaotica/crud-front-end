@@ -1,18 +1,3 @@
-.add-campus-page::before {    
-    content: "";
-    background-image: url(../hallway-with-bag-floor.jpg);
-    height:100vh;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 0.3;
-    z-index: -5;
-}
-
 #header-add-campus{
     position:relative;
     top: 20px;
@@ -107,7 +92,7 @@
 }
 
 #form-input-add-campus{
-    width: 12em;
+    width: 11em;
 }
 
 #form-input-multiline-add-campus{
@@ -129,3 +114,126 @@
         right: 0;
     }
 }
+
+/****EDIT CAMPUS ******/
+
+.input-container-edit-campus{
+    display:inline-block;
+    margin: 7px;
+}
+
+.form-input-edit-campus{
+    display: inline-block;
+    width: 250px;
+}
+
+.form-input-edit-campus-long{
+    display: inline-block;
+    width: 515px;
+}
+
+.form-input-multiline-edit-campus{
+    display: inline-block;
+    width: 515px;
+}
+
+.input-multiline-container-edit-campus{
+    margin: 4px 5px;
+}
+
+.btn-form-edit-campus:hover{
+    background-image: linear-gradient(rgb(242, 136, 136), var(--burnt-umber), rgb(242, 136, 136));
+    transition: 400ms ease-in-out;
+}
+
+.btn-form-edit-campus {
+    background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
+    color: var(--bone);
+    border: rgba(196, 97, 97, 0.296) 3px solid;
+    box-shadow: 4px 4px 4px black;
+    text-shadow: 1px 2px 2px black;
+    font-size: 15px;
+    font-family: 'Helvetica Neue';
+    font-weight: 700;
+    width: 380px;
+    height: 40px;
+    position: relative;
+    top: 20px;
+}
+
+.btn-back-form-edit-campus{
+    background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
+    color: var(--bone);
+    border: rgba(196, 97, 97, 0.296) 3px solid;
+    box-shadow:2px 2px 2px black;
+    text-shadow: 1px 2px 2px black;
+    font-size: 15px;
+    font-weight: 700;
+    position: relative;
+    transition: 500ms ease-in-out;
+    position: relative;
+    top: 20px;
+    height: 40px;
+    width: 120px;
+}    
+
+.btn-back-form-edit-campus:hover{
+    background-image: linear-gradient(rgb(242, 136, 136), var(--burnt-umber), rgb(242, 136, 136));
+    transition: 400ms ease-in-out;
+
+}
+
+.edit-form-buttons-container{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 528px) {
+
+    .input-container-edit-campus{
+        display: block;
+        margin-bottom: 0;
+    }
+
+    .form-input-edit-campus {
+      width: 90%;
+    }
+
+    .form-input-edit-campus-long {
+        width: 90%;
+        position: relative;
+        bottom: 21px;
+      }
+
+    .form-input-multiline-edit-campus{
+        width: 90%;
+        position: relative;
+        bottom: 10px;
+    }
+
+    .input-multiline-container-edit-campus{
+        margin: 0px 5px;
+        position: relative;
+        bottom: 15px;
+    }
+
+    .edit-form-buttons-container{
+        position: relative;
+        left: 23px;
+        bottom: 10px;
+        width: 90%;
+    }
+
+    .btn-back-form-edit-campus{
+        width: 30%;
+    }
+
+    .btn-form-edit-campus{
+        width: 65%;
+    }
+
+
+
+  }
+

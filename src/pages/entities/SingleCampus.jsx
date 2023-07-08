@@ -13,6 +13,7 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import "../../styles/singleCampusPage.css";
 import Carousel from '../../components/Carousel';
 import '../../styles/carousel.css'
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
   const SingleCampus = () => {
@@ -48,7 +49,7 @@ import '../../styles/carousel.css'
     event.preventDefault();
       try {
 
-        if (editedCampus.name || editedCampus.address || editedCampus.description){
+        if (editedCampus.name || editedCampus.address || editedCampus.description || editedCampus.imageUrl){
           dispatch(editCampusThunk(editedCampus, singleCampus.id));
           setEditedCampus({
             name: '',
@@ -128,7 +129,12 @@ import '../../styles/carousel.css'
     <div style={{marginTop: "130px"}} className="single-campus-page"> 
       <div className="sc-campus-profile-container" style={{height: "auto"}}>
         <h1 className="sc-campus-name">{singleCampus.name}</h1>
-        <h3 className="sc-campus-address">{singleCampus.address}</h3>
+        <Tooltip title="SEARCH MAP" placement='left' arrow TransitionComponent={Zoom}>
+          <div className="sc-address-container" onClick={() => window.open(`http://www.google.com/maps/place/${singleCampus.address}`, '_blank')} >
+            <LocationOnIcon/>       
+            <h3 className="sc-campus-address">{singleCampus.address}</h3>
+          </div>
+        </Tooltip>
         <img className="sc-campus-image" src={singleCampus.imageUrl}></img>
         <h3 className="sc-campus-description">{singleCampus.description}</h3>
         <Tooltip title="EDIT" placement='left' arrow TransitionComponent={Zoom}>
@@ -162,13 +168,12 @@ import '../../styles/carousel.css'
             handleChangeImageUrl={handleChangeImageUrl} 
             handleChangeDescription={handleChangeDescription} 
             editedCampus = {editedCampus}
-            failedSubmit = {failedSubmit}  
+            failedSubmit = {failedSubmit}
+            navigateToAllCampuses = {navigateToAllCampuses}  
             />
             {/* {formErrorMessage? <h3>{formErrorMessage}</h3> : null} */}        
         </div>
       </div>
-      <Button id="sc-btn-back" onClick={navigateToAllCampuses} variant="contained" 
-      endIcon={<KeyboardReturnRoundedIcon/>}>Back to List</Button>
     </div>
     </ErrorBoundary>
   )

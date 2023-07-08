@@ -27,7 +27,7 @@
     padding: 1rem;
     margin: 20px 25px;
     background-image: radial-gradient(rgba(64, 145, 109, 0.502), rgba(127, 48, 42, 0.401));
-    width: 330px;
+    width: 350px;
 }
 
 .edit-student-form-container{
@@ -73,21 +73,71 @@
 
 .ss-student-image{
     width: 180px;
-    height: 120px;
+    height: 140px;
     border-radius: 2rem;
+    margin: -10px;
 }
+
+.ss-email-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width:fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    position: relative;
+    top: 15px;
+
+}
+
+.ss-email-container:hover{
+    transition: 300ms ease;
+    color: var(--dartmouth-green);
+    cursor: pointer;
+}
+
+.ss-gpa-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width:fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    position: relative;
+
+}
+
+.ss-gpa-container:hover{
+    transition: 300ms ease;
+    color: var(--dartmouth-green);
+    cursor: pointer;
+}
+
+.ss-campus-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    width:fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    position: relative;
+    bottom: 15px;
+}
+
+.ss-campus-container:hover{
+    transition: 300ms ease;
+    color: var(--dartmouth-green);
+    cursor: pointer;
+}
+
 
 .card-enrolled-campus{
     font-family:'Manrope','sans-serif';
     font-weight: 900;
     text-shadow: 2px 2px 2px grey;
-    transition: 400ms ease;
-}
-
-.card-enrolled-campus:hover{
-    transition: 400ms ease;
-    color: var(--dartmouth-green);
-    cursor: pointer;
 }
 
 
@@ -124,11 +174,17 @@
     transition: 300ms ease-in-out;
 }
 
+.ss-card-email:hover{
+    color: var(--dartmouth-green);
+    transition: 400ms ease;
+    cursor: pointer;
+}    
+
 @keyframes slideleft {
     0% {
         visibility: visible;
         /* right: -600px; */
-        right: -50%;
+        right: -40%;
     }
 
     100% {
@@ -147,7 +203,7 @@
     }
 }
 
-@media only screen and (max-width: 971px) {
+@media only screen and (max-width: 985px) {
     .edit-student-form-container{
         visibility: visible;
     }
