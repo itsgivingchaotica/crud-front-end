@@ -8,9 +8,10 @@ import { EditStudentForm } from '../../components';
 import { editStudentThunk, deleteStudentThunk } from '../../redux/students/student.actions';
 import axios from 'axios';
 import { fetchAllCampusesThunk } from '../../redux/campuses/campus.actions';
-import { IconButton, Tooltip, Zoom} from '@mui/material';
+import { IconButton, Tooltip, Zoom, Divider} from '@mui/material';
 import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import EmailIcon from '@mui/icons-material/Email';
 
 const SingleStudent = () => {
   const allStudents = useSelector((state) => state.students.studentList);
@@ -54,7 +55,9 @@ const SingleStudent = () => {
     event.preventDefault();
     try {
 
-      if (editedStudent.firstName || editedStudent.lastName || editedStudent.email || editedStudent.gpa || editedStudent.campusId){
+      if (editedStudent.firstName || editedStudent.lastName || editedStudent.email || editedStudent.gpa || 
+        editedStudent.campusId || editedStudent.imageUrl){
+          
         if (editedStudent.gpa < 0 || editedStudent.gpa >4){
           setFormErrorMessage("Gpa must be between 0 and 4")
         }
@@ -131,8 +134,8 @@ const SingleStudent = () => {
         const studentResponse = res.data;
         setSingleStudent(studentResponse);
 
-        // const resCampus = await axios.get(`http://localhost:8080/api/campuses/${studentResponse.campusId}`);
-        const resCampus = await axios.get(`https://crud-backend-dusky.vercel.app/api/campuses/${studentResponse.campusId}`);
+        const resCampus = await axios.get(`http://localhost:8080/api/campuses/${studentResponse.campusId}`);
+        // const resCampus = await axios.get(`https://crud-backend-dusky.vercel.app/api/campuses/${studentResponse.campusId}`);
         const campusResponse = resCampus.data;
         setEnrolledCampus(campusResponse);
       } catch (error) {
@@ -155,9 +158,29 @@ const SingleStudent = () => {
         <div className="student-profile-container">
           <h1 className="header">{singleStudent.firstName + " " + singleStudent.lastName}</h1>
           <img className="ss-student-image" src={singleStudent.imageUrl} alt="single student placeholder"></img>
-          <h3 className="ss-body-card">Email: {singleStudent.email}</h3>
-          <h3 className="ss-body-card">GPA: {parseFloat(singleStudent.gpa).toFixed(2)}</h3>
-          {enrolledCampus.name?<h3 className="card-enrolled-campus" onClick={visitSingleCampusPage}>Campus: {enrolledCampus.name}</h3>:<h3 className="card-enrolled-campus">Campus: Not enrolled to campus</h3>}
+
+          <Tooltip title="SEND EMAIL" placement='left' arrow TransitionComponent={Zoom}>
+          <div className="ss-email-container">
+            <EmailIcon />
+            <h3 onClick={() => window.location.href = `mailto:${singleStudent.email}`} 
+            className="ss-body-card ss-card-email">{singleStudent.email}
+            </h3>
+          </div>         
+          </Tooltip> 
+
+          <div className="ss-gpa-container">
+            <img width="30" height="30" src="https://img.icons8.com/sf-regular-filled/48/report-card.png" alt="report-card"/>
+            <h3 className="ss-body-card">{parseFloat(singleStudent.gpa).toFixed(2)} GPA</h3>
+          </div>
+
+          <Tooltip title="VISIT CAMPUS PROFILE" placement='left' arrow TransitionComponent={Zoom}>
+          <div className="ss-campus-container" style={{display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/35/university-campus.png" alt="university-campus"/>
+            {enrolledCampus.name?<h3 className="card-enrolled-campus" onClick={visitSingleCampusPage}>{enrolledCampus.name}</h3>:<h3 className="card-enrolled-campus">Campus: Not enrolled to campus</h3>}
+          </div>
+          </Tooltip>
+
+          <Divider light></Divider>
           <Tooltip title="EDIT" placement='left' arrow TransitionComponent={Zoom}>
             <IconButton id="profile-btn" aria-label="edit"
             onClick={handleEditStudent}>

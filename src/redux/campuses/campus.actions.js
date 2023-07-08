@@ -169,6 +169,7 @@ export const editCampusThunk = (editedCampus, id) => {
             name: editedCampus.name,
             address: editedCampus.address,
             description: editedCampus.description,
+            imageUrl: editedCampus.imageUrl
         }
       );
       // const res = await axios.put(

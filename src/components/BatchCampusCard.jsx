@@ -51,7 +51,7 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
             <Stack direction='column'>
               {/* ADDRESS: REQUIRED */}
               <Tooltip title="SHOW MAP" TransitionComponent={Zoom}  arrow>
-              <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', '&:hover': {
+              <CardContent onClick={() => window.open(`http://www.google.com/maps/place/${address}`, '_blank')} sx={{ display: 'flex', alignItems: 'center', marginRight:'10px', '&:hover': {
           cursor: 'pointer', color:'var(--indigo)', textShadow: '1px 1px 1px var(--dark-green)'}}}>
                 <LocationOnIcon/>
                 <div style={{flexDirection:'column'}}>

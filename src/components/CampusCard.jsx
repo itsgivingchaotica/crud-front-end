@@ -56,7 +56,7 @@ const CampusCard = (props) => {
             <Stack direction='column'>
             {/* ADDRESS: REQUIRED */}
             <Tooltip title="SHOW MAP" TransitionComponent={Zoom}  arrow>
-              <CardContent sx={{ display:'flex', alignItems: 'center', width:'100%', '&:hover': {
+              <CardContent onClick={() => window.open(`http://www.google.com/maps/place/${address}`, '_blank')} sx={{ display:'flex', alignItems: 'center', width:'100%', '&:hover': {
           cursor: 'pointer', color:'var(--mint-2)'
         , textShadow: '1px 1px 1px var(--dark-green)'},}}>
                 <LocationOnIcon/>
