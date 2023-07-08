@@ -167,7 +167,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
       </div>
       <div>
         <div className="sc-enrolled-students-container">
-          <h2 className="sc-enrolled-students-header" style={{marginTop:isSmallMobileScreen?'550px' : isMobileScreen?'350px' : '100px'}}>Students enrolled at {singleCampus.name}:</h2>
+          <h2 className="sc-enrolled-students-header" style={{marginTop:isSmallMobileScreen?'400px' : isMobileScreen?'250px' : '100px'}}>Students enrolled at {singleCampus.name}:</h2>
           <Carousel slides={filteredStudents} handleSelectStudent={handleSelectStudent}
           campusName={singleCampus.name} numEnrolled={filteredStudents.length}/>
 
