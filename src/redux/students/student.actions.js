@@ -49,6 +49,7 @@ export const fetchStudentSliceThunk = ({from,to}) => {
             // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students");
             const students = res.data.slice(from,to);
             dispatch(fetchStudentSlice(students));
+            console.log("SLICED STUDENTS : " + students + " from " + from + " to " + to)
         } catch (error){
             console.log(error)
         }
@@ -121,7 +122,7 @@ export const addStudentThunk = (student) => {
                 email: student.email,
                 gpa: student.gpa,
                 campusId: student.campusId,
-                imageURL: student.imageUrl
+                imageUrl: student.imageUrl
             });
             // const res = await axios.post("https://crud-backend-dusky.vercel.app/api/students", {
             //     firstName: student.firstName,
@@ -229,6 +230,7 @@ export const addBatchStudentThunk = (student) => {
             const res = await axios.post("http://localhost:8080/api/students", {
                 firstName: student.firstName,
                 lastName: student.lastName,
+                imageUrl: student.imageUrl,
                 email: student.email,
                 gpa: student.gpa,
                 campusId: student.campusId

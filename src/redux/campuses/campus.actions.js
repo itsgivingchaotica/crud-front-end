@@ -136,9 +136,9 @@ export const addCampusThunk = (campus) => {
             console.log("running");
             const res = await axios.post("http://localhost:8080/api/campuses", {
                 name: campus.name,
+                imageUrl: campus.imageUrl,
                 address: campus.address,
                 description: campus.description,
-                imageURL: campus.imageUrl
             });
             // const res = await axios.post("https://crud-backend-dusky.vercel.app/api/campuses", {
             //     name: campus.name,

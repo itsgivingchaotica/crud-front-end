@@ -36,6 +36,8 @@ const CampusInputForm= () => {
        const navigateToAllCampuses = () => {
       navigate("/campuses");
     }
+    const trimmedImageUrl = imageUrl.trim();
+  const newImageUrl = trimmedImageUrl ? trimmedImageUrl : "https://i0.wp.com/cfe.umich.edu/wp-content/uploads/2015/09/blank-profile.jpg?fit=4016%2C2677&ssl=1";
 
      const handleChangeSchoolName = (event) => {
         setName(event.target.value);
@@ -57,7 +59,7 @@ const CampusInputForm= () => {
         event.preventDefault();
         const newCampus = {
             "name": name,
-            "imageUrl": imageUrl,
+            "imageUrl": newImageUrl,
             "address": address,
             "description":description,
         }

@@ -14,12 +14,12 @@ const StudentListItems = (props) => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-     dispatch(fetchStudentSliceThunk(pagination.from,pagination.to))
-  },[dispatch,pagination])
+     dispatch(fetchStudentSliceThunk(pagination))
+  },[dispatch, pagination])
 
-  useEffect(() => {
-    dispatch(fetchAllStudentsThunk())
-  })
+  // useEffect(() => {
+  //   dispatch(fetchAllStudentsThunk())
+  // })
 
   return (
      <Grid container spacing={2} sx={{padding:'5px'}}>
