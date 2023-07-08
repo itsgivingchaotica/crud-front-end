@@ -2,12 +2,13 @@
     display: block;
     height: fit-content;
     background-image: linear-gradient(rgba(128, 128, 128, 0.133), rgba(255, 255, 255, 0.113), rgba(128, 128, 128, 0.136));
-    padding: 8rem 0 1.5rem 0;
-    margin: 2rem 1rem;
+    padding: 8rem 0 2rem 0;
+    margin: 3rem 1rem;
     border-radius: 1rem;
     font-family: 'Poppins', sans-serif;
     position: relative;
-    bottom: 5.5rem;
+    bottom: 1rem;
+    margin-bottom: 4rem;
 }
 
 .carousel{

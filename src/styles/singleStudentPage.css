@@ -34,7 +34,7 @@
     display:inline-block;
     position: relative;
     margin-bottom: 20px;
-    margin: 10px 25px;
+    margin: 10px 20px;
     /* background-image: radial-gradient(rgba(64, 145, 109, 0.183), rgba(127, 48, 42, 0.178)); */
     background-image: linear-gradient(rgba(128, 128, 128, 0.133), rgba(255, 255, 255, 0.113), rgba(128, 128, 128, 0.136));
     border-radius: 1rem;
@@ -215,5 +215,11 @@
     }
 
 
+  }
+
+  @media only screen and (max-width: 490px) {
+    .student-profile-container{
+        width: 75%;
+    }
   }
 

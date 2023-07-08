@@ -46,7 +46,7 @@ const StudentCard = (props) => {
   
   return (
 
-    <Card sx={{paddingBottom: '30px'}}>
+    <Card sx={{paddingBottom: '30px', overflow:'scroll'}}>
       {/* NAME: REQUIRED, FIRST, LAST*/}
       <CardContent sx={{borderBottom:'4px solid black'}}>
         <Typography 

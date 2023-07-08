@@ -95,3 +95,100 @@
         right: 0;
     }
 }
+
+
+/*******EDIT STUDENT FORM **********/
+
+
+.edit-input-container{
+    display: inline-block;
+    margin: 5px;
+}
+
+.edit-input-container-gpa-select{
+    display: inline-block;
+    margin: 5px;
+}
+
+.edit-input-container-gpa{
+    display: inline-block;
+    margin: 5px;
+}
+
+.edit-input-container-select{
+    display: inline-block;
+    margin: 5px;
+}
+
+.edit-form-input{
+    width: 180px;
+}
+
+.edit-form-input-long{
+    width: 370px;
+}
+
+.edit-form-input-select{
+    width: 260px;
+}
+
+.edit-form-input-gpa{
+    width: 100px;
+}
+
+.btn-form-edit-student {
+    background-image: linear-gradient(rgb(177, 96, 96), var(--burnt-umber),rgb(177, 96, 96));
+    color: var(--buff);
+    border: rgba(196, 97, 97, 0.296) 3px solid;
+    box-shadow:4px 4px 4px black;
+    text-shadow: 1px 2px 2px black;
+    font-size: 15px;
+    font-family: 'Helvetica Neue';
+    font-weight: 700;
+    width: 200px;
+    position: relative;
+    top: 10px;
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    transition: 500ms ease-in-out;
+}
+
+.btn-form-edit-student:hover{
+    transition: 400ms ease-in-out;
+}
+
+@media only screen and (max-width: 470px) {
+    .edit-input-container{
+        width: 100%;
+    }
+
+    .edit-input-container-gpa-select{
+        width: 100%;
+    }
+
+    .edit-input-container-gpa{
+        width: 30%;
+    }
+
+    .edit-input-container-select{
+        width: 62%;
+    }
+
+    .edit-form-input{
+        width: 95%;
+    }
+
+    .edit-form-input-long{
+        width: 95%;
+    }
+
+    .edit-form-input-gpa{
+        width: 98%;
+    }
+
+    .edit-form-input-select{
+        width: 98%;
+    }
+  }
