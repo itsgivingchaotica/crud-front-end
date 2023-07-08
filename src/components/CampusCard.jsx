@@ -1,8 +1,10 @@
 import React from 'react'
 import { useMediaQuery } from '@mui/material'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
 import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
 import Tooltip from '@mui/material/Tooltip'
@@ -32,25 +34,26 @@ const CampusCard = (props) => {
   }
 
   return (
-    <Card sx={{paddingBottom: '30px', overflow:'scroll', paddingTop: '10px', height:'550px'}}>
+    <Card sx={{paddingBottom: '30px', overflow:'scroll', height:'550px'}}>
       {/* NAME: REQUIRED*/}
-      <CardContent sx={{borderBottom:'4px solid black'}}>
       <NavLink to={`/campuses/${id}`} style={{textDecoration:'none', color:'black'}} >
+      <CardContent sx={{borderBottom:'4px solid black', '&:hover': {
+    cursor: 'pointer',
+    color: 'var(--garnet)',
+    textShadow: '1px 1px 1px var(--dark-green)', backgroundColor:'var(--bone)'
+  },}}>
         <Typography 
-          variant="h4" 
+          variant="h5" 
           sx={{fontFamily:`'Ysabeau Infant', sans-serif`, fontWeight:'700'}}
         > 
           {name}
         </Typography>
-        </NavLink>
       </CardContent>
-          <Stack direction='row'>
-          {/* IMAGE URL: DEFAULT REQUIRED */}
-            {(<CardContent
-              sx={{ display: 'flex', alignItems: 'center', height:'100%',width:'100%'}}>
-                <img src={imageUrl} alt={`${name} profile`}  styles={{justifyContent:'center' }}/>
-              </CardContent>)}
-            </Stack>
+      </NavLink>
+       {/* IMAGE URL: OPTIONAL */}
+           <Box sx={{  display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <CardMedia component="img" src={imageUrl} alt={`${name} profile`} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', height: '200px', width: '300px' }} />
+          </Box>
             <Stack direction='row' justifyContent='space-between' width='100%'>
             {/* CAMPUS DETAILS AND OPTIONS */}
             <Stack direction='column'>
@@ -74,7 +77,7 @@ const CampusCard = (props) => {
                 </div>
               </CardContent>
               </Tooltip>
-                <Divider light/>
+                <Divider light sx={{width:'500px'}}/>
               {/* DESCRIPTION: REQUIRED */}
               <CardContent sx={{ display: 'flex', alignItems: 'center', marginRight:'10px'}}>
                 <Typography 

@@ -29,7 +29,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
   const [failedSubmit, setFailedSubmit] = useState(false);
   const editFormRef = useRef();
   const isSmallMobileScreen = useMediaQuery('(max-width: 390px')
-  const isMobileScreen = useMediaQuery('(max-width: 525px')
+  const isMobileScreen = useMediaQuery('(max-width: 560px')
   const topRef = useRef(null)
 
   const filteredStudents = useSelector(state => state.students.filteredStudentList);
@@ -137,7 +137,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
     > 
     <Stack spacing={2} sx={{display:'flex', flexDirection:'column',justifyContent:'space-between'}} ref={topRef}>
     <div style={{marginTop: "130px"}} className="single-campus-page"> 
-      <div className="sc-campus-profile-container" style={{height: "100%"}}>
+      <div className="sc-campus-profile-container" style={{height: "100%", paddingBottom:'70px'}}>
         <h1 className="sc-campus-name">{singleCampus.name}</h1>
         <Tooltip title="SEARCH MAP" placement='left' arrow TransitionComponent={Zoom}>
           <div className="sc-address-container" onClick={() => window.open(`http://www.google.com/maps/place/${singleCampus.address}`, '_blank')} >
@@ -167,7 +167,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
       </div>
       <div>
         <div className="sc-enrolled-students-container">
-          <h2 className="sc-enrolled-students-header" style={{marginTop:isSmallMobileScreen?'400px' : isMobileScreen?'250px' : '100px'}}>Students enrolled at {singleCampus.name}:</h2>
+          <h2 className="sc-enrolled-students-header" style={{marginTop:isSmallMobileScreen?'460px' : isMobileScreen?'300px' : '100px'}}>Students enrolled at {singleCampus.name}:</h2>
           <Carousel slides={filteredStudents} handleSelectStudent={handleSelectStudent}
           campusName={singleCampus.name} numEnrolled={filteredStudents.length}/>
 

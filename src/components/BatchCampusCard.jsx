@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
 import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
 import Tooltip from '@mui/material/Tooltip'
@@ -32,20 +33,17 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
       {/* NAME: REQUIRED */}
       <CardContent sx={{borderBottom:'4px solid black'}}>
         <Typography 
-          variant="h4" 
+          variant="h5" 
           className="name" 
           sx={{fontFamily:`'Ysabeau Infant', sans-serif`, fontWeight:'700'}}
         > 
           {name}
         </Typography>
       </CardContent>
-          <Stack direction='row'>
           {/* IMAGE URL: DEFAULT REQUIRED */}
-            {(<CardContent 
-              sx={{ display: 'flex', alignItems: 'center', height:'110%',width:'110%', justifyContent:'center'}}>
-                <img src={imageUrl} alt={`${name} profile image`} styles={{justifyContent:'center' }}/>
-              </CardContent>)}
-            </Stack>
+           <Box sx={{ height: '200px', width: '300px'}}>
+             <CardMedia component="img" src={imageUrl} alt={`${name} profile image`} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', alignItems:'center'  }} />
+            </Box> 
             <Stack direction='row' justifyContent='center'>
             {/* CAMPUS DETAILS AND OPTIONS */}
             <Stack direction='column'>
@@ -56,7 +54,7 @@ const BatchCampusCard = ({entry,handleDeleteCampus}) => {
                 <LocationOnIcon/>
                 <div style={{flexDirection:'column'}}>
                 <Typography 
-                  variant='h5'
+                  variant='subtitle1'
                   sx={{marginLeft:'10px', fontFamily:`'Manrope',sans-serif`,textAlign:'left', '&:hover':{textShadow: '1px 1px 1px var(--dark-green)'}}}> 
                   {address1} 
                 </Typography>

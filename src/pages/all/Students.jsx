@@ -34,7 +34,6 @@ const Students = () => {
   
   useEffect(() => {
     fetchAllStudents();
-    // dispatch(fetchStudentSliceThunk(pagination.from,pagination.to))
     //when change in pagination and dispatching of thunk occurs, scroll to top of page
     const scrollToTop = () => {
       topRef.current.scrollIntoView({ top: 0, behavior: 'smooth' });
@@ -51,8 +50,8 @@ const Students = () => {
         </div>
       )}
     >
-      <div ref={topRef} style={{ marginTop: '120px', minHeight: '380vh', width: '100%', backgroundColor: 'var(--off-white)' }}>
-        <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ justifyContent: 'center', paddingTop: '10px', paddingLeft: '15px', height: '100vh', width: '100%', textShadow: '1px 1px 1px black', color: 'var(--garnet)'}}>
+      <div ref={topRef} style={{ marginTop: '120px', minHeight: '360vh', width: '100%', backgroundColor: 'var(--off-white)' }}>
+        <Grid container spacing={{ xs: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ justifyContent: 'center', paddingTop: '10px', paddingLeft: '28px', height: '100vh', width: '100%', textShadow: '1px 1px 1px black', color: 'var(--garnet)'}}>
         <div className='banner-logo' style={{ width:'100vw',height:'100px',marginBottom:'20px', marginLeft:'20px', marginTop:'5px'}}></div>
           <Typography variant={isMobileScreen ? 'h3' : 'h1'} sx={{ fontFamily: `'Tangerine', sans-serif`, fontWeight: '700', marginLeft: '20px', border:'3px solid white', width: '100%', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)' }}>
             Student Profiles

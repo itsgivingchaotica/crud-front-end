@@ -157,7 +157,7 @@ const SingleStudent = () => {
     <div style={{ marginTop: '120px' }} className="single-student-page" >
         <div className="student-profile-container">
           <h1 className="header">{singleStudent.firstName + " " + singleStudent.lastName}</h1>
-          <img className="ss-student-image" src={singleStudent.imageUrl} alt="single student placeholder"></img>
+          <img className="ss-student-image" src={singleStudent.imageUrl} alt="single student placeholder" style={{objectFit:'cover'}}/>
 
           <Tooltip title="SEND EMAIL" placement='left' arrow TransitionComponent={Zoom}>
           <div className="ss-email-container">
