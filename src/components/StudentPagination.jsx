@@ -28,7 +28,7 @@ const StudentPagination = ({pagination,setPagination,pageSize}) => {
   }
 
   return (
-    <Box justifyContent={'center'} alignItems='center' display={'flex'} sx={{margin: "20px 0px" }}>
+    <Box justifyContent={'center'} alignItems='center' display={'flex'} sx={{margin: "10px 0px" }}>
       
       <Pagination count={Math.ceil(allStudents.length / pageSize)} 
         onChange={handlePageChange}

@@ -154,7 +154,7 @@ const SingleStudent = () => {
         </div>
       )}
     > 
-    <div style={{ marginTop: '120px' }} className="single-student-page">
+    <div style={{ marginTop: '120px' }} className="single-student-page" >
         <div className="student-profile-container">
           <h1 className="header">{singleStudent.firstName + " " + singleStudent.lastName}</h1>
           <img className="ss-student-image" src={singleStudent.imageUrl} alt="single student placeholder"></img>
