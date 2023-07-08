@@ -25,8 +25,8 @@ export const fetchAllStudents = (payload) => {
 export const fetchAllStudentsThunk = () =>{
     return async(dispatch) =>{
         try{
-            const res = await axios.get("http://localhost:8080/api/students");
-        //    const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students");
+            // const res = await axios.get("http://localhost:8080/api/students");
+           const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students");
             dispatch(fetchAllStudents(res.data));
         }
         catch(error){
@@ -45,11 +45,10 @@ export const fetchStudentSlice = (payload) => {
 export const fetchStudentSliceThunk = ({from,to}) => {
     return async(dispatch) => {
         try {
-            const res = await axios.get("http://localhost:8080/api/students");
-            // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students");
+            // const res = await axios.get("http://localhost:8080/api/students");
+            const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students");
             const students = res.data.slice(from,to);
             dispatch(fetchStudentSlice(students));
-            console.log("SLICED STUDENTS : " + students + " from " + from + " to " + to)
         } catch (error){
             console.log(error)
         }
@@ -68,8 +67,8 @@ export const sortStudent = (payload) => {
 export const sortStudentAscThunk = ({from,to}) => {
   return async(dispatch) => {
     try{
-      const res = await axios.get("http://localhost:8080/api/students/sortedStudent/ascending");
-    //   const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students/sortedStudent/ascending");
+    //   const res = await axios.get("http://localhost:8080/api/students/sortedStudent/ascending");
+      const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students/sortedStudent/ascending");
       const students = res.data.slice(from,to);
       dispatch(sortStudent(students));
     } catch (error) {
@@ -82,8 +81,8 @@ export const sortStudentAscThunk = ({from,to}) => {
 export const sortStudentDescThunk = ({from,to}) => {
   return async(dispatch) => {
     try {
-      const res = await axios.get("http://localhost:8080/api/students/sortedStudent/descending");
-    // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students/sortedStudent/descending");
+    //   const res = await axios.get("http://localhost:8080/api/students/sortedStudent/descending");
+    const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students/sortedStudent/descending");
       const students = res.data.slice(from,to);
       dispatch(sortStudent(students));
     } catch (error) {
@@ -96,8 +95,8 @@ export const sortStudentDescThunk = ({from,to}) => {
 export const sortStudentGpaHighThunk = ({from,to}) => {
     return async(dispatch) => {
         try{
-            const res = await axios.get("http://localhost:8080/api/students/sortedStudent/gpaHigh");
-            // const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students/sortedStudent/gpaHigh");
+            // const res = await axios.get("http://localhost:8080/api/students/sortedStudent/gpaHigh");
+            const res = await axios.get("https://crud-backend-dusky.vercel.app/api/students/sortedStudent/gpaHigh");
             const students = res.data.slice(from,to);
             dispatch(sortStudent(students));
         } catch (error) {
@@ -116,22 +115,22 @@ export const addStudent = (payload) =>{
 export const addStudentThunk = (student) => {
     return async(dispatch) => {
         try{
-            const res = await axios.post("http://localhost:8080/api/students", {
-                firstName: student.firstName,
-                lastName: student.lastName,
-                email: student.email,
-                gpa: student.gpa,
-                campusId: student.campusId,
-                imageUrl: student.imageUrl
-            });
-            // const res = await axios.post("https://crud-backend-dusky.vercel.app/api/students", {
+            // const res = await axios.post("http://localhost:8080/api/students", {
             //     firstName: student.firstName,
             //     lastName: student.lastName,
             //     email: student.email,
             //     gpa: student.gpa,
             //     campusId: student.campusId,
-            //     imageURL: student.imageUrl
+            //     imageUrl: student.imageUrl
             // });
+            const res = await axios.post("https://crud-backend-dusky.vercel.app/api/students", {
+                firstName: student.firstName,
+                lastName: student.lastName,
+                imageUrl: student.imageUrl,
+                email: student.email,
+                gpa: student.gpa,
+                campusId: student.campusId
+            });
             dispatch(addStudent(res.data));
         }
         catch(error){
@@ -151,18 +150,8 @@ export const editStudent = (payload) =>{
   export const editStudentThunk = (editedStudent, id) => {
     return async (dispatch) => {
         try {
-        const res = await axios.put(
-            `http://localhost:8080/api/students/${id}`, {
-                firstName: editedStudent.firstName,
-                lastName: editedStudent.lastName,
-                email: editedStudent.email,
-                imageUrl: editedStudent.imageUrl,
-                gpa: editedStudent.gpa,
-                campusId: editedStudent.campusId
-            }
-        );
         // const res = await axios.put(
-        //     `https://crud-backend-dusky.vercel.app/api/students/${id}`, {
+        //     `http://localhost:8080/api/students/${id}`, {
         //         firstName: editedStudent.firstName,
         //         lastName: editedStudent.lastName,
         //         email: editedStudent.email,
@@ -171,6 +160,16 @@ export const editStudent = (payload) =>{
         //         campusId: editedStudent.campusId
         //     }
         // );
+        const res = await axios.put(
+            `https://crud-backend-dusky.vercel.app/api/students/${id}`, {
+                firstName: editedStudent.firstName,
+                lastName: editedStudent.lastName,
+                email: editedStudent.email,
+                imageUrl: editedStudent.imageUrl,
+                gpa: editedStudent.gpa,
+                campusId: editedStudent.campusId
+            }
+        );
         // const editedStudent = res.data;
         dispatch(editStudent(res.data));
 
@@ -190,9 +189,8 @@ export const editStudent = (payload) =>{
 export const deleteStudentThunk = (studentId) => {
     return async (dispatch) => {
         try {
-            await axios.delete(`http://localhost:8080/api/students/${studentId}`);
-            // await axios.delete(`https://crud-backend-dusky.vercel.app/api/students/${studentId}`);
-            console.log("student deleted");
+            // await axios.delete(`http://localhost:8080/api/students/${studentId}`);
+            await axios.delete(`https://crud-backend-dusky.vercel.app/api/students/${studentId}`);
             dispatch(deleteStudent(studentId));
         } catch (error) {
             console.log(error.message);
@@ -208,9 +206,9 @@ export const searchStudentsByCampus = (filteredStudents) => ({
 export const searchStudentsByCampusThunk = (campusId) => {
   return async (dispatch) => {
     try {
-       const res = await axios.get(`http://localhost:8080/api/students/byCampus/${campusId}`);
-    //   const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/students/byCampus/${campusId}`);
-    //   dispatch(searchStudentsByCampus(res.data)); // Pass campusId as the payload
+    //    const res = await axios.get(`http://localhost:8080/api/students/byCampus/${campusId}`);
+      const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/students/byCampus/${campusId}`);
+      dispatch(searchStudentsByCampus(res.data)); // Pass campusId as the payload
     } catch (error) {
       console.log(error.message);
     }
@@ -227,15 +225,7 @@ export const addBatchStudent = (payload) => {
 export const addBatchStudentThunk = (student) => {
     return async(dispatch) => {
         try{
-            const res = await axios.post("http://localhost:8080/api/students", {
-                firstName: student.firstName,
-                lastName: student.lastName,
-                imageUrl: student.imageUrl,
-                email: student.email,
-                gpa: student.gpa,
-                campusId: student.campusId
-            });
-            //  const res = await axios.post("https://crud-backend-dusky.vercel.app/api/students", {
+            // const res = await axios.post("http://localhost:8080/api/students", {
             //     firstName: student.firstName,
             //     lastName: student.lastName,
             //     imageUrl: student.imageUrl,
@@ -243,6 +233,14 @@ export const addBatchStudentThunk = (student) => {
             //     gpa: student.gpa,
             //     campusId: student.campusId
             // });
+             const res = await axios.post("https://crud-backend-dusky.vercel.app/api/students", {
+                firstName: student.firstName,
+                lastName: student.lastName,
+                imageUrl: student.imageUrl,
+                email: student.email,
+                gpa: student.gpa,
+                campusId: student.campusId
+            });
             dispatch(addStudent(res.data));
             dispatch(addBatchStudent(res.data));
         }
@@ -269,9 +267,8 @@ export const deleteBatchStudentThunk =
   (studentId) => {
     return async (dispatch) => {
         try {
-            await axios.delete(`http://localhost:8080/api/students/${studentId}`);
-            // await axios.delete(`https://crud-backend-dusky.vercel.app/api/students/${studentId}`);
-            console.log("student deleted");
+            // await axios.delete(`http://localhost:8080/api/students/${studentId}`);
+            await axios.delete(`https://crud-backend-dusky.vercel.app/api/students/${studentId}`);
             dispatch(deleteBatchStudent(studentId));
             dispatch(deleteStudent(studentId));
         } catch (error) {

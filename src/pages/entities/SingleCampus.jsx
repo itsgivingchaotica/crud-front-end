@@ -107,8 +107,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
   useEffect(() => {
     const fetchCampus = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/campuses/${id}`);
-        // const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/campuses/${id}`);
+        // const res = await axios.get(`http://localhost:8080/api/campuses/${id}`);
+        const res = await axios.get(`https://crud-backend-dusky.vercel.app/api/campuses/${id}`);
         const campusResponse = res.data;
         setSingleCampus(campusResponse);
       } catch (error) {
