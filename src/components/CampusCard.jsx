@@ -33,13 +33,13 @@ const CampusCard = (props) => {
     dispatch(fetchCampusSliceThunk({from:pagination.from,to:pagination.to}))
   }
 
-  useEffect(() => {
-    try{
-      dispatch(fetchCampusSliceThunk({from:pagination.from, to:pagination.to}));
-    } catch (error){
-      console.log(error.message)
-    }
-  },[])
+  // useEffect(() => {
+  //   try{
+  //     dispatch(fetchCampusSliceThunk({from:pagination.from, to:pagination.to}));
+  //   } catch (error){
+  //     console.log(error.message)
+  //   }
+  // },[])
 
   return (
     <Card sx={{paddingBottom: '30px', overflow:'scroll', height:'550px'}}>
